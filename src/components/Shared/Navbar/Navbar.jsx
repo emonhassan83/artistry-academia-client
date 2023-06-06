@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from '../../../assets/logo/logo_img.png'
+import logo from "../../../assets/logo/logo_img.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="my-container py-5 px-4  mx-auto">
+    <div className="my-container fixed z-10 w-full py-5 px-4  mx-auto">
       <div className="relative flex items-center justify-between">
         <Link
           to="/"
@@ -18,7 +18,7 @@ const Navbar = () => {
             <img className="w-40" src={logo} alt="" />
           </div>
         </Link>
-        <ul className="items-center hidden space-x-8 lg:flex">
+        <ul className="items-center hidden space-x-8 lg:flex text-black">
           <li>
             <NavLink
               to="/"
@@ -50,8 +50,10 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
-        <Link>
-        <button className="btn btn-outline btn-secondary hidden lg:block btn-sm px-5 rounded-3xl">Login</button>
+        <Link to="/login">
+          <button className="btn btn-outline hidden lg:block btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none my-4 uppercase">
+            Login
+          </button>
         </Link>
         <div className="lg:hidden">
           <button
@@ -60,7 +62,7 @@ const Navbar = () => {
             className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
             onClick={() => setIsMenuOpen(true)}
           >
-            <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
+            <svg className="w-5 text-black" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
                 d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
@@ -127,6 +129,13 @@ const Navbar = () => {
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Classes
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/login">
+                        <button className="btn btn-outline btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none uppercase -ml-2">
+                          Login
+                        </button>
                       </Link>
                     </li>
                   </ul>

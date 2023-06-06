@@ -8,7 +8,7 @@ const Login = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { error },
   } = useForm();
   const onSubmit = (data) => console.log(data);
 
@@ -37,7 +37,7 @@ const Login = () => {
           </small>
         </p>
       </form>
-      {/* {error && <p className="text-red-500">{error}</p>} */}
+      {error && <p className="text-red-500">{error}</p>}
       <div className="divider mt-5">OR</div>
       <SocialLogin/>
     </div>

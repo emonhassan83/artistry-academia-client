@@ -1,12 +1,13 @@
 import { useContext, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { FaBookReader } from 'react-icons/fa'
-import { MdAccountBox } from 'react-icons/md'
 import { FcSettings } from 'react-icons/fc'
 import { AiOutlineBars } from 'react-icons/ai'
 import {  BsFillHouseAddFill } from 'react-icons/bs'
 import { AuthContext } from '../../../providers/AuthProvider'
 import logo from '../../../assets/logo/logo2.png'
+import AdminSidebar from './AdminSidebar'
+//import InstructorSidebar from './InstructorSidebar'
+//import StudentSidebar from './StudentSidebar'
 const Sidebar = () => {
   const { user } = useContext(AuthContext)
 
@@ -67,35 +68,7 @@ const Sidebar = () => {
 
           {/* Nav Items */}
           <div className='flex flex-col justify-between flex-1 mt-6'>
-            <nav>
-              <>
-                {/* Menu Links */}
-                <NavLink
-                  to='selected-class'
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                    }`
-                  }
-                >
-                  <FaBookReader className='w-5 h-5' />
-
-                  <span className='mx-4 font-medium'>My Selected Classes</span>
-                </NavLink>
-                <NavLink
-                  to='enrolled-class'
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                    }`
-                  }
-                >
-                  <MdAccountBox className='w-5 h-5' />
-
-                  <span className='mx-4 font-medium'>My Enrolled Classes</span>
-                </NavLink>
-              </>
-            </nav>
+            <AdminSidebar/>
           </div>
         </div>
 

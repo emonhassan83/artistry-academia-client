@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logo/logo_img.png";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className="my-container py-5 px-4  mx-auto">
@@ -49,12 +57,49 @@ const Header = () => {
               Classes
             </NavLink>
           </li>
+          {user && (
+            <>
+              <li>
+                <NavLink
+                  to="/dashboard"
+                  aria-label="DashBoard"
+                  title="DashBoard"
+                  className={({ isActive }) =>
+                    isActive ? "active" : "default"
+                  }
+                >
+                  DashBoard
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
-        <Link to="/login">
-          <button className="btn btn-outline hidden lg:block btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none my-4 uppercase">
-            Login
-          </button>
-        </Link>
+        {user ? (
+          <div className="hidden lg:flex  items-center gap-1">
+            <div className="mt-6">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-9 rounded-full">
+                  <img title={user?.displayName} src={user?.photoURL} />
+                </div>
+              </label>
+            </div>
+            <li>
+              <button
+                onClick={handleLogOut}
+                className="btn btn-outline hidden lg:block btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none my-4 uppercase"
+              >
+                Logout
+              </button>
+            </li>
+          </div>
+        ) : (
+          <Link to="/login">
+            <button className="btn btn-outline hidden lg:block btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none my-4 uppercase">
+              Login
+            </button>
+          </Link>
+        )}
+
         <div className="lg:hidden">
           <button
             aria-label="Open Menu"
@@ -131,13 +176,47 @@ const Header = () => {
                         Classes
                       </Link>
                     </li>
-                    <li>
+                    {user ? (
+                      <>
+                        <li>
+                          <Link
+                            to="/dashboard"
+                            aria-label="DashBoard"
+                            title="DashBoard"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          >
+                            DashBoard
+                          </Link>
+                        </li>
+                        <li>
+                          <label
+                            tabIndex={0}
+                            className="btn btn-ghost btn-circle avatar"
+                          >
+                            <div className="w-9 rounded-full">
+                              <img
+                                title={user?.displayName}
+                                src={user?.photoURL}
+                              />
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <button
+                            onClick={handleLogOut}
+                            className="btn btn-outline btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none uppercase -ml-2"
+                          >
+                            Logout
+                          </button>
+                        </li>
+                      </>
+                    ) : (
                       <Link to="/login">
-                        <button className="btn btn-outline btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none uppercase -ml-2">
+                        <button className="btn btn-outline btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none my-4 -ml-2 uppercase">
                           Login
                         </button>
                       </Link>
-                    </li>
+                    )}
                   </ul>
                 </nav>
               </div>

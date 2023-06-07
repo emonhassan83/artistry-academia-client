@@ -1,3 +1,5 @@
+
+
 // save a user to database
 export const saveUser = (user) => {
   const currentUser = {
@@ -15,3 +17,11 @@ export const saveUser = (user) => {
     .then((res) => res.json())
     .then((data) => console.log(data));
 };
+
+
+// Get role
+export const getRole = async email => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${email}`)
+  const user = await response.json()
+  return user?.role
+}

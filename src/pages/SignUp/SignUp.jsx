@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 // import { toast } from "react-hot-toast";
 import Swal from "sweetalert2";
+import { saveUser } from "../../api/users";
 
 const SignUp = () => {
   const [error, setError] = useState("");
@@ -18,7 +19,7 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    //console.log(data);
     setError("");
     const password = data.password;
     const confirmPassword = data.confirmPass;
@@ -32,7 +33,8 @@ const SignUp = () => {
         console.log(loggedUser);
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
-            //toast.success("User profile updated successfully");
+            //save user to db
+            saveUser(loggedUser);
             Swal.fire({
               position: "top-end",
               icon: "success",

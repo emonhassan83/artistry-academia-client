@@ -2,6 +2,7 @@ import { useContext } from "react";
 import googleLogo from "../../../assets/logo/google.png";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
+import { saveUser } from "../../../api/users";
 
 const SocialLogin = () => {
   const { googleSignIn } = useContext(AuthContext);
@@ -12,6 +13,9 @@ const SocialLogin = () => {
     .then(result => {
       const logUser = result.user;
       console.log(logUser);
+      //save user in db
+      saveUser(logUser);
+
       toast.success('user logged in successfully')
       //navigate(from, { replace: true });
     })

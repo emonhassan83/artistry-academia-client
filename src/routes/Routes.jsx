@@ -5,6 +5,7 @@ import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import LoginLayout from "../layouts/LoginLayout";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,19 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "/dashboard", element: <DashboardLayout />,
+  children: [
+    {
+      path: "/dashboard/selected-class",
+      element: <p>SELECTED class</p>
+    },
+    {
+      path: "/dashboard/enrolled-class",
+      element: <p>enrolled class</p>
+    },
+
+  ]
+   },
 ]);
 
 export default router;

@@ -1,4 +1,4 @@
-import ClassCard from "../../components/ClassCard/ClassCard";
+import ClassCard from "../../components/Card/ClassCard";
 import { useEffect, useState } from "react";
 
 const AllClass = () => {
@@ -8,7 +8,7 @@ const AllClass = () => {
     .then(res => res.json())
     .then(data => setClasses(data))
   }, [])
-  console.log(classes);
+ 
   return (
     <div>
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">

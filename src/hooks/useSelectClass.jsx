@@ -6,7 +6,7 @@ import { AuthContext } from "../providers/AuthProvider";
 export const useSelectClass = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: classes = [] } = useQuery({
+  const { data: classes = [], refetch } = useQuery({
     queryKey: ["classes", user?.email],
     queryFn: async () => {
       if (user) {
@@ -18,5 +18,5 @@ export const useSelectClass = () => {
       }
     },
   });
-  return [classes];
+  return [classes, refetch];
 };

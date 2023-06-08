@@ -1,8 +1,34 @@
+import Swal from "sweetalert2";
 import { useSelectClass } from "../../hooks/useSelectClass";
 
 const SelectedClass = () => {
-  const [classes] = useSelectClass();
-  console.log(classes);
+  const [classes, refetch] = useSelectClass();
+
+  const handleDelete = item => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`${import.meta.env.VITE_API_URL}/class/${item}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            }
+          });
+      }
+    });
+  }
+  
   return (
     <div>
       <div className="overflow-x-auto">
@@ -40,7 +66,7 @@ const SelectedClass = () => {
                   <td>{classData?.instructorName}</td>
                   <td>{classData?.seats}</td>
                   <td>
-                    <button className="btn btn-xs">Delete</button>
+                    <button onClick={()=> handleDelete(classData._id)}  className="btn btn-xs">Delete</button>
                   </td>
                   <td>
                     <button className="btn btn-xs">${classData?.price} tk.</button>

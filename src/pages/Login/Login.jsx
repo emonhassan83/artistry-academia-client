@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -9,7 +9,12 @@ import Swal from "sweetalert2";
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const [error, setError] = useState('');
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
   const {
     register,
     handleSubmit,
@@ -29,7 +34,7 @@ const Login = () => {
                 title: 'Yep...',
                 text: 'User login successfully!',
               })
-            //navigate(from, {replace: true});
+            navigate(from, {replace: true});
             navigate('/');
         })
         .catch(error => {
@@ -38,7 +43,7 @@ const Login = () => {
         })
   };
   return (
-    <div className="pt-20 login-card mx-auto">
+    <div className="mt-6 mb-12  login-card mx-auto">
       <h2 className="text-2xl font-bold mb-8">Login Please</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Username or Email</label>
@@ -46,6 +51,7 @@ const Login = () => {
           type="email"
           name="email"
           {...register("email", { required: true })}
+          required
         />
         {errors.email && (
           <p className="text-red-500 -mt-5">
@@ -55,14 +61,16 @@ const Login = () => {
 
         <label>Password</label>
         <input
-          type="password"
+          type={show ? "text" : "password" }
           name="password"
           {...register("password", {
             required: true,
             minLength: 6,
             pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
           })}
+          required
         />
+        <p className="-mt-4" onClick={()=> setShow(!show)}><small> {show ? <span>Hide Password</span> : <span>Show Password</span> }</small></p>
         {errors.password?.type === "required" && (
           <p className="text-red-500 -mt-5">
             <small>Password is required</small>

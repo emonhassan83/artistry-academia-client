@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../../assets/logo/logo_img.png";
+import logo from "../../../assets/logo/logo2.png";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="my-container fixed z-10 w-full py-5 px-4  mx-auto">
+    <div className="my-container fixed z-10 lg:py-2 w-full px-4  mx-auto">
       <div className="relative flex items-center justify-between">
         <Link
           to="/"

@@ -57,7 +57,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="my-4 signUp-card mx-auto">
+    <div className="mt-6 mb-12 signUp-card mx-auto">
       <h2 className="text-2xl font-bold mb-8">Sign Up Please</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Full Name</label>
@@ -65,6 +65,7 @@ const SignUp = () => {
           type="text"
           name="name"
           {...register("name", { required: true })}
+          required
         />
         {errors.name && (
           <p className="text-red-500 -mt-5">
@@ -77,6 +78,7 @@ const SignUp = () => {
           type="email"
           name="email"
           {...register("email", { required: true })}
+          required
         />
         {errors.email && (
           <p className="text-red-500 -mt-5">
@@ -94,6 +96,7 @@ const SignUp = () => {
             minLength: 6,
             pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
           })}
+          required
         />
         {errors.password?.type === "required" && (
           <p className="text-red-500 -mt-5">
@@ -124,6 +127,7 @@ const SignUp = () => {
             minLength: 6,
             pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
           })}
+          required
         />
         {errors.password?.type === "required" && (
           <p className="text-red-500 -mt-5">
@@ -149,6 +153,7 @@ const SignUp = () => {
           type="url"
           defaultValue=""
           {...register("photoURL", { required: true })}
+          required
         />
 
         {errors.photoURL && (

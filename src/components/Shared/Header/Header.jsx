@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../../assets/logo/logo_img.png";
+import logo from "../../../assets/logo/logo2.png";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Header = () => {
@@ -14,7 +14,7 @@ const Header = () => {
   };
 
   return (
-    <div className="my-container py-5 px-4  mx-auto">
+    <div className="my-container lg:py-2 px-4  mx-auto">
       <div className="relative flex items-center justify-between">
         <Link
           to="/"

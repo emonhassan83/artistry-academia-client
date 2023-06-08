@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/Shared/Header/Header";
 import Footer from "../components/Shared/Footer/Footer";
 
-const LoginLayout = () => {
+const MainLayout = () => {
     return (
         <div>
             <Header/>
@@ -12,4 +12,4 @@ const LoginLayout = () => {
     );
 };
 
-export default LoginLayout;
+export default MainLayout;

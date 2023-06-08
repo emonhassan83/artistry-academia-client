@@ -1,10 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import Main from "../layouts/Main";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
-import LoginLayout from "../layouts/LoginLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 import SelectedClass from "../pages/Dashboard/SelectedClass";
 import EnrolledClass from "../pages/Dashboard/EnrolledClass";
@@ -14,31 +12,35 @@ import ManageClass from "../pages/Dashboard/ManageClass";
 import ManageUsers from "../pages/Dashboard/ManageUsers";
 import Instructor from "../pages/Instructor/Instructor";
 import AllClass from "../pages/AllClass/AllClass";
+import Payment from "../pages/Dashboard/Payment";
+import MainLayout from "../layouts/MainLayout";
+import HomeLayout from "../layouts/HomeLayout";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main />,
+    element: <HomeLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
         element: <Home />,
       },
-      {
-        path: "/instructors",
-        element: <Instructor />,
-      },
-      {
-        path: "/all-classes",
-        element: <AllClass />,
-      },
     ],
   },
   {
     path: "/",
-    element: <LoginLayout />,
+    element: <MainLayout />,
     children: [
+      {
+        path: "/instructors",
+        element: <PrivateRoute><Instructor /></PrivateRoute>,
+      },
+      {
+        path: "/all-classes",
+        element: <PrivateRoute><AllClass /></PrivateRoute>,
+      },
       {
         path: "/login",
         element: <Login />,
@@ -59,6 +61,10 @@ const router = createBrowserRouter([
     {
       path: "/dashboard/enrolled-class",
       element: <EnrolledClass/>
+    },
+    {
+      path: "/dashboard/payment",
+      element: <Payment/>
     },
     // Instructor roues 
     {

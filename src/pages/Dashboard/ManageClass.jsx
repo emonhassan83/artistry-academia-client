@@ -1,7 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import FeedbackModal from "../../components/Dashboard/Modal/FeedbackModal";
+import { useState } from "react";
 
 const ManageClass = () => {
+  const [modal, setModal] = useState(false);
 
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await fetch(`${import.meta.env.VITE_API_URL}/classes`);
@@ -48,6 +51,14 @@ const ManageClass = () => {
       });
   };
 
+  const modalHandler = id => {
+    console.log('Modal Clicked');
+  }
+
+  const closeModal = () => {
+    setModal(false);
+  }
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -90,10 +101,11 @@ const ManageClass = () => {
                 <td>{classData?.status}</td>
                 <td>
                   <div className="flex items-center gap-1">
-                      <button onClick={()=> handleMakeApprove(classData)} className="btn btn-xs" disabled={classData?.status === 'approved'}>Approve</button>
-                      <button onClick={()=> handleMakeDeny(classData)} className="btn btn-xs" disabled={classData?.status === 'deny'}>Deny</button>
-                      <button className="btn btn-xs">Send Feedback</button>
+                      <button onClick={()=> handleMakeApprove(classData)} className="btn btn-xs" disabled={classData?.status === 'approved' || classData?.status === 'deny'}>Approve</button>
+                      <button onClick={()=> handleMakeDeny(classData)} className="btn btn-xs" disabled={classData?.status === 'deny' || classData?.status === 'approved'}>Deny</button>
+                      <button onClick={ ()=> setModal(true) } className="btn btn-xs">Send Feedback</button>
                   </div>
+                <FeedbackModal id={classData._id} modalHandler={modalHandler} isOpen={modal} closeModal={closeModal}/>
                 </td>
               </tr>))
             }

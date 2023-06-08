@@ -67,7 +67,7 @@ const AddClass = () => {
         <label>Instructor Email</label>
         <input
           value={user?.email}
-          {...register("instructorEmail", { required: true })}
+          {...register("email", { required: true })}
         />
 
         <div className="flex items-center justify-between">

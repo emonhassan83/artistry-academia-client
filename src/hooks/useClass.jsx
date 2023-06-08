@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 //get all class by email
 export const useClassByEmail = () => {
     const {user} = useContext(AuthContext);
-    const { data: classes } = useQuery({
+    const { data: classes = [] } = useQuery({
         queryKey: ['classes', user?.email],
         queryFn: async () => {
             const response = await fetch(

@@ -1,7 +1,8 @@
-import { useClassByEmail } from "../../api/useClass";
+import { useClassByEmail } from "../../hooks/useClass";
 
 const MyClass = () => {
   const [classes] = useClassByEmail();
+  
   
   return (
     <div>

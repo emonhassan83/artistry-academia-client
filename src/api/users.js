@@ -1,5 +1,3 @@
-
-
 // save a user to database
 export const saveUser = (user) => {
   const currentUser = {

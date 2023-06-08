@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 import "./AddClass.css";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { imageUpload } from "../../api/utils";
+import { addClass } from "../../api/classes";
+import { toast } from "react-hot-toast";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
@@ -11,14 +14,42 @@ const AddClass = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) =>{
+     data.status = 'pending'
+     //upload image
+     const image = data?.classImg[0];
+     imageUpload(image)
+     .then(imgData => {
+      const classData = {
+        className: data?.className,
+        image: imgData?.data.display_url,
+        instructorName: data?.instructorName,
+        instructorEmail: data?.instructorEmail,
+        seats: data?.seats,
+        price: data?.price,
+        status: data?.status
+      }
+
+      //post class data in database
+      addClass(classData)
+      .then(data => {
+        toast.success('Class added successfully')
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      
+    })
+     .catch(err => console.log(err))
+    };
 
   return (
     <div className="my-3 add-class mx-auto ">
       <h2 className="text-2xl font-bold mb-8">Add A Class</h2>
       <form className="mx-auto" onSubmit={handleSubmit(onSubmit)}>
         <label>Class Name</label>
-        <input {...register("className", { required: true })} />
+        <input placeholder="Enter your class" {...register("className", { required: true })} />
 
         <label>Class Image</label>
         <input
@@ -36,7 +67,7 @@ const AddClass = () => {
         <label>Instructor Email</label>
         <input
           value={user?.email}
-          {...register("instructor Email", { required: true })}
+          {...register("instructorEmail", { required: true })}
         />
 
         <div className="flex items-center justify-between">
@@ -49,7 +80,7 @@ const AddClass = () => {
           </div>
           <div>
             <label>Course Free</label>
-            <input {...register("price", { required: true })} />
+            <input placeholder="Course free" {...register("price", { required: true })} />
           </div>
         </div>
 

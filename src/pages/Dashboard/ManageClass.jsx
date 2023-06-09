@@ -95,7 +95,7 @@ const ManageClass = () => {
                 </td>
                 <td>{classData?.className}</td>
                 <td>{classData?.instructorName}</td>
-                <td>{classData?.instructorEmail}</td>
+                <td>{classData?.email}</td>
                 <td>{classData?.seats}</td>
                 <td>${classData?.price}</td>
                 <td>{classData?.status}</td>

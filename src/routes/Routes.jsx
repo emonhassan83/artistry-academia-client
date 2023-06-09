@@ -16,6 +16,7 @@ import Payment from "../pages/Dashboard/Payment";
 import MainLayout from "../layouts/MainLayout";
 import HomeLayout from "../layouts/HomeLayout";
 import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -35,11 +36,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/instructors",
-        element: <PrivateRoute><Instructor /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Instructor />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/all-classes",
-        element: <PrivateRoute><AllClass /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AllClass />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -51,41 +60,55 @@ const router = createBrowserRouter([
       },
     ],
   },
-  { path: "/dashboard", element: <DashboardLayout />,
-  children: [
-    // student roues 
-    {
-      path: "/dashboard/selected-class",
-      element: <SelectedClass/>
-    },
-    {
-      path: "/dashboard/enrolled-class",
-      element: <EnrolledClass/>
-    },
-    {
-      path: "/dashboard/payment",
-      element: <Payment/>
-    },
-    // Instructor roues 
-    {
-      path: "/dashboard/add-class",
-      element: <AddClass/>
-    },
-    {
-      path: "/dashboard/my-class",
-      element: <MyClass/>
-    },
-    // Admin roues 
-    {
-      path: "/dashboard/manage-class",
-      element: <ManageClass/>
-    },
-    {
-      path: "/dashboard/manage-users",
-      element: <ManageUsers/>
-    },
-  ]
-   },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      // student roues
+      {
+        path: "/dashboard/selected-class",
+        element: <SelectedClass />,
+      },
+      {
+        path: "/dashboard/enrolled-class",
+        element: <EnrolledClass />,
+      },
+      {
+        path: "/dashboard/payment",
+        element: <Payment />,
+      },
+      // Instructor roues
+      {
+        path: "/dashboard/add-class",
+        element: <AddClass />,
+      },
+      {
+        path: "/dashboard/my-class",
+        element: <MyClass />,
+      },
+      // Admin roues
+      {
+        path: "/dashboard/manage-class",
+        element: (
+          <AdminRoute>
+            <ManageClass />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/manage-users",
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
+      },
+    ],
+  },
 ]);
 
 export default router;

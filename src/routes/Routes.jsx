@@ -17,6 +17,7 @@ import MainLayout from "../layouts/MainLayout";
 import HomeLayout from "../layouts/HomeLayout";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
 
 const router = createBrowserRouter([
   {
@@ -84,11 +85,11 @@ const router = createBrowserRouter([
       // Instructor roues
       {
         path: "/dashboard/add-class",
-        element: <AddClass />,
+        element: <InstructorRoute><AddClass /></InstructorRoute>
       },
       {
         path: "/dashboard/my-class",
-        element: <MyClass />,
+        element: <InstructorRoute><MyClass /></InstructorRoute>
       },
       // Admin roues
       {

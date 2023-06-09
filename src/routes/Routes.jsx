@@ -12,7 +12,7 @@ import ManageClass from "../pages/Dashboard/ManageClass";
 import ManageUsers from "../pages/Dashboard/ManageUsers";
 import Instructor from "../pages/Instructor/Instructor";
 import AllClass from "../pages/AllClass/AllClass";
-import Payment from "../pages/Dashboard/Payment";
+import Payment from "../pages/Dashboard/Payment/Payment";
 import MainLayout from "../layouts/MainLayout";
 import HomeLayout from "../layouts/HomeLayout";
 import PrivateRoute from "./PrivateRoute";

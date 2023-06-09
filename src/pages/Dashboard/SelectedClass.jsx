@@ -1,9 +1,10 @@
 import Swal from "sweetalert2";
 import { useSelectClass } from "../../hooks/useSelectClass";
-import { Link } from "react-router-dom";
+import SelectedClassRow from "../../components/Dashboard/SelectedClassRow";
 
 const SelectedClass = () => {
   const [classes, refetch] = useSelectClass();
+
 
   const handleDelete = item => {
     Swal.fire({
@@ -48,34 +49,8 @@ const SelectedClass = () => {
           </thead>
           <tbody>
             {classes.length > 0 &&
-              classes.map((classData, index) => (
-                <tr key={classData._id}>
-                <td>{index+1}</td>
-                  <td>
-                    <div className="flex items-center space-x-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img
-                            src={classData?.image}
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>{classData?.className}</td>
-                  <td>{classData?.instructorName}</td>
-                  <td>{classData?.seats}</td>
-                  <td>
-                    <button onClick={()=> handleDelete(classData._id)}  className="btn btn-xs">Delete</button>
-                  </td>
-                  <td>
-                    <Link to="/dashboard/payment">
-                    <button className="btn btn-xs">${classData?.price} tk.</button>
-                    </Link>
-                  </td>
-                </tr>
-              ))}
+              classes.map((classData, index) => <SelectedClassRow key={classData._id} classData={classData} handleDelete={handleDelete} index={index} refetch={refetch}/> )}
+          
           </tbody>
         </table>
       </div>

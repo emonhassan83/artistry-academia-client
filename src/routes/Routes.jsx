@@ -18,6 +18,7 @@ import MainLayout from "../layouts/MainLayout";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
+import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/payment",
         element: <Payment />,
+      },
+      {
+        path: "/dashboard/payment-history",
+        element: <PaymentHistory />,
       },
       // Instructor roues
       {

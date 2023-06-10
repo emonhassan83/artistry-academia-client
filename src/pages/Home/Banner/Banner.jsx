@@ -14,10 +14,10 @@ const Banner = () => {
           Living in color
         </h1>
         <h6 className="primary-font uppercase text-base sm:text-xl lg:text-3xl lg:mt-3">
-          Welcome to Artistry Academia
+         Discovering The Art At Our Summer Camp
         </h6>
         <p className="text-base secondary-font lg:text-left my-8">
-          When you take a flower in your hand and really look at it, its your
+          Welcome to Artistry Academia .When you take a flower in your hand and really look at it, its your
           world for the moment. I want to give that world to someone else. Most
           people in the city rush around so, they have no time to look at a
           flower. I want them to see it whether they want to or not.{" "}

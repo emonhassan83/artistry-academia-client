@@ -18,3 +18,20 @@ export const useClassByEmail = () => {
   });
   return [classes];
 };
+
+//get all class by email
+export const useEnrollClass = () => {
+  const { user } = useContext(AuthContext);
+  
+
+  const { data: classes = [] } = useQuery({
+    queryKey: ["classes", user?.email],
+    queryFn: async () => {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/enrollClass?email=${user?.email}`
+      );
+      return response.json();
+    },
+  });
+  return [classes];
+};

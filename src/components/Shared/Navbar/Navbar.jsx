@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="my-container fixed z-10 lg:py-2 w-full px-4  mx-auto">
+    <div className="max-w-[2520px] xl:px-28 md:px-10 sm:px-2  fixed z-10 lg:py-2 w-full px-4  mx-auto">
       <div className="relative flex items-center justify-between">
         <Link
           to="/"
@@ -23,7 +23,7 @@ const Navbar = () => {
           className="inline-flex items-center"
         >
           <div className="flex items-center justify-center w-40 h-28">
-            <img className="w-40" src={logo} alt="" />
+            <img className="w-40 lg:-ml-32" src={logo} alt="" />
           </div>
         </Link>
         <ul className="items-center hidden space-x-8 lg:flex text-black">

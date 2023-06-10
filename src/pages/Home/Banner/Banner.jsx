@@ -9,7 +9,7 @@ import banner5 from "../../../assets/banner/banner5.jpg";
 const Banner = () => {
   const bannerText = (
     <>
-      <div className="absolute top-32 lg:top-48 left-14 lg:flex flex-col items-start lg:w-2/4">
+      <div className="absolute top-32 lg:top-48 lg:left-14 lg:flex flex-col items-start lg:w-2/4 px-6 lg:px-0">
         <h1 className="primary-font text-3xl sm:text-5xl lg:text-7xl uppercase">
           Living in color
         </h1>

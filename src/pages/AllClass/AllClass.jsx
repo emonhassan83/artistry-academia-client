@@ -1,5 +1,6 @@
 import ClassCard from "../../components/Card/ClassCard";
 import { useEffect, useState } from "react";
+import Container from "../../components/Container/Container";
 
 const AllClass = () => {
   const [classes, setClasses] = useState([]);
@@ -10,13 +11,13 @@ const AllClass = () => {
   }, [])
  
   return (
-    <div>
+    <Container>
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {classes.length > 0 && classes.map((classData) => (
           <ClassCard key={classData._id} classData={classData} />
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 

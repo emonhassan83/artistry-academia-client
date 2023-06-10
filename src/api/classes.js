@@ -25,3 +25,18 @@ export const selectClass = async classData => {
     const data = await response.json()
     return data
   }
+
+ // update a class by admin by feedback massage
+export const updateClass = async (classData, id) => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/class/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'content-type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem('access-token')}`,
+    },
+    body: JSON.stringify(classData),
+  })
+
+  const data = await response.json()
+  return data
+}

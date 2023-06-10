@@ -1,17 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import FeedbackModal from "../../components/Dashboard/Modal/FeedbackModal";
-import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-
+import ManageClassRow from "../../components/Dashboard/ManageClassRow";
 
 const ManageClass = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await fetch(`${import.meta.env.VITE_API_URL}/classes`);
     return res.json();
@@ -57,10 +49,6 @@ const ManageClass = () => {
       });
   };
 
-  const handlerFeedback = () => {
-    console.log('hello handle feedback');
-  }
-
   return (
     <div>
       <Helmet>
@@ -83,39 +71,19 @@ const ManageClass = () => {
             </tr>
           </thead>
           <tbody>
-            { classes &&
-              classes.map((classData, index)=>(<tr key={classData._id}>
-                <td>{index+1}</td>
-                <td>
-                  <div className="flex items-center space-x-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={classData?.image}
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>{classData?.className}</td>
-                <td>{classData?.instructorName}</td>
-                <td>{classData?.email}</td>
-                <td>{classData?.seats}</td>
-                <td>${classData?.price}</td>
-                <td>{classData?.status}</td>
-                <td>
-                  <div className="flex items-center gap-1">
-                      <button onClick={()=> handleMakeApprove(classData)} className="btn btn-xs" disabled={classData?.status === 'approved' || classData?.status === 'deny'}>Approve</button>
-                      <button onClick={()=> handleMakeDeny(classData)} className="btn btn-xs" disabled={classData?.status === 'deny' || classData?.status === 'approved'}>Deny</button>
-                      <button onClick={() => setIsOpen(true)} className="btn btn-xs" disabled={classData?.status === 'approved'}>Send Feedback</button>
-                  </div>
-                </td>
-              </tr>))
-            }
+            {classes &&
+              classes.map((classData, index) => (
+                <ManageClassRow
+                  key={classData._id}
+                  classData={classData}
+                  index={index}
+                  handleMakeApprove={handleMakeApprove}
+                  handleMakeDeny={handleMakeDeny}
+                  refetch={refetch}
+                />
+              ))}
           </tbody>
         </table>
-            <FeedbackModal handlerFeedback={handlerFeedback} isOpen={isOpen} closeModal={closeModal}/>
       </div>
     </div>
   );

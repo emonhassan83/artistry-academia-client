@@ -1,6 +1,25 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-const FeedbackModal = ({ handlerFeedback, closeModal, isOpen }) => {
+import { updateClass } from "../../../api/classes";
+import { toast } from "react-hot-toast";
+const FeedbackModal = ({ closeModal, isOpen, classData, refetch, id }) => {
+  
+  const handleSubmit = event => {
+    event.preventDefault()
+    const feedback = event.target.feedback.value;
+    const updateData = {feedback: feedback}
+    updateClass(updateData, id)
+    .then(data => {
+      console.log(data)
+      toast.success('Home info updated')
+      refetch()
+      closeModal()
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    console.log(classData);
+  }
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -35,6 +54,7 @@ const FeedbackModal = ({ handlerFeedback, closeModal, isOpen }) => {
                   Send Feedback For Deny Class!!!
                 </Dialog.Title>
                 <hr className="my-6" />
+                <form onSubmit={handleSubmit} action="">
                 <div className="form-control my-2">
                   <label className="label">
                     <span className="label-text">Your Feedback</span>
@@ -45,15 +65,19 @@ const FeedbackModal = ({ handlerFeedback, closeModal, isOpen }) => {
                     placeholder="Enter your feedback"
                   ></textarea>
                 </div>
-                <div className="flex mt-6 justify-around items-center">
-                  <button
+                <div className="text-end mt-4">
+                  
+                  <button type="submit" className="btn btn-sm w-40 rounded-3xl">
+                    send feedback
+                  </button>
+                </div>
+                </form>
+                <div className="-mt-8">
+                <button
                     onClick={closeModal}
                     className="btn btn-sm w-40 rounded-3xl"
                   >
                     cancel
-                  </button>
-                  <button onClick={handlerFeedback} className="btn btn-sm w-40 rounded-3xl">
-                    send feedback
                   </button>
                 </div>
                 {/* Checkout form */}

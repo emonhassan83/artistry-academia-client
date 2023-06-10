@@ -14,7 +14,7 @@ const Header = () => {
   };
 
   return (
-    <div className="my-container lg:py-2 px-4  mx-auto">
+    <div className="max-w-[2520px] xl:px-16 md:px-10 sm:px-2 px-4 mx-auto">
       <div className="relative flex items-center justify-between">
         <Link
           to="/"
@@ -76,17 +76,17 @@ const Header = () => {
         </ul>
         {user ? (
           <div className="hidden lg:flex  items-center gap-1">
-            <div className="mt-6">
+            <div className="">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-9 rounded-full">
                   <img title={user?.displayName} src={user?.photoURL} />
                 </div>
               </label>
             </div>
-            <li>
+            <li className="list-none">
               <button
                 onClick={handleLogOut}
-                className="btn btn-outline hidden lg:block btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none my-4 uppercase"
+                className="btn btn-outline  hidden lg:block btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none my-4 uppercase"
               >
                 Logout
               </button>

@@ -1,6 +1,9 @@
+import { Fade } from "react-awesome-reveal";
+
 const PopularInstructorCard = ({instructor}) => {
     return (
-      <div className="card w-full bg-base-100">
+      <Fade duration={2000}>
+        <div className="card w-full bg-base-100">
         <figure>
           <img
             src={instructor?.image}
@@ -12,6 +15,7 @@ const PopularInstructorCard = ({instructor}) => {
           <p className="">Email: {instructor?.email}</p>
         </div>
       </div>
+      </Fade>
     );
   };
   

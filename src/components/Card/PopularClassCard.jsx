@@ -1,7 +1,10 @@
+import { Fade } from "react-awesome-reveal";
+
 const PopularClassCard = ({classData}) => {
     const {className, image, instructorName} = classData;
     return (
-        <div className="card w-full bg-base-100">
+       <Fade duration={2000}>
+         <div className="card w-full bg-base-100">
       <figure>
         <img
         className="lg:h-[320px] rounded-md"
@@ -17,6 +20,7 @@ const PopularClassCard = ({classData}) => {
         </div>
       </div>
     </div>
+       </Fade>
     );
 };
 

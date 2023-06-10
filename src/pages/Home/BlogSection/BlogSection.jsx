@@ -1,3 +1,4 @@
+import { Fade} from "react-awesome-reveal";
 import img1 from '../../../assets/blog/blog-img1.jpg'
 import img2 from '../../../assets/blog/blog-img2.jpg'
 import img3 from '../../../assets/blog/blog-img3.jpg'
@@ -6,8 +7,9 @@ const BlogSection = () => {
     return (
         <div className='my-32'>
             <h2 className="primary-font text-5xl uppercase text-center">Blog</h2>
-            <p className='mt-2 italic text-center font-medium'>Discovering the World through Art Blog</p>
+            <p className='mt-3 italic text-base sm:text-lg text-center'>Explore our blog section and discovering the World through Art Blog</p>
             <div className='mt-10'>
+            <Fade duration={2000}>
             <div className='lg:flex lg:mt-0 items-center gap-8'>
                 <div className='w-full lg:w-1/2'>
                     <img className='w-full rounded-sm' src={img1} alt="" />
@@ -20,6 +22,8 @@ const BlogSection = () => {
                     </div>
                 </div>
             </div>
+            </Fade>
+            <Fade duration={2000}>
             <div className='lg:flex mt-8 lg:mt-0 flex-row-reverse items-center gap-8'>
                 <div className='w-full lg:w-1/2'>
                     <img className='w-full rounded-sm' src={img2} alt="" />
@@ -32,6 +36,8 @@ const BlogSection = () => {
                     </div>
                 </div>
             </div>
+            </Fade>
+            <Fade duration={2000}>
             <div className='lg:flex mt-8 lg:mt-0 items-center gap-8'>
                 <div className='w-full lg:w-1/2'>
                     <img className='w-full rounded-sm' src={img3} alt="" />
@@ -44,6 +50,8 @@ const BlogSection = () => {
                     </div>
                 </div>
             </div>
+            </Fade>
+            <Fade duration={2000}>
             <div className='lg:flex mt-8 lg:mt-0 flex-row-reverse items-center gap-8'>
                 <div className='w-full lg:w-1/2'>
                     <img className='w-full rounded-sm' src={img4} alt="" />
@@ -56,6 +64,7 @@ const BlogSection = () => {
                     </div>
                 </div>
             </div>
+            </Fade>
             </div>
         </div>
     );

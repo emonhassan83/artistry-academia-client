@@ -57,6 +57,10 @@ const ManageClass = () => {
       });
   };
 
+  const handlerFeedback = () => {
+    console.log('hello handle feedback');
+  }
+
   return (
     <div>
       <Helmet>
@@ -104,16 +108,14 @@ const ManageClass = () => {
                   <div className="flex items-center gap-1">
                       <button onClick={()=> handleMakeApprove(classData)} className="btn btn-xs" disabled={classData?.status === 'approved' || classData?.status === 'deny'}>Approve</button>
                       <button onClick={()=> handleMakeDeny(classData)} className="btn btn-xs" disabled={classData?.status === 'deny' || classData?.status === 'approved'}>Deny</button>
-                      <button onClick={() => setIsOpen(true)} className="btn btn-xs">Send Feedback</button>
-                      
-                      <FeedbackModal classData={classData} isOpen={isOpen} closeModal={closeModal}/>
-                      
+                      <button onClick={() => setIsOpen(true)} className="btn btn-xs" disabled={classData?.status === 'approved'}>Send Feedback</button>
                   </div>
                 </td>
               </tr>))
             }
           </tbody>
         </table>
+            <FeedbackModal handlerFeedback={handlerFeedback} isOpen={isOpen} closeModal={closeModal}/>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
-const FeedbackModal = ({ closeModal, isOpen }) => {
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+const FeedbackModal = ({ handlerFeedback, closeModal, isOpen }) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -35,16 +35,26 @@ const FeedbackModal = ({ closeModal, isOpen }) => {
                   Send Feedback For Deny Class!!!
                 </Dialog.Title>
                 <hr className="my-6" />
-                <div className="mt-2">
-                  <label className="text-sm text-gray-500">
-                    Send Feedback
+                <div className="form-control my-2">
+                  <label className="label">
+                    <span className="label-text">Your Feedback</span>
                   </label>
-                  <textarea className="textarea textarea-bordered " placeholder="Enter feedback"></textarea>
+                  <textarea
+                    name="feedback"
+                    className="textarea textarea-bordered h-24 w-full"
+                    placeholder="Enter your feedback"
+                  ></textarea>
                 </div>
-                <div className='flex mt-6 justify-around items-center'>
-                  <button onClick={closeModal} className="btn btn-sm w-40 rounded-3xl">cancel</button>
-                  <button className="btn btn-sm w-40 rounded-3xl">send feedback</button>
-
+                <div className="flex mt-6 justify-around items-center">
+                  <button
+                    onClick={closeModal}
+                    className="btn btn-sm w-40 rounded-3xl"
+                  >
+                    cancel
+                  </button>
+                  <button onClick={handlerFeedback} className="btn btn-sm w-40 rounded-3xl">
+                    send feedback
+                  </button>
                 </div>
                 {/* Checkout form */}
               </Dialog.Panel>
@@ -53,7 +63,7 @@ const FeedbackModal = ({ closeModal, isOpen }) => {
         </div>
       </Dialog>
     </Transition>
-  )
-}
+  );
+};
 
-export default FeedbackModal
+export default FeedbackModal;

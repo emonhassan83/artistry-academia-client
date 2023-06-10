@@ -26,5 +26,6 @@ Features Add this Project :
  * react-router-dom for using single page application
  * react-spinners using for loading state when data loading 
  * sweetalert2 using for show alert 
+ * moment js for using date formats
 
- #### Project live site link:  ####
+ #### Project live site link: https://artistry-academia.web.app/ ####

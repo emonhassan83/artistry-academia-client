@@ -13,7 +13,18 @@ Features Add this Project :
 
 
  We Use this Project used packages/ technology name :
- * 
+ * headlessui react using for modal
+ * stripe react-stripe-js using for implement payment
+ * tanstack react-query using for easy to data fetching
+ * axios react using for secure purpose website
+ * firebase using for email-password and social authentication
+ * react-awesome-reveal using for animation homepage
+ * react-helmet-async using for dynamic title form website
+ * react-hook-form using for easy to way handle form error and validation
+ * react-hot-toast using for show toast
+ * react-responsive-carousel using for responsive carousel for banner section
+ * react-router-dom for using single page application
+ * react-spinners using for loading state when data loading 
+ * sweetalert2 using for show alert 
 
-
- #### Project live site link: TODO ####
+ #### Project live site link:  ####

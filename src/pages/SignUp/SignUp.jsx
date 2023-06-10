@@ -7,6 +7,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 // import { toast } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { saveUser } from "../../api/users";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const [error, setError] = useState("");
@@ -58,6 +59,9 @@ const SignUp = () => {
 
   return (
     <div className="mt-6 mb-12 signUp-card mx-auto">
+      <Helmet>
+        <title>Artistry Academia | SignUp</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-8">Sign Up Please</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Full Name</label>

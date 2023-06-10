@@ -5,6 +5,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { imageUpload } from "../../api/utils";
 import { addClass } from "../../api/classes";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
@@ -45,6 +46,9 @@ const AddClass = () => {
 
   return (
     <div className="my-3 add-class mx-auto ">
+      <Helmet>
+        <title>Artistry Academia | Add A Class</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-8">Add A Class</h2>
       <form className="mx-auto" onSubmit={handleSubmit(onSubmit)}>
         <label>Class Name</label>

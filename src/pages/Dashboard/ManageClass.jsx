@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import FeedbackModal from "../../components/Dashboard/Modal/FeedbackModal";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 
 const ManageClass = () => {
@@ -58,6 +59,9 @@ const ManageClass = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Artistry Academia | Manage Class</title>
+      </Helmet>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

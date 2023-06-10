@@ -5,6 +5,7 @@ import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -44,6 +45,9 @@ const Login = () => {
   };
   return (
     <div className="mt-6 mb-12  login-card mx-auto">
+      <Helmet>
+        <title>Artistry Academia | Login</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-8">Login Please</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Username or Email</label>

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useClassByEmail } from "../../hooks/useClass";
 
 const MyClass = () => {
@@ -6,6 +7,9 @@ const MyClass = () => {
   
   return (
     <div>
+      <Helmet>
+        <title>Artistry Academia | My Class</title>
+      </Helmet>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

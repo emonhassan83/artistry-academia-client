@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import { useSelectClass } from "../../hooks/useSelectClass";
 import SelectedClassRow from "../../components/Dashboard/SelectedClassRow";
+import { Helmet } from "react-helmet-async";
 
 const SelectedClass = () => {
   const [classes, refetch] = useSelectClass();
@@ -33,6 +34,9 @@ const SelectedClass = () => {
   
   return (
     <div>
+      <Helmet>
+        <title>Artistry Academia | Selected Class</title>
+      </Helmet>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

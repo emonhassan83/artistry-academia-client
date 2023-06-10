@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useEnrollClass } from "../../hooks/useClass";
 
 const EnrolledClass = () => {
@@ -5,6 +6,9 @@ const EnrolledClass = () => {
   console.log(classes);
   return (
     <div>
+      <Helmet>
+        <title>Artistry Academia | Enrolled Class</title>
+      </Helmet>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

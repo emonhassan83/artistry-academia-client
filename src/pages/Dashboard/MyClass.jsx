@@ -44,7 +44,7 @@ const MyClass = () => {
                   {classData?.className}
                 </td>
                 <td>{classData?.status}</td>
-                <td>ToDo: Total Enrolled</td>
+                <td>{classData?.totalEnrolled}</td>
                 <td>{classData?.feedback ? classData.feedback : 'No Feedback'}</td>
                 <td>
                   <button className="btn btn-xs">Update</button>

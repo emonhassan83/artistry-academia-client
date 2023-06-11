@@ -6,10 +6,10 @@ import { FaFacebookF } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <div className="footer-bg min-h-[70vh] max-w-[2520px]  xl:px-28 md:px-10 sm:px-2 px-4">
+    <div className="min-h-[70vh] max-w-[2520px]  xl:px-28 md:px-10 sm:px-2 px-4 text-center sm:text-start">
       <footer className="footer grid grid-cols-1 lg:grid-cols-4 pt-20">
         <div className="lg:w-[30vw]">
-          <img className="w-40" src={logo} alt="" />
+          <img className="w-40 mx-auto sm:mx-0" src={logo} alt="" />
           <p className="mt-4 text-sm lg:text-base text-gray-600">
             Artistry Academia is a premier educational website dedicated to
             nurturing creative minds and fostering artistic excellence. art
@@ -20,7 +20,7 @@ const Footer = () => {
             inspiration, empowering individuals to explore and master various
           </p>
         </div>
-        <div className="lg:ml-40">
+        <div className="lg:ml-40 mx-auto sm:mx-0 text-center sm:text-left">
           <p className="footer-title">ABOUT US</p>
           <a className="link link-hover">Our Story</a>
           <a className="link link-hover">News & Events</a>
@@ -31,7 +31,7 @@ const Footer = () => {
           <a className="link link-hover">Contacts</a>
         </div>
         <div>
-          <p className="footer-title">BOOK A TOUR</p>
+          <p className="footer-title mx-auto sm:mx-0">BOOK A TOUR</p>
           <div>
             <div className="mt-2 space-y-1">
             <p className="text-red-500 font-semibold">12 DEC, 16</p>
@@ -45,7 +45,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="mx-auto sm:mx-0 text-center sm:text-left">
           <p className="footer-title">CONTACT US</p>
           <input
             type="text"

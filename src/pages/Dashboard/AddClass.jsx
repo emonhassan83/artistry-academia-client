@@ -4,8 +4,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { imageUpload } from "../../api/utils";
 import { addClass } from "../../api/classes";
-import { toast } from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
@@ -25,16 +25,21 @@ const AddClass = () => {
           className: data?.className,
           image: imgData?.data.display_url,
           instructorName: data?.instructorName,
-          instructorEmail: data?.instructorEmail,
+          email: data?.email,
           seats: data?.seats,
           price: data?.price,
           status: data?.status,
+          totalEnrolled: 0
         };
 
         //post class data in database
         addClass(classData)
           .then((data) => {
-            toast.success("Class added successfully");
+            Swal.fire({
+              icon: 'success',
+              title: 'Yep...',
+              text: 'Instructor class added Successfully!',
+            })
             console.log(data);
           })
           .catch((err) => {

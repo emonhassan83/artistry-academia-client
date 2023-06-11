@@ -14,7 +14,6 @@ import Instructor from "../pages/Instructor/Instructor";
 import AllClass from "../pages/AllClass/AllClass";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import MainLayout from "../layouts/MainLayout";
-//import HomeLayout from "../layouts/HomeLayout";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
@@ -30,12 +29,6 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-    ],
-  },
-  {
-    path: "/",
-    element: <MainLayout />,
-    children: [
       {
         path: "/instructors",
         element: (

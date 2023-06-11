@@ -9,14 +9,14 @@ import banner5 from "../../../assets/banner/banner5.jpg";
 const Banner = () => {
   const bannerText = (
     <>
-      <div className="absolute top-32 lg:top-48 lg:left-14 lg:flex flex-col items-start lg:w-2/4 px-6 lg:px-0">
+      <div className="absolute top-20 sm:top-32 lg:top-48 lg:left-14 lg:flex flex-col items-start lg:w-2/4 px-6 lg:px-0">
         <h1 className="primary-font text-3xl sm:text-5xl lg:text-7xl uppercase">
           Living in color
         </h1>
         <h6 className="primary-font uppercase text-base sm:text-xl lg:text-3xl lg:mt-3">
          Discovering The Art At Our Summer Camp
         </h6>
-        <p className="text-base secondary-font lg:text-left my-8">
+        <p className="text-base secondary-font hidden sm:block lg:text-left my-8">
           Welcome to Artistry Academia .When you take a flower in your hand and really look at it, its your
           world for the moment. I want to give that world to someone else. Most
           people in the city rush around so, they have no time to look at a

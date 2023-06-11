@@ -3,6 +3,7 @@ import Banner from "../Banner/Banner";
 import BlogSection from "../BlogSection/BlogSection";
 import PopularClass from "../PopularClass/PopularClass";
 import PopularInstructors from "../PopularInstructors/PopularInstructors";
+import AboutUs from "../AboutUs/AboutUs";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <PopularClass />
       <PopularInstructors />
       <BlogSection />
+      <AboutUs/>
     </div>
   );
 };

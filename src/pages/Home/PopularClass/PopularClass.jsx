@@ -12,7 +12,7 @@ const PopularClass = () => {
 
     return (
         <Container>
-            <h2 className="primary-font text-3xl sm:text-5xl uppercase mt-32 text-center ">Popular Classes</h2>
+            <h2 className="primary-font text-3xl sm:text-5xl uppercase mt-16 sm:mt-32  text-center ">Popular Classes</h2>
             <p className="mt-3 italic text-base sm:text-lg text-center mb-10">Discover our popular art classes and explore your creative potential</p>
             <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 {

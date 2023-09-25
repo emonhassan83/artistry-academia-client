@@ -1,3 +1,5 @@
+import Lottie from "react-lottie";
+import animation from "../../assets/animation_login.json";
 import { useForm } from "react-hook-form";
 import "./Login.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -9,108 +11,138 @@ import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
     const email = data.email;
     const password = data.password;
-    setError('')
+    setError("");
     signIn(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-            Swal.fire({
-                icon: 'success',
-                title: 'Yep...',
-                text: 'User login successfully!',
-              })
-            navigate(from, {replace: true});
-            navigate('/');
-        })
-        .catch(error => {
-          setError(error.message);
-          console.log(error)
-        })
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          icon: "success",
+          title: "Yep...",
+          text: "User login successfully!",
+        });
+        navigate(from, { replace: true });
+        navigate("/");
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.log(error);
+      });
   };
   return (
-    <div className="mt-6 mb-12  login-card mx-auto">
-      <Helmet>
-        <title>Artistry Academia | Login</title>
-      </Helmet>
-      <h2 className="text-2xl font-bold mb-8">Login Please</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>Username or Email</label>
-        <input
-          type="email"
-          name="email"
-          {...register("email", { required: true })}
-          required
-        />
-        {errors.email && (
-          <p className="text-red-500 -mt-5">
-            <small>Email field is required</small>
+    <div className="md:flex justify-center items-center md:h-[100vh] bg-[#caf0f8]">
+        <Helmet>
+          <title>Artistry Academia | Login</title>
+        </Helmet>
+      <div className="mt-6 mb-12 bg-gray-50 login-card mx-auto">
+        <h2 className="text-2xl font-bold text-center mb-2">Login Please</h2>
+        <p className="text-sm text-gray-400 text-center mb-6">
+            Sign in to access your account
           </p>
-        )}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label className="text-xs sm:text-sm">Username or Email</label>
+          <input
+            type="email"
+            name="email"
+            {...register("email", { required: true })}
+            required
+          />
+          {errors.email && (
+            <p className="text-red-500 -mt-5">
+              <small>Email field is required</small>
+            </p>
+          )}
 
-        <label>Password</label>
-        <input
-          type={show ? "text" : "password" }
-          name="password"
-          {...register("password", {
-            required: true,
-            minLength: 6,
-            pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
-          })}
-          required
-        />
-        <p className="-mt-4" onClick={()=> setShow(!show)}><small> {show ? <span>Hide Password</span> : <span>Show Password</span> }</small></p>
-        {errors.password?.type === "required" && (
-          <p className="text-red-500 -mt-5">
-            <small>Password is required</small>
-          </p>
-        )}
-        {errors.password?.type === "minLength" && (
-          <p className="text-red-500 -mt-5">
-            <small>Password must be 6 character</small>
-          </p>
-        )}
-        {errors.password?.type === "pattern" && (
-          <p className="text-red-500 -mt-5 ">
+          <label className="text-xs sm:text-sm">Password</label>
+          <input
+            type={show ? "text" : "password"}
+            name="password"
+            {...register("password", {
+              required: true,
+              minLength: 6,
+              pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+            })}
+            required
+          />
+          <p className="-mt-4 cursor-pointer" onClick={() => setShow(!show)}>
             <small>
-              Password must have one Uppercase one lower case, one number and
-              one special character
+              {" "}
+              {show ? <span>Hide Password</span> : <span>Show Password</span>}
             </small>
           </p>
-        )}
+          {errors.password?.type === "required" && (
+            <p className="text-red-500 -mt-5">
+              <small>Password is required</small>
+            </p>
+          )}
+          {errors.password?.type === "minLength" && (
+            <p className="text-red-500 -mt-5">
+              <small>Password must be 6 character</small>
+            </p>
+          )}
+          {errors.password?.type === "pattern" && (
+            <p className="text-red-500 -mt-5 ">
+              <small>
+                Password must have one Uppercase one lower case, one number and
+                one special character
+              </small>
+            </p>
+          )}
 
-        <input
-          type="submit"
-          value="Login"
-          className="btn bg-pink-500 hover:bg-pink-600 border-none btn-block rounded-3xl"
-        />
-        {error && <p className="text-red-500 font-bold -mt-3"><small>{error}</small></p>}
-        <p>
-          <small>
-            New to Artistry Academia Please{" "}
-            <Link to="/signUp" className="text-pink-600 font-bold">
-              Sign Up
-            </Link>
-          </small>
-        </p>
-      </form>
-      <div className="divider mt-5">OR</div>
-      <SocialLogin />
+          <input
+            type="submit"
+            value="Login"
+            className="btn bg-pink-500 hover:bg-pink-600 border-none btn-block rounded-3xl"
+          />
+          {error && (
+            <p className="text-red-500 text-xs font-bold -mt-3">
+              {error}
+            </p>
+          )}
+          <p className="px-3 text-sm dark:text-gray-400 text-center mt-3">
+            Login with social accounts
+          </p>
+        <SocialLogin />
+          <p className="text-center">
+            <small>
+              New to Artistry Academia Please{" "}
+              <Link to="/signUp" className="text-pink-600 font-bold">
+                Sign Up
+              </Link>
+            </small>
+          </p>
+        </form>
+      </div>
+
+      <div className="md:w-1/2">
+        <Lottie options={defaultOptions} height={475} width={370} />
+      </div>
     </div>
   );
 };

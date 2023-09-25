@@ -66,7 +66,6 @@ const Header = () => {
               Classes
             </NavLink>
           </li>
-          <li></li>
           {user && (
             <>
               <li>
@@ -84,40 +83,38 @@ const Header = () => {
             </>
           )}
         </ul>
-        <div className="flex items-center gap-4">
-          <div className="hidden lg:block">
-            {/* For dark and light mood */}
-            <div className="-mr-1">
-              {theme.mode == "dark" ? (
-                <BsCloudSunFill
-                  title="Make Light"
-                  className="text-3xl cursor-pointer"
-                  onClick={() => themeSwitchHandler()}
-                />
-              ) : (
-                <BsFillCloudMoonFill
-                  title="Make Dark"
-                  className="text-3xl cursor-pointer"
-                  onClick={() => themeSwitchHandler()}
-                />
-              )}
-            </div>
-
-            <div>
-              {user ? (
-                <>
-                  <UserModal handleLogOut={handleLogOut} />
-                </>
-              ) : (
-                <Link to="/login">
-                  <button className="btn btn-outline hidden lg:block btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none my-4 uppercase">
-                    Login
-                  </button>
-                </Link>
-              )}
-            </div>
+        <ul className="hidden lg:flex items-center space-x-4">
+          {/* For dark and light mood */}
+          <div className="-mr-1">
+            {theme.mode == "dark" ? (
+              <BsCloudSunFill
+                title="Make Light"
+                className="text-3xl cursor-pointer"
+                onClick={() => themeSwitchHandler()}
+              />
+            ) : (
+              <BsFillCloudMoonFill
+                title="Make Dark"
+                className="text-3xl cursor-pointer"
+                onClick={() => themeSwitchHandler()}
+              />
+            )}
           </div>
-        </div>
+
+          <div>
+            {user ? (
+              <>
+                <UserModal handleLogOut={handleLogOut} />
+              </>
+            ) : (
+              <Link to="/login">
+                <button className="btn btn-outline hidden lg:block btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none my-4 uppercase">
+                  Login
+                </button>
+              </Link>
+            )}
+          </div>
+        </ul>
 
         <div className="lg:hidden">
           <button

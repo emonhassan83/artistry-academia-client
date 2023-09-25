@@ -10,6 +10,7 @@ const SocialLogin = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const widthToggle = location.pathname.includes("signUp");
 
   const from = location.state?.from?.pathname || "/";
 
@@ -34,10 +35,10 @@ const SocialLogin = () => {
     <>
       <div
         onClick={handleGoogleSignIn}
-        className="flex items-center social-login my-4"
+        className={`flex items-center justify-center gap-6 ${widthToggle ? 'social-signUp' : 'social-login'} my-4`}
       >
-        <img className="w-8 h-8 ml-6" src={googleLogo} alt="" />
-        <p className="mx-auto">Continue with Google</p>
+        <img className="w-6" src={googleLogo} alt="" />
+        <p className="">Continue with Google</p>
       </div>
       {error && (
         <p className="text-center text-red-500 -mt-3">

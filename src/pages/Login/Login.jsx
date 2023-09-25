@@ -6,12 +6,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
-  const [error, setError] = useState("");
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,21 +36,15 @@ const Login = () => {
     console.log(data);
     const email = data.email;
     const password = data.password;
-    setError("");
     signIn(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
-        Swal.fire({
-          icon: "success",
-          title: "Yep...",
-          text: "User login successfully!",
-        });
+        toast.success("User login successful");
         navigate(from, { replace: true });
-        navigate("/");
       })
       .catch((error) => {
-        setError(error.message);
+        toast.error(error.message);
         console.log(error);
       });
   };
@@ -60,8 +53,9 @@ const Login = () => {
         <Helmet>
           <title>Artistry Academia | Login</title>
         </Helmet>
-      <div className="mt-6 mb-12 bg-gray-50 login-card mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-2">Login Please</h2>
+        <Toaster/>
+      <div className="mt-6 bg-gray-100 login-card mx-auto">
+        <h2 className="text-xl sm:text-2xl font-bold text-center mb-2">Login Please</h2>
         <p className="text-sm text-gray-400 text-center mb-6">
             Sign in to access your account
           </p>
@@ -120,11 +114,6 @@ const Login = () => {
             value="Login"
             className="btn bg-pink-500 hover:bg-pink-600 border-none btn-block rounded-3xl"
           />
-          {error && (
-            <p className="text-red-500 text-xs font-bold -mt-3">
-              {error}
-            </p>
-          )}
           <p className="px-3 text-sm dark:text-gray-400 text-center mt-3">
             Login with social accounts
           </p>

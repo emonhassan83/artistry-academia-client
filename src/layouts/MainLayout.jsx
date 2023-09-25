@@ -5,7 +5,7 @@ import Footer from "../components/Shared/Footer/Footer";
 const MainLayout = () => {
   const location = useLocation();
   const noHeaderFooter =
-    location.pathname.includes("login") || location.pathname.includes("signUp");
+    location.pathname.includes("login") || location.pathname.includes("signUp") || location.pathname.includes("user-profile");
   return (
     <div>
       {noHeaderFooter || <Header />}

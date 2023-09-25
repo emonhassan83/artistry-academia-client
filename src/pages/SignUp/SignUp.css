@@ -1,38 +1,38 @@
 .signUp-card {
-    width: 560px;
-    height: 730px;
-    border: 2px solid #cb746439;
+  width: 560px;
+  height: 835px;
+  border: 2px solid #cb746439;
   border-radius: 4px;
-  padding: 30px 55px;
+  padding: 25px 55px;
 }
 
 .social-signUp {
-    width: 457px;
-    height: 46px;
-    border: 1px solid #cb746439;
-    border-radius: 57px;
-  }
+  width: 457px;
+  height: 46px;
+  border: 1px solid #cb746439;
+  border-radius: 57px;
+}
 
-  input {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    border-radius: 4px;
-    border: 1px solid white;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    font-size: 14px;
-    background-color: rgb(236, 236, 236);
-    outline-style: none;
-    margin-bottom: 20px;
-    margin-top: 8px;
-  }
+input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  background-color: rgb(236, 236, 236);
+  outline-style: none;
+  margin-bottom: 20px;
+  margin-top: 8px;
+}
 
-  @media only screen and (max-width: 576px) {
-    .signUp-card {
-      width: 350px;
-      padding: 25px;
-      height: 590px;
+@media only screen and (max-width: 576px) {
+  .signUp-card {
+    width: 350px;
+    padding: 25px;
+    height: 590px;
   }
   .social-login {
     width: 287px;
@@ -44,4 +44,4 @@
     margin-bottom: 10px;
     margin-top: 6px;
   }
-  }
+}

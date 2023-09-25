@@ -4,15 +4,13 @@ import { useForm } from "react-hook-form";
 import "./SignUp.css";
 import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-// import { toast } from "react-hot-toast";
-import Swal from "sweetalert2";
 import { saveUser } from "../../api/users";
 import { Helmet } from "react-helmet-async";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignUp = () => {
-  const [error, setError] = useState("");
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,11 +36,10 @@ const SignUp = () => {
   }`;
 
   const onSubmit = (data) => {
-    setError("");
     const password = data.password;
     const confirmPassword = data.confirmPass;
     if (password !== confirmPassword) {
-      setError("Your password did not match");
+      toast.error("Your password did not match");
       return;
     } else {
       //Image upload
@@ -64,23 +61,17 @@ const SignUp = () => {
                 .then(() => {
                   //save user to db
                   saveUser(loggedUser);
-                  Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "User sign up successfully",
-                    showConfirmButton: false,
-                    timer: 1500,
-                  });
+                  toast.success("User signed in successfully");
                   navigate(from, { replace: true });
                 })
                 .catch((err) => {
                   console.log(err);
-                  setError(err.message);
+                  toast.error(err.message);
                 });
             })
             .catch((error) => {
               console.log(error);
-              setError(error.message);
+              toast.error(error.message);
             });
         });
     }
@@ -88,14 +79,15 @@ const SignUp = () => {
   };
 
   return (
-    <div className="md:flex justify-center items-center md:h-[100vh] bg-[#caf0f8]">
+    <div className="md:flex justify-center items-center bg-[#caf0f8]">
+      <Toaster/>
       <Helmet>
         <title>Artistry Academia | SignUp</title>
       </Helmet>
-      <div className="mb-12 bg-gray-50 signUp-card mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-2">Sign Up Please</h2>
+      <div className="md:w-1/2 bg-gray-100 signUp-card mx-auto">
+        <h2 className="text-xl sm:text-2xl font-bold text-center mb-2">Sign Up Please</h2>
         <p className="text-sm text-gray-400 mb-4 text-center">
-          Welcome to Toy Town
+          Welcome to Artistry Academia
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <label className="text-xs sm:text-sm">Full Name</label>
@@ -106,8 +98,8 @@ const SignUp = () => {
             required
           />
           {errors.name && (
-            <p className="text-red-500 -mt-5">
-              <small>Name field is required</small>
+            <p className="text-red-500 -mt-5 text-xs font-semibold">
+              Name field is required
             </p>
           )}
 
@@ -119,8 +111,8 @@ const SignUp = () => {
             required
           />
           {errors.email && (
-            <p className="text-red-500 -mt-5">
-              <small>Email field is required</small>
+            <p className="text-red-500 -mt-5 text-xs font-semibold">
+              Email field is required
             </p>
           )}
 
@@ -137,12 +129,12 @@ const SignUp = () => {
             required
           />
           {errors.password?.type === "required" && (
-            <p className="text-red-500 -mt-5">
+            <p className="text-red-500 -mt-5 text-xs font-semibold">
               <small>Password is required</small>
             </p>
           )}
           {errors.password?.type === "minLength" && (
-            <p className="text-red-500 -mt-5">
+            <p className="text-red-500 -mt-5 text-xs font-semibold">
               <small>Password must be 6 character</small>
             </p>
           )}
@@ -168,7 +160,7 @@ const SignUp = () => {
             required
           />
           {errors.password?.type === "required" && (
-            <p className="text-red-500 -mt-5">
+            <p className="text-red-500 -mt-5 text-xs font-semibold">
               <small>Password is required</small>
             </p>
           )}
@@ -178,7 +170,7 @@ const SignUp = () => {
             </p>
           )}
           {errors.password?.type === "pattern" && (
-            <p className="text-red-500 -mt-5">
+            <p className="text-red-500 -mt-5 text-xs font-semibold">
               <small>
                 Password must have one Uppercase one lower case, one number and
                 one special character
@@ -195,7 +187,7 @@ const SignUp = () => {
           />
 
           {errors.photoUrl && (
-            <p className="text-red-500 -mt-5">
+            <p className="text-red-500 -mt-5 text-xs font-semibold">
               <small>PhotoURL field is required</small>
             </p>
           )}
@@ -204,11 +196,6 @@ const SignUp = () => {
             value="sign up"
             className="btn bg-pink-500 hover:bg-pink-600 border-none btn-block rounded-3xl"
           />
-          {error && (
-            <p className="text-red-500 font-bold -mt-3">
-              <small>{error}</small>
-            </p>
-          )}
         </form>
         <p className="text-red-600">{""}</p>
         <p className="px-3 text-sm text-gray-600 text-center mt-3">

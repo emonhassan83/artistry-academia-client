@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AiOutlineBars } from "react-icons/ai";
 import { BsFillHouseAddFill } from "react-icons/bs";
 import { AuthContext } from "../../../providers/AuthProvider";
-import logo from "../../../assets/logo/logo2.png";
+import logo from "../../../assets/logo/logo.png";
 import AdminSidebar from "./AdminSidebar";
 import InstructorSidebar from "./InstructorSidebar";
 import StudentSidebar from "./StudentSidebar";

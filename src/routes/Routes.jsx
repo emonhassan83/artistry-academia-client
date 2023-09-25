@@ -83,11 +83,19 @@ const router = createBrowserRouter([
       // Instructor roues
       {
         path: "/dashboard/add-class",
-        element: <InstructorRoute><AddClass /></InstructorRoute>
+        element: (
+          <InstructorRoute>
+            <AddClass />
+          </InstructorRoute>
+        ),
       },
       {
         path: "/dashboard/my-class",
-        element: <InstructorRoute><MyClass /></InstructorRoute>
+        element: (
+          <InstructorRoute>
+            <MyClass />
+          </InstructorRoute>
+        ),
       },
       // Admin roues
       {

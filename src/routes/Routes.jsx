@@ -18,6 +18,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
+import ProfilePage from "../pages/ProfilePage/ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/signUp",
         element: <SignUp />,
+      },
+      {
+        path: "/user-profile",
+        element: <ProfilePage />,
       },
     ],
   },

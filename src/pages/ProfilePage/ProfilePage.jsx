@@ -31,7 +31,7 @@ const UserProfile = () => {
     };
     
     //update a user
-    updateUser(userData)
+    updateUser(userData);
     toast.success("User updated successfully");
   };
 

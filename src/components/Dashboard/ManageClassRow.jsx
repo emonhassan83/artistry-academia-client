@@ -1,6 +1,8 @@
 import { useState } from "react";
 import FeedbackModal from "./Modal/FeedbackModal";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { deleteAClass } from "../../api/classes";
+import toast, { Toaster } from "react-hot-toast";
 
 const ManageClassRow = ({
   classData,
@@ -15,8 +17,15 @@ const ManageClassRow = ({
     setIsOpen(false);
   };
 
+  const handleDeleteAClass = (classId) => {
+    deleteAClass(classId);
+    toast.success("Class deleted successfully");
+    refetch();
+  };
+
   return (
     <>
+    <Toaster/>
       <tr key={classData._id}>
         <td>{index + 1}</td>
         <td>
@@ -75,7 +84,7 @@ const ManageClassRow = ({
         </td>
         {/* TODO DELETE FUNCTION ADD */}
         <td>
-          <button>
+          <button onClick={()=> handleDeleteAClass(classData._id)}>
             <RiDeleteBin6Line className=" w-6 h-5 mx-auto text-color" />
           </button>
         </td>

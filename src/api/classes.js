@@ -26,8 +26,23 @@ export const selectClass = async classData => {
     return data
   }
 
- // update a class by admin by feedback massage
-export const updateClass = async (classData, id) => {
+// Update a class by Instructor
+export const updateAClass = async (classData, id) => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/update-class/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(classData),
+  })
+
+  const data = await response.json()
+  return data
+};
+
+
+// Give feedback a class by admin by feedback massage
+export const feedbackAClass = async (classData, id) => {
   const response = await fetch(`${import.meta.env.VITE_API_URL}/class/${id}`, {
     method: 'PATCH',
     headers: {
@@ -39,4 +54,12 @@ export const updateClass = async (classData, id) => {
 
   const data = await response.json()
   return data
-}
+};
+
+
+//Delete a class to database
+export const deleteAClass = async (id) => {
+  await fetch(`${import.meta.env.VITE_API_URL}/delete-class/${id}`, {
+    method: "DELETE",
+  });
+};

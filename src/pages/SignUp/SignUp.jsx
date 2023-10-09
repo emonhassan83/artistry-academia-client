@@ -51,11 +51,16 @@ const SignUp = () => {
           createUser(data.email, data.password)
             .then((result) => {
               const loggedUser = result.user;
-              console.log(loggedUser);
+              const userData = {
+                name: loggedUser?.name,
+                email: loggedUser?.email,
+                image: imageUrl,
+                role: 'student'
+              };
               updateUserProfile(data.name, imageUrl)
                 .then(() => {
                   //save user to db
-                  saveUser(loggedUser);
+                  saveUser(userData);
                   toast.success("User signed in successfully");
                   navigate(from, { replace: true });
                 })

@@ -3,6 +3,8 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { deleteAUser } from "../../api/users";
+import toast, { Toaster } from "react-hot-toast";
 
 const ManageUsers = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -51,8 +53,16 @@ const ManageUsers = () => {
         }
       });
   };
+
+  const handleDeleteAUser = (userId) => {
+    deleteAUser(userId);
+    toast.success("User deleted successfully");
+    refetch();
+  };
+
   return (
     <div>
+      <Toaster />
       <Helmet>
         <title>Artistry Academia | Manage Users</title>
       </Helmet>
@@ -61,6 +71,7 @@ const ManageUsers = () => {
           <thead>
             <tr>
               <th>SL</th>
+              <th>User Image</th>
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
@@ -72,6 +83,18 @@ const ManageUsers = () => {
             {users.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img
+                          src={user?.image}
+                          alt="User Image"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </td>
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
                 <td>
@@ -85,14 +108,14 @@ const ManageUsers = () => {
                   <div className="flex items-center gap-1">
                     <button
                       onClick={() => handleMakeAdmin(user)}
-                      className="btn btn-xs"
+                      className="btn btn-xs btn-color"
                       disabled={user.role === "admin"}
                     >
                       Admin
                     </button>
                     <button
                       onClick={() => handleMakeInstructor(user)}
-                      className="btn btn-xs"
+                      className="btn btn-xs btn-color"
                       disabled={user.role === "instructor"}
                     >
                       Instructor
@@ -100,8 +123,14 @@ const ManageUsers = () => {
                   </div>
                 </td>
                 <td>
-                  <button>
-                    <RiDeleteBin6Line className=" w-6 h-5 mx-auto text-color" />
+                  <button
+                    onClick={() => handleDeleteAUser(user._id)}
+                    disabled={user.role === "admin"}
+                    className={`${
+                      user.role === "admin" ? "text-gray-300" : "text-color"
+                    }`}
+                  >
+                    <RiDeleteBin6Line className=" w-6 h-5 mx-auto" />
                   </button>
                 </td>
               </tr>

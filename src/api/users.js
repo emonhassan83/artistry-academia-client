@@ -1,9 +1,9 @@
 // save a user to database
 export const saveUser = (user) => {
   const currentUser = {
-    name: user?.displayName || 'unknown',
+    name: user?.displayName || "unknown",
     email: user.email,
-    image: user?.photoURL
+    image: user?.photoURL,
   };
 
   fetch(`${import.meta.env.VITE_API_URL}/users/${user?.email}`, {
@@ -17,25 +17,34 @@ export const saveUser = (user) => {
     .then((data) => console.log(data));
 };
 
-
 //update a user to database
-export const updateUser = async(userData) => {
-  
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userData?.email}`, {
-    method: "PUT",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(userData),
-  })
+export const updateUser = async (userData) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/users/${userData?.email}`,
+    {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    }
+  );
   const data = await response.json();
   return data;
 };
 
+//Delete a user to database
+export const deleteAUser = async (id) => {
+  await fetch(`${import.meta.env.VITE_API_URL}/user/${id}`, {
+    method: "DELETE",
+  });
+};
 
 // Get role
-export const getRole = async email => {
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${email}`)
-  const user = await response.json()
-  return user?.role
-}
+export const getRole = async (email) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/users/${email}`
+  );
+  const user = await response.json();
+  return user?.role;
+};

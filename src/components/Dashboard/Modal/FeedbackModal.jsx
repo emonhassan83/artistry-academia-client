@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { updateClass } from "../../../api/classes";
+import { feedbackAClass } from "../../../api/classes";
 import { toast } from "react-hot-toast";
 const FeedbackModal = ({ closeModal, isOpen, classData, refetch, id }) => {
   
@@ -8,7 +8,7 @@ const FeedbackModal = ({ closeModal, isOpen, classData, refetch, id }) => {
     event.preventDefault()
     const feedback = event.target.feedback.value;
     const updateData = {feedback: feedback}
-    updateClass(updateData, id)
+    feedbackAClass(updateData, id)
     .then(data => {
       console.log(data)
       toast.success('Home info updated')

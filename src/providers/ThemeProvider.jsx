@@ -34,7 +34,7 @@ export const ThemeProvider = ({ children }) => {
   }
 
   const changesThemeTextColor = () => {
-    return theme.mode === "dark" ? "text-gray-100" : "text-gray-600"
+    return theme.mode === "dark" ? "text-gray-100" : "text-black"
   }
 
   return (

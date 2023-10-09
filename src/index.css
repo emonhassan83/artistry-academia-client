@@ -11,7 +11,7 @@
   }
   
   .default{
-    @apply font-medium tracking-wide text-black transition-colors duration-200 hover:text-[#3da5d9]
+    @apply font-medium tracking-wide transition-colors duration-200 hover:text-[#3da5d9]
   }
 
 .primary-font{

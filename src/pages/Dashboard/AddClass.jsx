@@ -15,6 +15,7 @@ const AddClass = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  
   const onSubmit = (data) => {
     data.status = "pending";
     //upload image
@@ -64,7 +65,7 @@ const AddClass = () => {
           required
         />
         {errors.className && (
-          <p className="text-red-500 -mt-5">
+          <p className="text-sky-500 text-xs -mt-5">
             <small>Class Name field is required</small>
           </p>
         )}
@@ -76,6 +77,11 @@ const AddClass = () => {
           {...register("classImg", { required: true })}
           required
         />
+        {errors.classImg && (
+          <p className="text-sky-500 text-xs -mt-5">
+            <small>Class Name field is required</small>
+          </p>
+        )}
 
         <label>Instructor Name</label>
         <input
@@ -83,6 +89,11 @@ const AddClass = () => {
           {...register("instructorName", { required: true })}
           required
         />
+        {errors.instructorName && (
+          <p className="text-sky-500 text-xs -mt-5">
+            <small>Class Name field is required</small>
+          </p>
+        )}
 
         <label>Instructor Email</label>
         <input
@@ -90,6 +101,11 @@ const AddClass = () => {
           {...register("email", { required: true })}
           required
         />
+        {errors.email && (
+          <p className="text-sky-500 text-xs -mt-5">
+            <small>Class Name field is required</small>
+          </p>
+        )}
 
         <div className="flex items-center justify-between">
           <div>
@@ -100,7 +116,7 @@ const AddClass = () => {
               required
             />
             {errors.seats && (
-              <p className="text-red-500 -mt-5">
+              <p className="text-sky-500 text-xs -mt-5">
                 <small>Available seats field is required</small>
               </p>
             )}
@@ -114,7 +130,7 @@ const AddClass = () => {
               required
             />
             {errors.price && (
-              <p className="text-red-500 -mt-5">
+              <p className="text-sky-500 text-xs -mt-5">
                 <small>Course Free field is required</small>
               </p>
             )}
@@ -124,7 +140,7 @@ const AddClass = () => {
         <input
           type="submit"
           value="Add A Class"
-          className="btn text-white bg-pink-500 hover:bg-pink-600 border-none btn-block rounded-3xl"
+          className="btn btn-color btn-block rounded-3xl"
         />
       </form>
     </div>

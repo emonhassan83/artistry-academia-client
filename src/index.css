@@ -7,11 +7,11 @@
 
 /* custom css class */
 .active{
-    @apply font-medium tracking-wide text-[#A81C51] transition-colors duration-200
+    @apply font-medium tracking-wide text-[#3da5d9] transition-colors duration-200
   }
   
   .default{
-    @apply font-medium tracking-wide text-black transition-colors duration-200 hover:text-[#A81C51]
+    @apply font-medium tracking-wide text-black transition-colors duration-200 hover:text-[#3da5d9]
   }
 
 .primary-font{
@@ -19,4 +19,12 @@
 }
 .secondary-font{
   font-family: 'Josefin Slab', serif;
+}
+
+.btn-color {
+  @apply bg-[#39d1ff] hover:bg-[#3da5d9] text-gray-50 delay-300 scroll-my-1
+}
+
+.text-color {
+  @apply text-[#3da5d9]
 }

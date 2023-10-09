@@ -10,7 +10,7 @@ const PaymentHistoryRow = ({classData, index}) => {
                   <td>{classData?.instructorName}</td>
                   <td>{classData?.transactionId}</td>
                   <td>{formattedDate}</td>
-                  <td>{classData?.price}</td>
+                  <td>${classData?.price}</td>
                   <td className="font-bold">
                     Paid
                   </td>

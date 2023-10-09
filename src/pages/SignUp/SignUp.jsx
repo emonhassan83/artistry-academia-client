@@ -36,12 +36,7 @@ const SignUp = () => {
   }`;
 
   const onSubmit = (data) => {
-    const password = data.password;
-    const confirmPassword = data.confirmPass;
-    if (password !== confirmPassword) {
-      toast.error("Your password did not match");
-      return;
-    } else {
+
       //Image upload
       const formData = new FormData();
       formData.append("image", data.photoUrl[0]);
@@ -74,7 +69,7 @@ const SignUp = () => {
               toast.error(error.message);
             });
         });
-    }
+  
     console.log(data);
   };
 
@@ -98,7 +93,7 @@ const SignUp = () => {
             required
           />
           {errors.name && (
-            <p className="text-red-500 -mt-5 text-xs font-semibold">
+            <p className="text-color -mt-5 text-xs font-semibold">
               Name field is required
             </p>
           )}
@@ -111,7 +106,7 @@ const SignUp = () => {
             required
           />
           {errors.email && (
-            <p className="text-red-500 -mt-5 text-xs font-semibold">
+            <p className="text-color -mt-5 text-xs font-semibold">
               Email field is required
             </p>
           )}
@@ -129,48 +124,17 @@ const SignUp = () => {
             required
           />
           {errors.password?.type === "required" && (
-            <p className="text-red-500 -mt-5 text-xs font-semibold">
+            <p className="text-color -mt-5 text-xs font-semibold">
               <small>Password is required</small>
             </p>
           )}
           {errors.password?.type === "minLength" && (
-            <p className="text-red-500 -mt-5 text-xs font-semibold">
+            <p className="text-color -mt-5 text-xs font-semibold">
               <small>Password must be 6 character</small>
             </p>
           )}
           {errors.password?.type === "pattern" && (
-            <p className="text-red-500 -mt-5 ">
-              <small>
-                Password must have one Uppercase one lower case, one number and
-                one special character
-              </small>
-            </p>
-          )}
-
-          <label className="text-xs sm:text-sm">Confirm Password</label>
-          <input
-            type="password"
-            name="password"
-            defaultValue=""
-            {...register("confirmPass", {
-              required: true,
-              minLength: 6,
-              pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
-            })}
-            required
-          />
-          {errors.password?.type === "required" && (
-            <p className="text-red-500 -mt-5 text-xs font-semibold">
-              <small>Password is required</small>
-            </p>
-          )}
-          {errors.password?.type === "minLength" && (
-            <p className="text-red-500 -mt-5 ">
-              <small>Password must be 6 character</small>
-            </p>
-          )}
-          {errors.password?.type === "pattern" && (
-            <p className="text-red-500 -mt-5 text-xs font-semibold">
+            <p className="text-color -mt-5 ">
               <small>
                 Password must have one Uppercase one lower case, one number and
                 one special character
@@ -187,17 +151,17 @@ const SignUp = () => {
           />
 
           {errors.photoUrl && (
-            <p className="text-red-500 -mt-5 text-xs font-semibold">
+            <p className="text-color -mt-5 text-xs font-semibold">
               <small>PhotoURL field is required</small>
             </p>
           )}
           <input
             type="submit"
             value="sign up"
-            className="btn bg-pink-500 hover:bg-pink-600 border-none btn-block rounded-3xl"
+            className="btn btn-color btn-block rounded-3xl"
           />
         </form>
-        <p className="text-red-600">{""}</p>
+        <p className="text-color">{""}</p>
         <p className="px-3 text-sm text-gray-600 text-center mt-3">
           SignUp with social accounts
         </p>
@@ -207,7 +171,7 @@ const SignUp = () => {
         <p className="text-center mt-3 text-gray-600">
           <small className="text-xs sm:text-sm">
             Already have an Account Please{" "}
-            <Link to="/login" className="text-pink-600 font-bold">
+            <Link to="/login" className="text-color font-bold">
               Login
             </Link>
           </small>

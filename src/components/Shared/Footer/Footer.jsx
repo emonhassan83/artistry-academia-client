@@ -34,12 +34,12 @@ const Footer = () => {
           <p className="footer-title mx-auto sm:mx-0">BOOK A TOUR</p>
           <div>
             <div className="mt-2 space-y-1">
-            <p className="text-red-500 font-semibold">12 DEC, 16</p>
+            <p className="text-color font-semibold">12 DEC, 16</p>
             <h5 className="text-lg font-semibold">Supporting the Child Personality</h5>
             <p className="text-gray-600 font-semibold">by Cindy Jefferson | 0 Comments</p>
             </div>
             <div className="mt-4 space-y-1">
-           <p className="text-red-500 font-semibold"> 1 DEC, 16</p>
+           <p className="text-color font-semibold"> 1 DEC, 16</p>
             <h5 className="text-lg font-semibold">Inviting Grandparents to Our Nursery School</h5>
             <p className="text-gray-600 font-semibold">by Cindy Jefferson | 0 Comments</p>
             </div>

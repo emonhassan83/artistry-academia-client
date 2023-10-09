@@ -22,7 +22,7 @@ const Banner = () => {
           people in the city rush around so, they have no time to look at a
           flower. I want them to see it whether they want to or not.{" "}
         </p>
-        <button className="btn btn-outline hidden lg:block btn-sm px-5 rounded-3xl text-white hover:bg-[#A81C51] hover:border-none my-4 uppercase">Explore more</button>
+        <button className="btn btn-outline hidden lg:block btn-sm px-5 rounded-3xl text-white hover:bg-[#3da5d9] hover:border-none my-4 uppercase">Explore more</button>
       </div>
     </>
   );

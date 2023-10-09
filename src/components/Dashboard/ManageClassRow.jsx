@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FeedbackModal from "./Modal/FeedbackModal";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const ManageClassRow = ({
   classData,
@@ -32,7 +33,6 @@ const ManageClassRow = ({
         </td>
         <td>{classData?.className}</td>
         <td>{classData?.instructorName}</td>
-        <td>{classData?.email}</td>
         <td>{classData?.seats}</td>
         <td>${classData?.price}</td>
         <td>{classData?.status}</td>
@@ -40,7 +40,7 @@ const ManageClassRow = ({
           <div className="flex items-center gap-1">
             <button
               onClick={() => handleMakeApprove(classData)}
-              className="btn btn-xs"
+              className="btn btn-xs btn-color"
               disabled={
                 classData?.status === "approved" || classData?.status === "deny"
               }
@@ -49,7 +49,7 @@ const ManageClassRow = ({
             </button>
             <button
               onClick={() => handleMakeDeny(classData)}
-              className="btn btn-xs"
+              className="btn btn-xs btn-color"
               disabled={
                 classData?.status === "deny" || classData?.status === "approved"
               }
@@ -58,7 +58,7 @@ const ManageClassRow = ({
             </button>
             <button
               onClick={() => setIsOpen(true)}
-              className="btn btn-xs"
+              className="btn btn-xs btn-color"
               disabled={classData?.status === "approved" || classData?.feedback}
             >
               Send Feedback
@@ -72,6 +72,12 @@ const ManageClassRow = ({
             refetch={refetch}
             id={classData._id}
           />
+        </td>
+        {/* TODO DELETE FUNCTION ADD */}
+        <td>
+          <button>
+            <RiDeleteBin6Line className=" w-6 h-5 mx-auto text-color" />
+          </button>
         </td>
       </tr>
     </>

@@ -1,10 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import { useClassByEmail } from "../../hooks/useClass";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const MyClass = () => {
   const [classes] = useClassByEmail();
-  
-  
+
   return (
     <div>
       <Helmet>
@@ -22,36 +22,42 @@ const MyClass = () => {
               <th>Total Enrolled</th>
               <th>Feedback</th>
               <th>Update</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-            {
-              classes && classes.map((classData, index) => (<tr key={classData._id}>
-                <td>{index+1}</td>
-                <td>
-                  <div className="flex items-center space-x-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={classData?.image}
-                          alt="Avatar Tailwind CSS Component"
-                        />
+            {classes &&
+              classes.map((classData, index) => (
+                <tr key={classData._id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <div className="flex items-center space-x-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                          <img
+                            src={classData?.image}
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  {classData?.className}
-                </td>
-                <td>{classData?.status}</td>
-                <td>{classData?.totalEnrolled}</td>
-                <td>{classData?.feedback ? classData.feedback : 'No Feedback'}</td>
-                <td>
-                  <button className="btn btn-xs">Update</button>
-                </td>
-              </tr>))
-            }
-            
+                  </td>
+                  <td>{classData?.className}</td>
+                  <td>{classData?.status}</td>
+                  <td>{classData?.totalEnrolled}</td>
+                  <td>
+                    {classData?.feedback ? classData.feedback : "No Feedback"}
+                  </td>
+                  <td>
+                    <button className="btn btn-xs btn-color">Update</button>
+                  </td>
+                  <td>
+                    <button>
+                      <RiDeleteBin6Line className=" w-6 h-5 mx-auto text-color" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

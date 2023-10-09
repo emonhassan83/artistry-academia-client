@@ -18,7 +18,7 @@ const BlogSection = () => {
                     <h2 className="primary-font text-xl sm:text-3xl uppercase mb-4">ACRYLIC</h2>
                     <p><strong>Acrylic painting,</strong> technique in which pigments are mixed with hot, liquid wax. After all of the colours have been applied to the painting surface, a heating element is passed over them until the individual brush or spatula marks fuse into a uniform film.</p>
                     <div className='text-center mt-4'>
-                        <button className='btn uppercase btn-outline hover:bg-[#a01e50] hover:border-none'>view gallery</button>
+                        <button className='btn uppercase btn-outline hover:bg-[#3da5d9] hover:border-none'>view gallery</button>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@ const BlogSection = () => {
                     <h2 className="primary-font text-xl sm:text-3xl uppercase mb-4">ENCAUSTIC</h2>
                     <p><strong>Encaustic painting,</strong> technique in which pigments are mixed with hot, liquid wax. After all of the colours have been applied to the painting surface, a heating element is passed over them until the individual brush or spatula marks fuse into a uniform film.</p>
                     <div className='text-center mt-4'>
-                    <button className='btn uppercase btn-outline hover:bg-[#a01e50] hover:border-none'>view gallery</button>
+                    <button className='btn uppercase btn-outline hover:bg-[#3da5d9] hover:border-none'>view gallery</button>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@ const BlogSection = () => {
                     <h2 className="primary-font text-xl sm:text-3xl uppercase mb-4">OIL PAINTING</h2>
                     <p><strong>Oil Painting,,</strong> technique in which pigments are mixed with hot, liquid wax. After all of the colours have been applied to the painting surface, a heating element is passed over them until the individual brush or spatula marks fuse into a uniform film.</p>
                     <div className='text-center mt-4'>
-                        <button className='btn uppercase btn-outline hover:bg-[#a01e50] hover:border-none'>view gallery</button>
+                        <button className='btn uppercase btn-outline hover:bg-[#3da5d9] hover:border-none'>view gallery</button>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@ const BlogSection = () => {
                     <h2 className="primary-font text-xl sm:text-3xl uppercase mb-4">IMPASTO</h2>
                     <p><strong>Impasto,</strong> technique in which pigments are mixed with hot, liquid wax. After all of the colours have been applied to the painting surface, a heating element is passed over them until the individual brush or spatula marks fuse into a uniform film.</p>
                     <div className='text-center mt-4'>
-                        <button className='btn uppercase btn-outline hover:bg-[#a01e50] hover:border-none'>view gallery</button>
+                        <button className='btn uppercase btn-outline hover:bg-[#3da5d9] hover:border-none'>view gallery</button>
                     </div>
                 </div>
             </div>

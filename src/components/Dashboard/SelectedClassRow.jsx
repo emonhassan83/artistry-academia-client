@@ -30,7 +30,7 @@ const SelectedClassRow = ({ classData, index, handleDelete, refetch }) => {
         <td>
           <button
             onClick={() => handleDelete(classData._id)}
-            className="btn btn-xs"
+            className="btn btn-xs btn-color"
           >
             Delete
           </button>
@@ -39,7 +39,7 @@ const SelectedClassRow = ({ classData, index, handleDelete, refetch }) => {
          
             <button
               onClick={() => setIsOpen(true)}
-              className="btn btn-xs"
+              className="btn btn-xs btn-color"
             >
               ${classData?.price} tk.
             </button>

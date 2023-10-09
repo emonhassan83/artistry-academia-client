@@ -1,4 +1,5 @@
 import { Fade } from "react-awesome-reveal";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
 const PopularInstructorCard = ({instructor}) => {
     return (
@@ -11,8 +12,11 @@ const PopularInstructorCard = ({instructor}) => {
           />
         </figure>
         <div className="card-body flex flex-col items-center">
-          <h2 className="card-title">Name: {instructor?.name}</h2>
-          <p className="">Email: {instructor?.email}</p>
+          <h2 className="card-title">{instructor?.name}</h2>
+          <div className="flex items-center gap-1 group cursor-pointer">
+          <p className="text-color uppercase font-semibold text-sm">Read Bio</p>
+          <AiOutlineArrowRight className="text-color group-hover:translate-x-1 transition-transform"/>
+          </div>
         </div>
       </div>
       </Fade>

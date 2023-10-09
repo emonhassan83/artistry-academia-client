@@ -2,12 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const ManageUsers = () => {
   const [axiosSecure] = useAxiosSecure();
 
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await axiosSecure.get('/users');
+    const res = await axiosSecure.get("/users");
     return res.data;
   });
 
@@ -63,7 +64,8 @@ const ManageUsers = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
-              <th>Action</th>
+              <th className="text-center">Action</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -96,6 +98,11 @@ const ManageUsers = () => {
                       Instructor
                     </button>
                   </div>
+                </td>
+                <td>
+                  <button>
+                    <RiDeleteBin6Line className=" w-6 h-5 mx-auto text-color" />
+                  </button>
                 </td>
               </tr>
             ))}

@@ -44,11 +44,11 @@ const AboutUs = () => {
 
             <div className="flex items-center mt-6">
               <input
-                type="text"
+              type="text"
                 placeholder="Email"
                 className="input input-bordered"
               />
-              <button className="btn btn-md border-s-0 uppercase -mt-2">
+              <button className="btn btn-md border-s-0 uppercase -mt-2 -ml-20 btn-color">
                 Subscribe
               </button>
             </div>

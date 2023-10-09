@@ -108,7 +108,7 @@ const Header = () => {
               </>
             ) : (
               <Link to="/login">
-                <button className="btn btn-outline hidden lg:block btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none my-4 uppercase">
+                <button className="btn btn-outline hidden lg:block btn-sm px-5 rounded-3xl text-black hover:bg-[#3da5d9] hover:border-none my-4 uppercase">
                   Login
                 </button>
               </Link>
@@ -214,7 +214,7 @@ const Header = () => {
                     ) : (
                       <>
                         <Link to="/login">
-                          <button className="btn btn-outline btn-sm px-5 rounded-3xl text-black hover:bg-[#A81C51] hover:border-none my-4 -ml-2 uppercase">
+                          <button className="btn btn-outline btn-sm px-5 rounded-3xl text-black hover:bg-[#3da5d9] hover:border-none my-4 -ml-2 uppercase">
                             Login
                           </button>
                         </Link>

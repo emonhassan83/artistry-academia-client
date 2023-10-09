@@ -68,7 +68,7 @@ const Login = () => {
             required
           />
           {errors.email && (
-            <p className="text-red-500 -mt-5">
+            <p className="text-sky-500 text-xs -mt-5">
               <small>Email field is required</small>
             </p>
           )}
@@ -91,17 +91,17 @@ const Login = () => {
             </small>
           </p>
           {errors.password?.type === "required" && (
-            <p className="text-red-500 -mt-5">
+            <p className="text-sky-500 text-xs -mt-5">
               <small>Password is required</small>
             </p>
           )}
           {errors.password?.type === "minLength" && (
-            <p className="text-red-500 -mt-5">
+            <p className="text-sky-500 text-xs -mt-5">
               <small>Password must be 6 character</small>
             </p>
           )}
           {errors.password?.type === "pattern" && (
-            <p className="text-red-500 -mt-5 ">
+            <p className="text-sky-500 text-xs -mt-5 ">
               <small>
                 Password must have one Uppercase one lower case, one number and
                 one special character
@@ -112,7 +112,7 @@ const Login = () => {
           <input
             type="submit"
             value="Login"
-            className="btn bg-pink-500 hover:bg-pink-600 border-none btn-block rounded-3xl"
+            className="btn btn-color border-none btn-block rounded-3xl"
           />
           <p className="px-3 text-sm dark:text-gray-400 text-center mt-3">
             Login with social accounts
@@ -121,7 +121,7 @@ const Login = () => {
           <p className="text-center">
             <small>
               New to Artistry Academia Please{" "}
-              <Link to="/signUp" className="text-pink-600 font-bold">
+              <Link to="/signUp" className="text-color font-bold">
                 Sign Up
               </Link>
             </small>

@@ -7,7 +7,7 @@ const PopularClassCard = ({classData}) => {
          <div className="card w-full bg-base-100">
       <figure>
         <img
-        className="lg:h-[320px] rounded-md"
+        className="h-[300px] rounded-md"
           src={image}
           alt="Class Image"
         />
@@ -16,7 +16,7 @@ const PopularClassCard = ({classData}) => {
         <h2 className="card-title">{className}</h2>
         <p className="font-semibold ">Instructor Name: {instructorName}</p>
         <div className="card-actions justify-center mt-2">
-          <button className="btn btn-sm">View Details</button>
+          <button className="btn btn-sm btn-color text-xs sm:text-sm">View Details</button>
         </div>
       </div>
     </div>

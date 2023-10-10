@@ -2,10 +2,11 @@ import Swal from "sweetalert2";
 import { useSelectClass } from "../../hooks/useSelectClass";
 import SelectedClassRow from "../../components/Dashboard/SelectedClassRow";
 import { Helmet } from "react-helmet-async";
+import { useTheme } from "../../providers/ThemeProvider";
 
 const SelectedClass = () => {
   const [classes, refetch] = useSelectClass();
-
+  const { theme } = useTheme(); // for using light and dark themes
 
   const handleDelete = item => {
     Swal.fire({
@@ -38,9 +39,9 @@ const SelectedClass = () => {
         <title>Artistry Academia | Selected Class</title>
       </Helmet>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className={`table ${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-800'}`}>
           {/* head */}
-          <thead>
+          <thead className={`${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-800'}`}>
             <tr>
               <th>SL</th>
               <th>Class Image</th>

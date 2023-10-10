@@ -6,9 +6,11 @@ import { imageUpload } from "../../api/utils";
 import { addClass } from "../../api/classes";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import { useTheme } from "../../providers/ThemeProvider";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
+  const { theme } = useTheme();
 
   const {
     register,
@@ -51,15 +53,16 @@ const AddClass = () => {
   };
 
   return (
-    <div className="my-3 add-class mx-auto ">
+    <div className={`add-class mx-auto border-[1px] ${theme.mode=== 'dark'? 'text-gray-100 border-[#ababab]' : 'text-gray-800'}`}>
       <Helmet>
         <title>Artistry Academia | Add A Class</title>
       </Helmet>
-      <h2 className="text-2xl font-bold mb-8">Add A Class</h2>
+      <h2 className="text-2xl font-bold mb-8 text-center">Add A Class</h2>
       <form className="mx-auto" onSubmit={handleSubmit(onSubmit)}>
         <label>Class Name</label>
         <input
           type="text"
+          className="text-gray-800"
           placeholder="Enter your class"
           {...register("className", { required: true })}
           required
@@ -86,6 +89,7 @@ const AddClass = () => {
         <label>Instructor Name</label>
         <input
           value={user?.displayName}
+          className="text-gray-800"
           {...register("instructorName", { required: true })}
           required
         />
@@ -98,6 +102,7 @@ const AddClass = () => {
         <label>Instructor Email</label>
         <input
           value={user?.email}
+          className="text-gray-800"
           {...register("email", { required: true })}
           required
         />
@@ -112,6 +117,7 @@ const AddClass = () => {
             <label>Available seats</label>
             <input
               defaultValue="10"
+              className="text-gray-800"
               {...register("seats", { required: true })}
               required
             />
@@ -125,6 +131,7 @@ const AddClass = () => {
             <label>Course Free</label>
             <input
               type="text"
+              className="text-gray-800"
               placeholder="Course free"
               {...register("price", { required: true })}
               required
@@ -140,7 +147,7 @@ const AddClass = () => {
         <input
           type="submit"
           value="Add A Class"
-          className="btn btn-color btn-block rounded-3xl"
+          className="btn btn-color btn-block border-none rounded-3xl"
         />
       </form>
     </div>

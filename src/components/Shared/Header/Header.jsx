@@ -122,7 +122,7 @@ const Header = () => {
             title="Open Menu"
             onClick={() => setIsMenuOpen(true)}
           >
-            <AiOutlineMenu className="w-5 text-gray-600" />
+            <AiOutlineMenu className="w-5" />
           </button>
           {isMenuOpen && (
             <div className="absolute z-10 top-0 left-0 w-full">

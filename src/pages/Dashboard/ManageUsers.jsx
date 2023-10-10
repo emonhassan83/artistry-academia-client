@@ -5,9 +5,11 @@ import { Helmet } from "react-helmet-async";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { deleteAUser } from "../../api/users";
 import toast, { Toaster } from "react-hot-toast";
+import { useTheme } from "../../providers/ThemeProvider";
 
 const ManageUsers = () => {
   const [axiosSecure] = useAxiosSecure();
+  const { theme } = useTheme(); // for using light and dark themes
 
   const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await axiosSecure.get("/users");
@@ -67,8 +69,8 @@ const ManageUsers = () => {
         <title>Artistry Academia | Manage Users</title>
       </Helmet>
       <div className="overflow-x-auto">
-        <table className="table">
-          <thead>
+        <table className={`table ${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-800'}`}>
+          <thead className={`${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-800'}`}>
             <tr>
               <th>SL</th>
               <th>User Image</th>

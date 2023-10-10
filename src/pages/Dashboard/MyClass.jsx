@@ -4,11 +4,13 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import toast, { Toaster } from "react-hot-toast";
 import UpdateClassModal from "../../components/Dashboard/Modal/UpdateClassModal";
 import { useState } from "react";
+import { useTheme } from "../../providers/ThemeProvider";
 //import { deleteAClass } from "../../api/classes";
 
 const MyClass = () => {
   const [classes] = useClassByEmail();
   const [isOpen, setIsOpen] = useState(false);
+  const { theme } = useTheme(); // for using light and dark themes
 
   const closeModal = () => {
     setIsOpen(false);
@@ -33,9 +35,9 @@ const MyClass = () => {
         <title>Artistry Academia | My Class</title>
       </Helmet>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className={`table ${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-800'}`}>
           {/* head */}
-          <thead>
+          <thead className={`${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-800'}`}>
             <tr>
               <th>SL</th>
               <th>Class Image</th>

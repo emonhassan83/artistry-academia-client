@@ -2,12 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import ManageClassRow from "../../components/Dashboard/ManageClassRow";
+import { useTheme } from "../../providers/ThemeProvider";
 
 const ManageClass = () => {
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await fetch(`${import.meta.env.VITE_API_URL}/classes`);
     return res.json();
   });
+  const { theme } = useTheme(); // for using light and dark themes
 
   const handleMakeApprove = (classes) => {
     fetch(`${import.meta.env.VITE_API_URL}/classes/approved/${classes?._id}`, {
@@ -55,9 +57,9 @@ const ManageClass = () => {
         <title>Artistry Academia | Manage Class</title>
       </Helmet>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className={`table ${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-800'}`}>
           {/* head */}
-          <thead>
+          <thead className={`${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-800'}`}>
             <tr>
               <th>SL</th>
               <th>Class Image</th>

@@ -2,20 +2,22 @@ import "./Footer.css";
 import logo from "../../../assets/logo/logo.png";
 import { AiOutlineGoogle, AiOutlineTwitter, AiOutlineInstagram } from 'react-icons/ai';
 import { FaFacebookF } from 'react-icons/fa';
-
+import { useTheme } from "../../../providers/ThemeProvider";
 
 const Footer = () => {
+  const { theme } = useTheme(); // for using light and dark themes
+
   return (
-    <div className="min-h-[70vh] max-w-[2520px]  xl:px-28 md:px-10 sm:px-2 px-4 text-center sm:text-start">
+    <div className={`first-letter:min-h-[70vh] max-w-[2520px]  xl:px-28 md:px-10 sm:px-2 px-4 text-center sm:text-start ${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-800'}`}>
       <footer className="footer grid grid-cols-1 lg:grid-cols-4 pt-16 sm:pt-20">
-        <div className="lg:w-[30vw]">
+        <div className={`lg:w-[30vw] ${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-600'}`}>
           <img className="w-40 mx-auto sm:mx-0" src={logo} alt="" />
-          <p className="mt-4 text-sm lg:text-base text-gray-600">
+          <p className="mt-4 text-sm lg:text-base">
             Artistry Academia is a premier educational website dedicated to
             nurturing creative minds and fostering artistic excellence. art
             forms.
           </p>
-          <p className="mt-4 text-sm lg:text-base text-gray-600">
+          <p className="mt-4 text-sm lg:text-base">
             Our platform offers a diverse range of courses, resources, and
             inspiration, empowering individuals to explore and master various
           </p>
@@ -32,16 +34,16 @@ const Footer = () => {
         </div>
         <div>
           <p className="footer-title mx-auto sm:mx-0">BOOK A TOUR</p>
-          <div>
+          <div className={`${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-600'}`}>
             <div className="mt-2 space-y-1">
             <p className="text-color font-semibold">12 DEC, 16</p>
             <h5 className="text-lg font-semibold">Supporting the Child Personality</h5>
-            <p className="text-gray-600 font-semibold">by Cindy Jefferson | 0 Comments</p>
+            <p className="font-semibold">by Cindy Jefferson | 0 Comments</p>
             </div>
             <div className="mt-4 space-y-1">
            <p className="text-color font-semibold"> 1 DEC, 16</p>
             <h5 className="text-lg font-semibold">Inviting Grandparents to Our Nursery School</h5>
-            <p className="text-gray-600 font-semibold">by Cindy Jefferson | 0 Comments</p>
+            <p className="font-semibold">by Cindy Jefferson | 0 Comments</p>
             </div>
           </div>
         </div>

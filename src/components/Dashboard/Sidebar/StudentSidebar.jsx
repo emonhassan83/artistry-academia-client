@@ -1,17 +1,24 @@
 import { NavLink } from "react-router-dom";
 import { FaBookReader } from 'react-icons/fa'
 import { MdAccountBox, MdPayment } from 'react-icons/md'
+import { useTheme } from "../../../providers/ThemeProvider";
 
 const StudentSidebar = () => {
+  const { theme } = useTheme(); // for using light and dark themes
+
     return (
-        <nav>
+        <nav className={`${
+          theme.mode === "dark" ? "text-gray-100 bg-[#1D232A]" : "text-gray-800 bg-gray-100"
+        }`}>
               <>
                 {/* Menu Links */}
                 <NavLink
                   to='selected-class'
                   className={({ isActive }) =>
                     `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                      theme.mode === "dark" ? "text-gray-100 bg-[#1D232A]" : "text-gray-800"
+                    } ${
+                      isActive ? 'bg-gray-300' : ''
                     }`
                   }
                 >
@@ -23,7 +30,9 @@ const StudentSidebar = () => {
                   to='enrolled-class'
                   className={({ isActive }) =>
                     `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                      theme.mode === "dark" ? "text-gray-100 bg-[#1D232A]" : "text-gray-800"
+                    } ${
+                      isActive ? 'bg-gray-300' : ''
                     }`
                   }
                 >
@@ -35,7 +44,9 @@ const StudentSidebar = () => {
                   to='payment-history'
                   className={({ isActive }) =>
                     `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                      theme.mode === "dark" ? "text-gray-100 bg-[#1D232A]" : "text-gray-800"
+                    } ${
+                      isActive ? 'bg-gray-300' : ''
                     }`
                   }
                 >

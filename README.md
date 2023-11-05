@@ -20,9 +20,7 @@ Artistry Academia is a website for a summer camp school that allows students to 
 
 ## Main Issues
 
-1. There might be problem in audio handling
-2. Exported video doesn't have time duration
-3. Exported video have flickering issue
+1. 
 
 
 ## Future Features

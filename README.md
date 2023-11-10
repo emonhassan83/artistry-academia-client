@@ -2,8 +2,6 @@
 
 Artistry Academia is a website for a summer camp school that allows students to enroll and learn specific extra-curricular activities. We create Art & craft School website have all the information and activities. It is built with React,MongoDB, stripe NodeJS, Tailwind css,axios, tanstack react query, react-hot-toast, react-hook-form and etc.
 
-![banner](https://github.com/shanto001971/shanto001971-online-video-editing-platform-client/assets/109459931/86ae94f9-5e6d-4866-8870-536482c94cbd)
-
 ## Main Features
 
 - [x] STUDENT can

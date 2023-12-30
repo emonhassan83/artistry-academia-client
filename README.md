@@ -1,9 +1,8 @@
- # Online video Summer Camp School
+ # Online Art Summer Camp School
 
 Artistry Academia is a website for a summer camp school that allows students to enroll and learn specific extra-curricular activities. We create Art & craft School website have all the information and activities. It is built with React,MongoDB, stripe NodeJS, Tailwind css,axios, tanstack react query, react-hot-toast, react-hook-form and etc.
 
-## Main Features
-
+### Main Features
 - [x] STUDENT can
   - [x] select course
   - [x] Purchase the course
@@ -16,16 +15,13 @@ Artistry Academia is a website for a summer camp school that allows students to 
   - [x] Manage class(add, update and delete course)
   - [x] Admin can approve course and give feedback about course
 
-## Main Issues
+### Main Issues
+* In this time there have no major issues.
 
-1. 
-
-
-## Future Features
-
+### Future Features
 1. Use React skeleton for UI shifting
 
-## Other Features
+### Other Features
 - [x] In Homepage
   - [x] Dark-light mode
   - [x] User authentication
@@ -35,7 +31,7 @@ Artistry Academia is a website for a summer camp school that allows students to 
   - [x] Pricing functionality
   - [x] Give feedback
 
-## ReactJS Default Guide (Updated)
+### ReactJS Default Guide (Updated)
 
 This is a [vitejs.dev](https://vitejs.dev/) project bootstrapped with [`vite-react-app`](https://github.com/vitejs/vite).
 

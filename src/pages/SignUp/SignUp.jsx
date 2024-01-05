@@ -52,10 +52,9 @@ const SignUp = () => {
             .then((result) => {
               const loggedUser = result.user;
               const userData = {
-                name: loggedUser?.name,
+                name: data?.name,
                 email: loggedUser?.email,
                 image: imageUrl,
-                role: 'student'
               };
               updateUserProfile(data.name, imageUrl)
                 .then(() => {
@@ -70,12 +69,9 @@ const SignUp = () => {
                 });
             })
             .catch((error) => {
-              console.log(error);
               toast.error(error.message);
             });
         });
-  
-    console.log(data);
   };
 
   return (

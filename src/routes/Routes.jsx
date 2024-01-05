@@ -19,6 +19,7 @@ import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import InstructorClass from "../pages/InstructorClass/InstructorClass";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Instructor />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/instructors/classes/:email",
+        element: (
+          <PrivateRoute>
+            <InstructorClass />
           </PrivateRoute>
         ),
       },

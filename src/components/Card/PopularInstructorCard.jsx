@@ -1,9 +1,9 @@
-import { Fade } from "react-awesome-reveal";
+// import { Fade } from "react-awesome-reveal";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
 const PopularInstructorCard = ({instructor}) => {
     return (
-      <Fade duration={2000}>
+      // <Fade duration={2000}>
         <div className="card w-full bg-base-100">
         <figure>
           <img
@@ -19,7 +19,7 @@ const PopularInstructorCard = ({instructor}) => {
           </div>
         </div>
       </div>
-      </Fade>
+      // </Fade>
     );
   };
   

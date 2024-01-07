@@ -4,9 +4,10 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 const PopularInstructorCard = ({instructor}) => {
     return (
       // <Fade duration={2000}>
-        <div className="card w-full bg-base-100">
+        <div className="card w-full bg-base-100 rounded-none">
         <figure>
           <img
+            className="rounded-sm"
             src={instructor?.image}
             alt="Instructor Image"
           />

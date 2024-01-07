@@ -27,7 +27,7 @@ const Banner = () => {
     </>
   );
   return (
-    <Carousel className="text-white">
+    <Carousel className="text-white" autoPlay infiniteLoop>
       <div className="relative">
         <img src={banner1} />
         {bannerText}

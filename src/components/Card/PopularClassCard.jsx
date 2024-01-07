@@ -4,10 +4,10 @@ const PopularClassCard = ({classData}) => {
     const {className, image, instructorName} = classData;
     return (
       //  <Fade duration={2000}>
-         <div className="card w-full bg-base-100">
+         <div className="card w-full bg-base-100 rounded-none">
       <figure>
         <img
-        className="h-[300px] rounded-md"
+        className="h-[300px] rounded-sm"
           src={image}
           alt="Class Image"
         />

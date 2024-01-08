@@ -9,11 +9,11 @@ import banner5 from "../../../assets/banner/banner5.jpg";
 const Banner = () => {
   const bannerText = (
     <>
-      <div className="absolute top-20 sm:top-32 lg:top-48 lg:left-14 lg:flex flex-col items-start lg:w-2/4 px-6 lg:px-0">
-        <h1 className="primary-font text-3xl sm:text-5xl lg:text-7xl uppercase">
+      <div className="absolute top-20 sm:top-32 lg:top-40 xl:top-48 lg:left-14 lg:flex flex-col items-start w-full xl:w-2/4 md:px-4 xl:px-0">
+        <h1 className="primary-font text-2xl sm:text-[34px] md:text-5xl lg:text-6xl xl:text-7xl uppercase">
           Living in color
         </h1>
-        <h6 className="primary-font uppercase text-base sm:text-xl lg:text-3xl lg:mt-3">
+        <h6 className="primary-font uppercase text-xs sm:text-base md:text-xl lg:text-3xl lg:mt-3">
          Discovering The Art At Our Summer Camp
         </h6>
         <p className="text-base secondary-font hidden sm:block lg:text-left my-8">
@@ -22,12 +22,12 @@ const Banner = () => {
           people in the city rush around so, they have no time to look at a
           flower. I want them to see it whether they want to or not.{" "}
         </p>
-        <button className="btn btn-outline hidden lg:block btn-sm px-5 rounded-3xl text-white hover:bg-[#3da5d9] hover:border-none my-4 uppercase">Explore more</button>
+        <button className="btn btn-outline hidden lg:block  sm:btn-sm px-5 rounded-3xl text-white hover:bg-[#3da5d9] hover:border-none my-1 lg:my-2 xl:my-4 uppercase">Explore more</button>
       </div>
     </>
   );
   return (
-    <Carousel className="text-white" autoPlay infiniteLoop>
+    <Carousel className="text-white" autoPlay infiniteLoop showThumbs={false} showIndicators={false}>
       <div className="relative">
         <img src={banner1} />
         {bannerText}

@@ -10,20 +10,20 @@ const PopularClass = () => {
 
   return (
     <Container>
-      <h2 className="primary-font text-3xl sm:text-5xl uppercase mt-16 sm:mt-32  text-center ">
+      <h2 className="primary-font text-[22px] sm:text-3xl md:text-4xl lg:text-5xl uppercase mt-10 sm:mt-20 lg:mt-32 text-center">
         Popular Classes
       </h2>
-      <p className="mt-3 italic text-base sm:text-lg text-center mb-10">
+      <p className="sm:mt-3 italic text-xs sm:text-sm md:text-base lg:text-lg text-center mb-6 sm:mb-10">
         Discover our popular art classes and explore your creative potential
       </p>
-      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {loading &&
-          Array.from(new Array(6)).map((item, index) => (
+          Array.from(new Array(8)).map((item, index) => (
             <CardSkeleton key={index} height={300} />
           ))}
         {!loading &&
           approveClass
-            .slice(0, 6)
+            .slice(0, 8)
             .map((classData) => (
               <PopularClassCard key={classData._id} classData={classData} />
             ))}

@@ -23,7 +23,7 @@ const Header = () => {
   };
 
   return (
-    <div className={`max-w-[2520px] bg-gray-100 sticky top-0 z-10 bg-transparent backdrop-blur-md xl:px-16 md:px-10 sm:px-2 px-4 mx-auto h-[85px] ${theme.mode === 'dark' ? 'text-gray-100' : 'text-black'}`}>
+    <div className={`max-w-[2520px] bg-gray-100 sticky top-0 z-10 bg-transparent backdrop-blur-md xl:px-16 md:px-10 sm:px-2 px-4 mx-auto h-[65px] sm:h-[75px] shadow-2xl ${theme.mode === 'dark' ? 'text-gray-100' : 'text-black'}`}>
       <div className="relative flex items-center justify-between">
         <Link
           to="/"
@@ -31,11 +31,11 @@ const Header = () => {
           title="Artistry Academia"
           className="inline-flex items-center"
         >
-          <div className="flex items-center justify-center w-48 h-20">
-            <img className="w-40 sm:w-48" src={logo} alt="" />
+          <div className="flex items-center justify-center w-32 sm:w-48 h-16 sm:h-20">
+            <img className="w-32 sm:w-40 lg:w-48" src={logo} alt="Logo Image" />
           </div>
         </Link>
-        <ul className="items-center hidden space-x-8 lg:flex">
+        <ul className="items-center lg:text-[15px] hidden space-x-8 lg:flex">
           <li>
             <NavLink
               to="/"
@@ -89,13 +89,13 @@ const Header = () => {
             {theme.mode == "dark" ? (
               <BsCloudSunFill
                 title="Make Light"
-                className="text-3xl cursor-pointer"
+                className="text-[26px] cursor-pointer"
                 onClick={() => themeSwitchHandler()}
               />
             ) : (
               <BsFillCloudMoonFill
                 title="Make Dark"
-                className="text-3xl cursor-pointer"
+                className="text-[26px] cursor-pointer"
                 onClick={() => themeSwitchHandler()}
               />
             )}
@@ -127,7 +127,7 @@ const Header = () => {
           {isMenuOpen && (
             <div className="absolute z-10 top-0 left-0 w-full">
               <div className={`p-5 border rounded shadow-sm  ${theme.mode === 'dark' ? 'text-gray-100 bg-gray-800 border-gray-800' : 'text-black bg-white'}`}>
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-2 sm:mb-4">
                   <div>
                     <Link
                       to="/"
@@ -135,8 +135,8 @@ const Header = () => {
                       title="Artistry Academia"
                       className="inline-flex items-center"
                     >
-                      <div className="flex items-center justify-center mt-4">
-                        <img className="w-36" src={logo} alt="" />
+                      <div className="flex items-center justify-center mt-2 sm:mt-4">
+                        <img className="w-32 sm:w-36" src={logo} alt="Logo Image" />
                       </div>
                     </Link>
                   </div>
@@ -157,7 +157,7 @@ const Header = () => {
                   </div>
                 </div>
                 <nav>
-                  <ul className="space-y-4">
+                  <ul className="space-y-2 sm:space-y-3 md:space-y-4 text-xs sm:text-sm">
                     <li>
                       <Link
                         to="/instructors"
@@ -195,13 +195,13 @@ const Header = () => {
                       {theme.mode == "dark" ? (
                         <BsCloudSunFill
                           title="Make Light"
-                          className="text-3xl cursor-pointer"
+                          className="text-xl sm:text-2xl cursor-pointer"
                           onClick={() => themeSwitchHandler()}
                         />
                       ) : (
                         <BsFillCloudMoonFill
                           title="Make Dark"
-                          className="text-3xl cursor-pointer"
+                          className="text-xl sm:text-2xl cursor-pointer"
                           onClick={() => themeSwitchHandler()}
                         />
                       )}

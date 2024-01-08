@@ -22,11 +22,12 @@ function UserModal({ handleLogOut }) {
   return (
     <div className="flex items-center">
       <div className="dropdown lg:dropdown-end">
-        <label tabIndex={0} className={`flex items-center gap-[2px] my-1 ${changesThemeTextColor()}`}>
+        <label tabIndex={0} className={`flex items-center gap-[2px] sm:my-1 ${changesThemeTextColor()}`}>
           <img
-            className="cursor-pointer lg:w-10 w-9 rounded-full"
+            className="cursor-pointer lg:w-9 sm:w-8 w-7 rounded-full"
             src={user.photoURL}
-            alt=""
+            title={user?.displayName}
+            alt="User Photo"
           />
           {user ? <BsChevronDown className="font-bold h-3" /> : ""}
         </label>

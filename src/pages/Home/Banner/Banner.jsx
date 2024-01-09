@@ -7,6 +7,7 @@ import banner4 from "../../../assets/banner/banner4.jpg";
 import banner5 from "../../../assets/banner/banner5.jpg";
 
 const Banner = () => {
+  // const showArrows = window.innerWidth >= 640;
   const bannerText = (
     <>
       <div className="absolute top-20 sm:top-32 lg:top-40 xl:top-48 lg:left-14 lg:flex flex-col items-start w-full xl:w-2/4 md:px-4 xl:px-0">
@@ -27,7 +28,7 @@ const Banner = () => {
     </>
   );
   return (
-    <Carousel className="text-white" autoPlay infiniteLoop showThumbs={false} showIndicators={false}>
+    <Carousel className="text-white" autoPlay infiniteLoop showThumbs={false} showIndicators={false} >
       <div className="relative">
         <img src={banner1} />
         {bannerText}

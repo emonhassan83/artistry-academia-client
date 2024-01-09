@@ -11,7 +11,7 @@
   }
   
   .default{
-    @apply font-medium tracking-wide transition-colors duration-200 hover:text-[#3da5d9]
+    @apply font-medium tracking-wide transition-colors duration-[1000ms] hover:text-[#3da5d9]
   }
 
 .primary-font{
@@ -27,4 +27,8 @@
 
 .text-color {
   @apply text-[#3da5d9]
+}
+
+.circle_btn {
+  @apply p-2 rounded-full text-color bg-gray-100 hover:bg-gray-200
 }

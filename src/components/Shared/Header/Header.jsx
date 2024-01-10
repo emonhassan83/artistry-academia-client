@@ -23,7 +23,7 @@ const Header = () => {
   };
 
   return (
-    <div className={`max-w-[2520px] bg-gray-100 sticky top-0 z-10 bg-transparent backdrop-blur-md xl:px-16 md:px-10 sm:px-2 px-4 mx-auto h-[65px] sm:h-[75px] shadow-2xl ${theme.mode === 'dark' ? 'text-gray-100' : 'text-black'}`}>
+    <div className={`max-w-[2520px] bg-gray-100 sticky top-0 z-10 bg-transparent backdrop-blur-md xl:px-16 md:px-10 sm:px-2 px-4 mx-auto h-[65px] sm:h-[75px] shadow-md ${theme.mode === 'dark' ? 'text-gray-100' : 'text-black'}`}>
       <div className="relative flex items-center justify-between">
         <Link
           to="/"

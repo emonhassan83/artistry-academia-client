@@ -40,11 +40,11 @@ const Footer = () => {
         </div>
         <div className="lg:ml-40 mx-auto sm:mx-0 text-center sm:text-left text-xs sm:text-sm space-y-1">
           <h6 className="mt-3 md:mt-0 font-semibold">ABOUT US</h6>
-          <p>Our Story</p>
-          <p>News & Events</p>
-          <p>Our Activities</p>
-          <p>Classes</p>
-          <p>Contacts</p>
+          <p className="cursor-pointer hover:underline">Our Story</p>
+          <p className="cursor-pointer hover:underline">News & Events</p>
+          <p className="cursor-pointer hover:underline">Our Activities</p>
+          <p className="cursor-pointer hover:underline">Classes</p>
+          <p className="cursor-pointer hover:underline">Contacts</p>
         </div>
         <div>
           <p className="mt-3 md:mt-0 mx-auto sm:mx-0 text-xs sm:text-sm font-semibold">

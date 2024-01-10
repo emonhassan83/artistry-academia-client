@@ -22,7 +22,7 @@
 }
 
 .btn-color {
-  @apply bg-[#39d1ff] hover:bg-[#3da5d9] text-gray-50 delay-300 scroll-my-1
+  @apply bg-[#39d1ff] hover:bg-[#47baf3] text-gray-50 delay-100 scroll-my-1
 }
 
 .text-color {

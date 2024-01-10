@@ -11,7 +11,8 @@ const InstructorClass = () => {
 
   return (
     <Container>
-      <h2 className="text-3xl uppercase text-center mt-4 mb-10">
+      <div className="my-10">
+      <h2 className="sm:text-xl md:text-3xl uppercase text-center mb-10">
         Instructor Own Classes
       </h2>
       {!loading && instructorClass.length === 0 && (
@@ -19,7 +20,7 @@ const InstructorClass = () => {
             This Instructor has no own classes
           </h5>
         )}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {loading &&
           Array.from(new Array(2)).map((item, index) => (
             <CardSkeleton key={index} height={300} />
@@ -29,6 +30,7 @@ const InstructorClass = () => {
           instructorClass.map((course) => (
             <InstructorClassCard key={course._id} course={course} />
           ))}
+      </div>
       </div>
     </Container>
   );

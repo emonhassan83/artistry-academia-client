@@ -6,6 +6,7 @@ import CardSkeleton from "../../../components/Card/CardSkeleton";
 import useApproveClass from "../../../hooks/usePopularClass";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import CustomArrowButton from "../../../utils/CustomArrowButton";
 
 const PopularClass = () => {
   const { approveClass, loading, error } = useApproveClass([]);
@@ -18,13 +19,10 @@ const PopularClass = () => {
       <p className="sm:mt-3 text-xs sm:text-sm md:text-base lg:text-lg sm:text-center mb-6 sm:mb-8">
         Discover our popular art classes and explore your creative potential
       </p>
-      {/* For large devices */}
+      {/* Show large devices button */}
       <Link to="/all-classes">
-        <div className="hidden btn-sm mt-1 sm:mt-2 sm:flex items-center justify-end group cursor-pointer mb-2">
-          <button className="text-color text-[10px] sm:text-xs uppercase font-semibold hover:underline">
-            See all classes
-          </button>
-          <AiOutlineArrowRight className="text-xs sm:text-base text-color group-hover:translate-x-1 transition-transform" />
+        <div className="hidden sm:flex justify-end mb-3 md:mb-4">
+          <CustomArrowButton props={"See all classes"} />
         </div>
       </Link>
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

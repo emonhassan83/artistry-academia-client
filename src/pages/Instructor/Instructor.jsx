@@ -12,15 +12,17 @@ const Instructor = () => {
       <Helmet>
         <title>Artistry Academia | Instructor</title>
       </Helmet>
-      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 `}>
+      <div className="mt-16 mb-10">
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {loading &&
-          Array.from(new Array(6)).map((item, index) => (
+          Array.from(new Array(8)).map((item, index) => (
             <CardSkeleton key={index} height={300} />
           ))}
         {!loading && popularInstructors &&
           popularInstructors.map((instructor) => (
             <InstructorCard key={instructor._id} instructor={instructor} />
           ))}
+      </div>
       </div>
     </Container>
   );

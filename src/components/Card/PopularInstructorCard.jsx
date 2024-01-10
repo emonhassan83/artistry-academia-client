@@ -1,5 +1,5 @@
 // import { Fade } from "react-awesome-reveal";
-import { AiOutlineArrowRight } from "react-icons/ai";
+import CustomArrowButton from "../../utils/CustomArrowButton";
 
 const PopularInstructorCard = ({instructor}) => {
     return (
@@ -7,17 +7,16 @@ const PopularInstructorCard = ({instructor}) => {
         <div className="card bg-base-100 rounded-none">
         <figure>
           <img
-            className="w-full sm:h-[240px] rounded-sm hover:scale-105 duration-[1500ms]"
+            className="w-full sm:h-[240px] md:h-[210px] rounded-sm hover:scale-105 duration-[1500ms]"
             src={instructor?.image}
             alt="Instructor Image"
           />
         </figure>
         <div className="flex flex-col mt-2 sm:mt-3 lg:mt-4">
           <h2 className="text-sm sm:text-base font-semibold">{instructor?.name}</h2>
-          <div className="flex items-center gap-1 group cursor-pointer mt-1">
-          <button className="text-color text-[10px] sm:text-xs uppercase font-semibold">Read Bio</button>
-          <AiOutlineArrowRight className="text-xs sm:text-base text-color group-hover:translate-x-1 transition-transform" />
-          </div>
+          <div className="mt-1 flex justify-start mb-3 md:mb-4">
+          <CustomArrowButton props={"Read Bio"} />
+        </div>
         </div>
       </div>
       // </Fade>

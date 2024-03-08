@@ -9,7 +9,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, role } = useContext(AuthContext);
   const { theme, themeSwitchHandler } = useTheme(); // for using light and dark themes
 
   useEffect(() => {
@@ -23,7 +23,11 @@ const Header = () => {
   };
 
   return (
-    <div className={`max-w-[2520px] bg-gray-100 sticky top-0 z-10 bg-transparent backdrop-blur-md xl:px-16 md:px-10 sm:px-2 px-4 mx-auto h-[65px] sm:h-[75px] shadow-md ${theme.mode === 'dark' ? 'text-gray-100' : 'text-black'}`}>
+    <div
+      className={`max-w-[2520px] bg-gray-100 sticky top-0 z-10 bg-transparent backdrop-blur-md xl:px-16 md:px-10 sm:px-2 px-4 mx-auto h-[65px] sm:h-[75px] shadow-md ${
+        theme.mode === "dark" ? "text-gray-100" : "text-black"
+      }`}
+    >
       <div className="relative flex items-center justify-between">
         <Link
           to="/"
@@ -84,6 +88,14 @@ const Header = () => {
           )}
         </ul>
         <ul className="hidden lg:flex items-center space-x-4">
+          <Link to='/become-instructor'>
+          <div className={`${role !== "student" ? "block" : "hidden"}`}>
+            <button className="btn btn-ghost btn-sm text-[13px]">
+              Become instructor
+            </button>
+          </div>
+          </Link>
+
           {/* For dark and light mood */}
           <div className="-mr-1">
             {theme.mode == "dark" ? (
@@ -100,7 +112,6 @@ const Header = () => {
               />
             )}
           </div>
-
           <div>
             {user ? (
               <>
@@ -126,7 +137,13 @@ const Header = () => {
           </button>
           {isMenuOpen && (
             <div className="absolute z-10 top-0 left-0 w-full">
-              <div className={`p-5 border rounded shadow-sm  ${theme.mode === 'dark' ? 'text-gray-100 bg-gray-800 border-gray-800' : 'text-black bg-white'}`}>
+              <div
+                className={`p-5 border rounded shadow-sm  ${
+                  theme.mode === "dark"
+                    ? "text-gray-100 bg-gray-800 border-gray-800"
+                    : "text-black bg-white"
+                }`}
+              >
                 <div className="flex items-center justify-between mb-2 sm:mb-4">
                   <div>
                     <Link
@@ -136,7 +153,11 @@ const Header = () => {
                       className="inline-flex items-center"
                     >
                       <div className="flex items-center justify-center mt-2 sm:mt-4">
-                        <img className="w-32 sm:w-36" src={logo} alt="Logo Image" />
+                        <img
+                          className="w-32 sm:w-36"
+                          src={logo}
+                          alt="Logo Image"
+                        />
                       </div>
                     </Link>
                   </div>
@@ -190,6 +211,17 @@ const Header = () => {
                         </Link>
                       </li>
                     )}
+                    <li>
+                      <Link to='/become-instructor'>
+                      <div
+                        className={`${role !== "student" ? "block" : "hidden"} -ml-2`}
+                      >
+                        <button className="btn btn-ghost btn-xs text-[13px]">
+                          Become instructor
+                        </button>
+                      </div>
+                      </Link>
+                    </li>
                     {/* For dark and light mood */}
                     <div className="-mr-4">
                       {theme.mode == "dark" ? (

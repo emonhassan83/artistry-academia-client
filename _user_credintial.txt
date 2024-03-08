@@ -1,0 +1,69 @@
+// Admin info
+{
+    username: "Emily Smith",
+    email: "emilysmith@example.com",
+    password: "!Aa123",
+}
+
+// Instructor info
+{
+    username: "Michael Johnson",
+    email: "michaeljohnson@example.com",
+    password: "!Aa123",
+}
+
+{
+    username: "Sarah Brown",
+    email: "sarahbrown@example.com",
+    password: "!Aa123",
+}
+
+{
+    username: "David Williams",
+    email: "davidwilliams@example.com",
+    password: "!Aa123",
+}
+
+{
+    username: "Jessica Davis",
+    email: "jessicadavis@example.com",
+    password: "!Aa123",
+}
+
+{
+    username: "Christopher Lee",
+    email: "christopherlee@example.com",
+    password: "!Aa123",
+}
+
+{
+    username: "Matthew Taylor",
+    email: "matthewtaylor@example.com",
+    password: "!Aa123",
+}
+
+{
+    username: "Jennifer Smith",
+    email: "jennifersmith@example.com",
+    password: "!Aa123",
+}
+
+{
+    username: "Emily Johnson",
+    email: "emilyjohnson@example.com",
+    password: "!Aa123",
+}
+
+{
+    username: "Amanda Jones",
+    email: "amandajones@example.com",
+    password: "!Aa123",
+}
+
+{
+    username: "Michelle Brown",
+    email: "michellebrown@example.com",
+    password: "!Aa123",
+}
+
+// Student info

@@ -20,6 +20,7 @@ import InstructorRoute from "./InstructorRoute";
 import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import InstructorClass from "../pages/InstructorClass/InstructorClass";
+import BecomeInstructor from "../pages/BecomeInstructor/BecomeInstructor";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
+        path: "/become-instructor",
+        element: <BecomeInstructor />,
+      },
+      {
         path: "/user-profile",
         element: <ProfilePage />,
       },
@@ -77,26 +82,26 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-      // student roues
+      //* student roues
       {
-        path: "/dashboard/selected-class",
+        path: "selected-class",
         element: <SelectedClass />,
       },
       {
-        path: "/dashboard/enrolled-class",
+        path: "enrolled-class",
         element: <EnrolledClass />,
       },
       {
-        path: "/dashboard/payment",
+        path: "payment",
         element: <Payment />,
       },
       {
-        path: "/dashboard/payment-history",
+        path: "payment-history",
         element: <PaymentHistory />,
       },
-      // Instructor roues
+      //* Instructor roues
       {
-        path: "/dashboard/add-class",
+        path: "add-class",
         element: (
           <InstructorRoute>
             <AddClass />
@@ -104,16 +109,16 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/my-class",
+        path: "my-class",
         element: (
           <InstructorRoute>
             <MyClass />
           </InstructorRoute>
         ),
       },
-      // Admin roues
+      //* Admin roues
       {
-        path: "/dashboard/manage-class",
+        path: "manage-class",
         element: (
           <AdminRoute>
             <ManageClass />
@@ -121,7 +126,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/manage-users",
+        path: "manage-users",
         element: (
           <AdminRoute>
             <ManageUsers />

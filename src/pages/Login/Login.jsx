@@ -26,14 +26,14 @@ const Login = () => {
     },
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      email: "emilysmith@example.com",
+      password: "!Aa123",
+    }
+  });
+  
   const onSubmit = (data) => {
-    console.log(data);
     const email = data.email;
     const password = data.password;
     signIn(email, password)
@@ -48,6 +48,7 @@ const Login = () => {
         console.log(error);
       });
   };
+
   return (
     <div className="md:flex justify-center items-center md:h-[100vh] bg-[#caf0f8]">
         <Helmet>
@@ -60,7 +61,7 @@ const Login = () => {
             Sign in to access your account
           </p>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label className="text-xs sm:text-sm">Username or Email</label>
+          <label className="text-xs sm:text-sm">Email address</label>
           <input
             type="email"
             name="email"
@@ -112,7 +113,7 @@ const Login = () => {
           <input
             type="submit"
             value="Login"
-            className="btn btn-color border-none btn-block rounded-3xl"
+            className="btn btn-color border-none btn-block rounded-3xl mt-4"
           />
           <p className="px-3 text-sm dark:text-gray-400 text-center mt-3">
             Login with social accounts

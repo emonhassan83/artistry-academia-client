@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/Shared/Header/Header";
 import Footer from "../components/Shared/Footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 const MainLayout = () => {
   const location = useLocation();
@@ -11,6 +12,7 @@ const MainLayout = () => {
       {noHeaderFooter || <Header />}
       <div className="">
         <Outlet />
+        <Toaster/>
       </div>
       {noHeaderFooter || <Footer />}
     </div>

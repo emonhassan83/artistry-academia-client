@@ -35,7 +35,7 @@ const AddClass = () => {
           totalEnrolled: 0
         };
 
-        //post class data in database
+        //* save class data in database
         addClass(classData)
           .then((data) => {
             Swal.fire({

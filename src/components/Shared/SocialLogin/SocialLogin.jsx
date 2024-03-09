@@ -36,7 +36,7 @@ const SocialLogin = () => {
         onClick={handleGoogleSignIn}
         className={`flex items-center justify-center gap-6 ${widthToggle ? 'social-signUp' : 'social-login'} my-4`}
       >
-        <img className="w-6" src={googleLogo} alt="" />
+        <img className="w-6" src={googleLogo} alt="Google Image" />
         <p className="">Continue with Google</p>
       </div>
     </>

@@ -75,7 +75,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="md:flex justify-center items-center bg-[#caf0f8]">
+    <div className="md:flex justify-center items-center bg-[#caf0f8] min-h-screen">
       <Toaster/>
       <Helmet>
         <title>Artistry Academia | SignUp</title>
@@ -99,7 +99,7 @@ const SignUp = () => {
             </p>
           )}
 
-          <label className="text-xs sm:text-sm">Username or Email</label>
+          <label className="text-xs sm:text-sm">Email address</label>
           <input
             type="email"
             name="email"
@@ -162,14 +162,13 @@ const SignUp = () => {
             className="btn btn-color btn-block rounded-3xl"
           />
         </form>
-        <p className="text-color">{""}</p>
-        <p className="px-3 text-sm text-gray-600 text-center mt-3">
+        <p className="px-3 text-sm text-gray-600 text-center">
           SignUp with social accounts
         </p>
         <div>
           <SocialLogin />
         </div>
-        <p className="text-center mt-3 text-gray-600">
+        <p className="text-center text-gray-600">
           <small className="text-xs sm:text-sm">
             Already have an Account Please{" "}
             <Link to="/login" className="text-color font-bold">

@@ -1,3 +1,12 @@
+/* eslint-disable no-useless-catch */
+import axios from 'axios';
+
+const API_BASE_URL = `${import.meta.env.VITE_API_URL}`;
+
+const api = axios.create({
+  baseURL: API_BASE_URL,
+});
+
 // save a user to database
 export const saveUser = (user) => {
   const currentUser = {
@@ -16,6 +25,16 @@ export const saveUser = (user) => {
   })
     .then((res) => res.json())
     .then((data) => console.log(data));
+};
+
+//* Get all users
+export const fetchAllUsers = async () => {
+  try {
+    const response = await api.get(`/users`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 //update a user to database

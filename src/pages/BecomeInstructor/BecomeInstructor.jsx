@@ -8,6 +8,9 @@ import { addInstructorBio } from "../../api/instructorBio";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import ReusableForm from "../../components/Form/ReusableForm";
+import ReusableInput from "../../components/Form/ReusableInput";
+import ReusableTextArea from "../../components/Form/ReusableTextArea";
 
 const BecomeInstructor = () => {
   const { user } = useContext(AuthContext);
@@ -15,6 +18,7 @@ const BecomeInstructor = () => {
   const { theme } = useTheme();
   const [biography, setBiography] = useState("");
   const [achievement, setAchievement] = useState("");
+  console.log(user?.displayName);
 
   const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await axiosSecure.get("/users");
@@ -34,14 +38,14 @@ const BecomeInstructor = () => {
       const bioData = {
         ...data,
         user: currentUser._id,
-        biography: biography,
-        achievement: achievement,
         createdAt: new Date().toISOString(),
       };
 
       //* saveInstructor bio in db
-      const res = await addInstructorBio(bioData);
-      res.insertedId && toast.sucffcess("user become a instructor successfully created!");
+      // const res = await addInstructorBio(bioData);
+      // res.insertedId &&
+      //   toast.sucffcess("user become a instructor successfully created!");
+      console.log(bioData);
     } catch (error) {
       toast.error(error.message);
     }
@@ -49,7 +53,7 @@ const BecomeInstructor = () => {
 
   return (
     <div
-      className={`w-[85%] md:w-[70%] mx-auto my-6 py-10 md:px-14 px-8 border-[1px] ${
+      className={`w-[85%] md:w-[80%] lg:w-[70%] mx-auto my-6 py-10 md:px-14 px-8 border-[1px] ${
         theme.mode === "dark"
           ? "text-gray-100 border-[#ababab]"
           : "text-gray-800"
@@ -61,7 +65,7 @@ const BecomeInstructor = () => {
       <h2 className="text-2xl font-bold mb-8 text-center">
         Add Profession Info
       </h2>
-      <form className="mx-auto" onSubmit={handleSubmit(onSubmit)}>
+      {/* <form className="mx-auto" onSubmit={handleSubmit(onSubmit)}>
         <div className="sm:block md:flex items-center justify-between gap-2">
           <div className="w-full">
             <>
@@ -157,7 +161,69 @@ const BecomeInstructor = () => {
           value="Become a Instructor"
           className="btn btn-color text-xs w-[160px] border-none rounded-lg"
         />
-      </form>
+      </form> */}
+      <ReusableForm onSubmit={onSubmit} /* defaultValues={defaultValues} */>
+        <div className="sm:block md:flex items-center justify-between gap-4">
+          <div className="w-full">
+            <ReusableInput
+              type="text"
+              name="name"
+              label="Instructor Name"
+              defaultValue={user?.displayName}
+            />
+            <ReusableInput
+              type="text"
+              name="email"
+              label="Email Address"
+              defaultValue={user?.email}
+            />
+          </div>
+          <div className="w-full">
+            <ReusableTextArea
+              type="text"
+              name="biography"
+              label="Biography"
+              placeholder="Enter your biography.."
+            />
+          </div>
+        </div>
+
+        <div className="sm:block md:flex items-center justify-between gap-4">
+          <div className="w-full">
+            <ReusableInput type="text" name="education" label="Education" />
+            <ReusableInput type="text" name="experience" label="Experience" />
+          </div>
+          <div className="w-full">
+            <ReusableTextArea
+              type="text"
+              name="achievements"
+              label="Achievements"
+              placeholder="Enter your achievements.."
+            />
+          </div>
+        </div>
+        <div className="sm:block md:flex items-center justify-center gap-2">
+        <div className="w-full">
+        <ReusableInput
+          type="text"
+          name="specialization"
+          label="Specialization"
+        />
+        </div>
+        <div className="w-full">
+        <ReusableInput
+          type="text"
+          name="teachingPhilosophy"
+          label="Teaching Philosophy"
+        />
+        </div>
+        </div>
+        <input
+          type="submit"
+          value="Become a Instructor"
+          className="btn btn-color text-xs w-[160px] border-none rounded-lg"
+        />
+      </ReusableForm>
     </div>
   );
 };

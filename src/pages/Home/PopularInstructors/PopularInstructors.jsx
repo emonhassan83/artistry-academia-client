@@ -9,6 +9,7 @@ import CustomArrowButton from "../../../utils/CustomArrowButton";
 
 const PopularInstructors = () => {
   const { popularInstructors, loading, error } = usePopularInstructors([]);
+  // console.log(popularInstructors);
 
   return (
     <Container>

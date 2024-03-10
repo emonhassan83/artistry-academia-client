@@ -5,7 +5,7 @@ import useAxiosSecure from "./useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../utils/axiosInstance";
 
-export const fetchInstructorClass = ( email ) => {
+export const fetchInstructorClass = (email) => {
   const [instructorClass, setInstructorClass] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -40,11 +40,12 @@ export const useInstructor = () => {
   const [axiosSecure] = useAxiosSecure();
 
   const { data: isInstructor, isLoading: isInstructorLoading } = useQuery({
-    queryKey: ["isInstructor", user?.email],
+    queryKey: ["instructor", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/instructor/${user?.email}`);
       return res.data.instructor;
     },
   });
+
   return [isInstructor, isInstructorLoading];
 };

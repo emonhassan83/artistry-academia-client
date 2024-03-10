@@ -21,3 +21,4 @@ export const addInstructorBio = async (bioData) => {
     }
   };
 
+//* get instructor bio by instructorId

@@ -11,14 +11,13 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import ReusableForm from "../../components/Form/ReusableForm";
 import ReusableInput from "../../components/Form/ReusableInput";
 import ReusableTextArea from "../../components/Form/ReusableTextArea";
+import { useNavigate } from "react-router-dom";
 
 const BecomeInstructor = () => {
   const { user } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
   const { theme } = useTheme();
-  const [biography, setBiography] = useState("");
-  const [achievement, setAchievement] = useState("");
-  console.log(user?.displayName);
+  const navigate = useNavigate();
 
   const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await axiosSecure.get("/users");
@@ -26,12 +25,6 @@ const BecomeInstructor = () => {
   });
 
   const currentUser = users.find((userData) => userData?.email === user?.email);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   const onSubmit = async (data) => {
     try {
@@ -42,10 +35,13 @@ const BecomeInstructor = () => {
       };
 
       //* saveInstructor bio in db
-      // const res = await addInstructorBio(bioData);
-      // res.insertedId &&
-      //   toast.sucffcess("user become a instructor successfully created!");
-      console.log(bioData);
+      const res = await addInstructorBio(bioData);
+      res?.saveBio?.insertedId &&
+        toast.success("User become a instructor successfully created!");
+
+        //* reface all users and navigate 
+        refetch();
+        navigate("/")
     } catch (error) {
       toast.error(error.message);
     }
@@ -65,103 +61,6 @@ const BecomeInstructor = () => {
       <h2 className="text-2xl font-bold mb-8 text-center">
         Add Profession Info
       </h2>
-      {/* <form className="mx-auto" onSubmit={handleSubmit(onSubmit)}>
-        <div className="sm:block md:flex items-center justify-between gap-2">
-          <div className="w-full">
-            <>
-              <label>Instructor Name</label>
-              <input
-                type="text"
-                defaultValue={user?.displayName}
-                className="text-gray-800"
-                {...register("name", { required: true })}
-                required
-              />
-            </>
-
-            <>
-              <label>Email Address</label>
-              <input
-                type="text"
-                defaultValue={user?.email}
-                className="text-gray-800"
-                {...register("email", { required: true })}
-                required
-              />
-            </>
-          </div>
-
-          <div className="w-full">
-            <label>Biography</label>
-            <textarea
-              className="h-32"
-              onChange={(e) => setBiography(e.target.value)}
-              placeholder="Enter your biography.."
-            ></textarea>
-          </div>
-        </div>
-
-        <div className="sm:block md:flex flex-row-reverse items-center justify-between gap-2">
-          <div className="w-full">
-            <>
-              <label>Education</label>
-              <input
-                type="text"
-                className="text-gray-800"
-                {...register("education", { required: true })}
-                required
-              />
-            </>
-
-            <>
-              <label>Experience</label>
-              <input
-                type="text"
-                className="text-gray-800"
-                {...register("experience", { required: true })}
-                required
-              />
-            </>
-          </div>
-
-          <div className="w-full">
-            <label>Achievements</label>
-            <textarea
-              className="h-32"
-              onChange={(e) => setAchievement(e.target.value)}
-              placeholder="Enter your achievements.."
-            ></textarea>
-          </div>
-        </div>
-
-        <div className="sm:block md:flex items-center justify-center gap-2">
-          <div className="w-full">
-            <label>Specialization</label>
-            <input
-              className="text-gray-800"
-              {...register("specialization", { required: true })}
-              required
-            />
-          </div>
-
-          <div className="w-full">
-            <label>Teaching Philosophy</label>
-            <input
-              type="text"
-              className="text-gray-800"
-              placeholder=""
-              {...register("teachingPhilosophy", { required: true })}
-              required
-            />
-          </div>
-        </div>
-
-        <input
-          type="submit"
-          value="Become a Instructor"
-          className="btn btn-color text-xs w-[160px] border-none rounded-lg"
-        />
-      </form> */}
       <ReusableForm onSubmit={onSubmit} /* defaultValues={defaultValues} */>
         <div className="sm:block md:flex items-center justify-between gap-4">
           <div className="w-full">
@@ -183,22 +82,22 @@ const BecomeInstructor = () => {
               type="text"
               name="biography"
               label="Biography"
-              placeholder="Enter your biography.."
+              placeholder="Enter your biography..."
             />
           </div>
         </div>
 
-        <div className="sm:block md:flex items-center justify-between gap-4">
+        <div className="sm:block md:flex flex-row-reverse items-center justify-between gap-4">
           <div className="w-full">
-            <ReusableInput type="text" name="education" label="Education" />
-            <ReusableInput type="text" name="experience" label="Experience" />
+            <ReusableInput type="text" name="education" label="Education" placeholder="Educational background.." />
+            <ReusableInput type="text" name="experience" label="Experience"placeholder="Your experience..." />
           </div>
           <div className="w-full">
             <ReusableTextArea
               type="text"
-              name="achievements"
-              label="Achievements"
-              placeholder="Enter your achievements.."
+              name="teachingPhilosophy"
+              label="Teaching Philosophy"
+              placeholder="Enter your teaching philosophy..."
             />
           </div>
         </div>
@@ -208,13 +107,15 @@ const BecomeInstructor = () => {
           type="text"
           name="specialization"
           label="Specialization"
+          placeholder="Enter your specialization..."
         />
         </div>
         <div className="w-full">
         <ReusableInput
           type="text"
-          name="teachingPhilosophy"
-          label="Teaching Philosophy"
+          name="achievements"
+          label="Achievements"
+          placeholder="Enter your achievements..."
         />
         </div>
         </div>

@@ -89,7 +89,7 @@ const Header = () => {
         </ul>
         <ul className="hidden lg:flex items-center space-x-4">
           <Link to='/become-instructor'>
-          <div className={`${role !== "student" ? "block" : "hidden"}`}>
+          <div className={`${role === "student" ? "block" : "hidden"}`}>
             <button className="btn btn-ghost btn-sm text-[13px]">
               Become instructor
             </button>
@@ -214,7 +214,7 @@ const Header = () => {
                     <li>
                       <Link to='/become-instructor'>
                       <div
-                        className={`${role !== "student" ? "block" : "hidden"} -ml-2`}
+                        className={`${role === "student" ? "block" : "hidden"} -ml-2`}
                       >
                         <button className="btn btn-ghost btn-xs text-[13px]">
                           Become instructor

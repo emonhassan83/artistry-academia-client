@@ -8,7 +8,7 @@ const InstructorCard = ({ instructor }) => {
     <div className="w-full bg-base-100">
       <figure>
         <img
-          className="w-full sm:h-[240px] md:h-[210px] rounded-sm hover:scale-105 duration-[1500ms]"
+          className="w-full rounded-sm hover:scale-105 duration-[1500ms]"
           src={instructor?.image}
           alt="Instructor Image"
         />

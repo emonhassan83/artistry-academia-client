@@ -16,13 +16,15 @@ const ShowBioModalData = ({ instructorId }) => {
     <div>
       {!isInstructorBioLoading && user && instructorBio && (
         <>
-          <h4>{user?.name}</h4>
-          <p>{instructorBio?.education}</p>
+          <h4 className="text-xl font-semibold mb-4">{user?.name}</h4>
+          <div className="space-y-1 text-sm">
+          <p className="text-sm">{instructorBio?.education}</p>
           <p>{instructorBio?.specialization}</p>
           <p>{instructorBio?.biography}</p>
           <p>{instructorBio?.achievements}</p>
           <p>{instructorBio?.experience}</p>
           <p>{instructorBio?.teachingPhilosophy}</p>
+          </div>
         </>
       )}
     </div>

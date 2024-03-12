@@ -1,155 +1,139 @@
-import { useForm } from "react-hook-form";
-import "./AddClass.css";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { imageUpload } from "../../api/utils";
-import { addClass } from "../../api/classes";
+// import { addClass } from "../../api/classes";
 import { Helmet } from "react-helmet-async";
-import Swal from "sweetalert2";
 import { useTheme } from "../../providers/ThemeProvider";
+import ReusableForm from "../../components/Form/ReusableForm";
+import ReusableInput from "../../components/Form/ReusableInput";
+import ReusableTextArea from "../../components/Form/ReusableTextArea";
+import ReusableSelect from "../../components/Form/ReusableSelect";
+import ReusableMultiSelect from "../../components/Form/ReusableMultiSelect";
+import {
+  courseDurationOptions,
+  courseLevelOptions,
+  courseMaterialsOptions,
+  courseRequirementsOptions,
+  courseTimeOptions,
+} from "../../components/Form/FormSelectData";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
   const { theme } = useTheme();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  
   const onSubmit = (data) => {
-    data.status = "pending";
-    //upload image
-    const image = data?.classImg[0];
-    imageUpload(image)
-      .then((imgData) => {
-        const classData = {
-          className: data?.className,
-          image: imgData?.data.display_url,
-          instructorName: data?.instructorName,
-          email: data?.email,
-          seats: data?.seats,
-          price: data?.price,
-          status: data?.status,
-          totalEnrolled: 0
-        };
+    const courseData = {
+      ...data,
+      requirements: data.requirements.map(item => item.value),
+      materials: data.materials.map(item => item.value),
+      status: 'pending'
+    }
+    console.log(courseData);
 
-        //* save class data in database
-        addClass(classData)
-          .then((data) => {
-            Swal.fire({
-              icon: 'success',
-              title: 'Yep...',
-              text: 'Instructor class added Successfully!',
-            })
-            console.log(data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => console.log(err));
+    //* save class data in database
+    // addClass(classData)
   };
 
   return (
-    <div className={`add-class mx-auto border-[1px] ${theme.mode=== 'dark'? 'text-gray-100 border-[#ababab]' : 'text-gray-800'}`}>
+    <div
+      className={`w-[90%] sm:w-[95%] lg:w-[90%] mx-auto my-6 py-10 md:px-14 px-8 border-[1px]  ${
+        theme.mode === "dark"
+          ? "text-gray-100 border-[#ababab]"
+          : "text-gray-800"
+      }`}
+    >
       <Helmet>
         <title>Artistry Academia | Add A Class</title>
       </Helmet>
-      <h2 className="text-2xl font-bold mb-8 text-center">Add A Class</h2>
-      <form className="mx-auto" onSubmit={handleSubmit(onSubmit)}>
-        <label>Class Name</label>
-        <input
-          type="text"
-          className="text-gray-800"
-          placeholder="Enter your class"
-          {...register("className", { required: true })}
-          required
-        />
-        {errors.className && (
-          <p className="text-sky-500 text-xs -mt-5">
-            <small>Class Name field is required</small>
-          </p>
-        )}
-
-        <label>Class Image</label>
-        <input
-          type="file"
-          className="file-input file-input-ghost w-full"
-          {...register("classImg", { required: true })}
-          required
-        />
-        {errors.classImg && (
-          <p className="text-sky-500 text-xs -mt-5">
-            <small>Class Name field is required</small>
-          </p>
-        )}
-
-        <label>Instructor Name</label>
-        <input
-          value={user?.displayName}
-          className="text-gray-800"
-          {...register("instructorName", { required: true })}
-          required
-        />
-        {errors.instructorName && (
-          <p className="text-sky-500 text-xs -mt-5">
-            <small>Class Name field is required</small>
-          </p>
-        )}
-
-        <label>Instructor Email</label>
-        <input
-          value={user?.email}
-          className="text-gray-800"
-          {...register("email", { required: true })}
-          required
-        />
-        {errors.email && (
-          <p className="text-sky-500 text-xs -mt-5">
-            <small>Class Name field is required</small>
-          </p>
-        )}
-
-        <div className="flex items-center justify-between">
-          <div>
-            <label>Available seats</label>
-            <input
-              defaultValue="10"
-              className="text-gray-800"
-              {...register("seats", { required: true })}
-              required
-            />
-            {errors.seats && (
-              <p className="text-sky-500 text-xs -mt-5">
-                <small>Available seats field is required</small>
-              </p>
-            )}
-          </div>
-          <div>
-            <label>Course Free</label>
-            <input
+      <h2 className="text-2xl font-bold mb-8 text-center">
+        Add A Course Details
+      </h2>
+      <ReusableForm onSubmit={onSubmit}>
+        <div className="sm:block md:flex items-center justify-between gap-4">
+          <div className="w-full">
+            <ReusableInput
               type="text"
-              className="text-gray-800"
-              placeholder="Course free"
-              {...register("price", { required: true })}
-              required
+              name="class_name"
+              label="Class Name"
+              placeholder="Enter class name ..."
             />
-            {errors.price && (
-              <p className="text-sky-500 text-xs -mt-5">
-                <small>Course Free field is required</small>
-              </p>
-            )}
+            <ReusableInput
+              type="text"
+              name="class_image"
+              label="Class Image"
+              placeholder="Enter class image..."
+            />
+          </div>
+          <div className="w-full">
+            <ReusableTextArea
+              type="text"
+              name="course_details"
+              label="Course Details"
+              placeholder="Provide course details..."
+            />
           </div>
         </div>
 
+        <div className="sm:block md:flex flex-row-reverse items-center justify-between gap-4">
+          <div className="w-full">
+            <ReusableInput
+              type="text"
+              name="course_free"
+              label="Course Free"
+              placeholder="Course Free.."
+            />
+            <ReusableInput
+              type="text"
+              name="seats"
+              label="Available seats"
+              placeholder="Available seats..."
+            />
+          </div>
+          <div className="w-full">
+            <ReusableTextArea
+              type="text"
+              name="certifications"
+              label="Certifications"
+              placeholder="Enter course certifications..."
+            />
+          </div>
+        </div>
+        <div className="sm:block md:flex items-center justify-center gap-2">
+          <div className="w-full">
+            <ReusableSelect
+              name="level"
+              label="Course level"
+              options={courseLevelOptions}
+            />
+          </div>
+          <div className="w-full">
+            <ReusableSelect
+              name="duration"
+              label="Course duration"
+              options={courseDurationOptions}
+            />
+          </div>
+        </div>
+        <ReusableSelect
+          name="tile"
+          label="Course time"
+          options={courseTimeOptions}
+        />
+        <ReusableMultiSelect
+          name="requirements"
+          label="Requirements"
+          options={courseRequirementsOptions}
+        />
+        <ReusableMultiSelect
+          name="materials"
+          label="Course materials"
+          options={courseMaterialsOptions}
+        />
         <input
           type="submit"
-          value="Add A Class"
-          className="btn btn-color btn-block border-none rounded-3xl"
+          value="Add Course"
+          className="btn btn-color btn-md text-xs w-[120px] border-none rounded-lg"
         />
-      </form>
+      </ReusableForm>
     </div>
   );
 };

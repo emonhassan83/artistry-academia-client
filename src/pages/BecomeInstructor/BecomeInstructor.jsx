@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
-import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useTheme } from "../../providers/ThemeProvider";
 import { addInstructorBio } from "../../api/instructorBio";

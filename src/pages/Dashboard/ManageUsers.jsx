@@ -1,20 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { deleteAUser } from "../../api/users";
 import toast, { Toaster } from "react-hot-toast";
 import { useTheme } from "../../providers/ThemeProvider";
+import { useGetAllUsers } from "../../hooks/useUser";
 
 const ManageUsers = () => {
-  const [axiosSecure] = useAxiosSecure();
   const { theme } = useTheme(); // for using light and dark themes
-
-  const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await axiosSecure.get("/users");
-    return res.data;
-  });
+  //* fetch all users
+  const [users, refetch ] = useGetAllUsers();
 
   const handleMakeAdmin = (user) => {
     fetch(`${import.meta.env.VITE_API_URL}/users/admin/${user?._id}`, {

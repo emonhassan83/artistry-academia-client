@@ -20,5 +20,3 @@ export const addInstructorBio = async (bioData) => {
       throw error;
     }
   };
-
-//* get instructor bio by instructorId

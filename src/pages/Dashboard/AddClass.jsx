@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-// import { addClass } from "../../api/classes";
+import { addClass } from "../../api/classes";
 import { Helmet } from "react-helmet-async";
 import { useTheme } from "../../providers/ThemeProvider";
 import ReusableForm from "../../components/Form/ReusableForm";
@@ -15,22 +15,56 @@ import {
   courseRequirementsOptions,
   courseTimeOptions,
 } from "../../components/Form/FormSelectData";
+import { useGetAllUsers } from "../../hooks/useUser";
+import { useInstructorById } from "../../hooks/useInstructorBio";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
   const { theme } = useTheme();
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    const courseData = {
-      ...data,
-      requirements: data.requirements.map(item => item.value),
-      materials: data.materials.map(item => item.value),
-      status: 'pending'
+  const [users] = useGetAllUsers();
+
+  const currentUser = users.find((userData) => userData?.email === user?.email);
+  const userId = currentUser?._id;
+  const [instructorBio] = useInstructorById({
+    id: userId,
+  });
+
+  const onSubmit = async (data) => {
+    try {
+      const courseData = {
+        ...data,
+        course_free: Number(data?.course_free),
+        seats: Number(data?.seats),
+        instructor: {
+          email: currentUser?.email,
+          image: currentUser?.image,
+          name: currentUser?.name,
+        },
+        instructorBio: {
+          biography: instructorBio?.biography,
+          education: instructorBio?.education,
+          experience: instructorBio?.experience,
+          teachingPhilosophy: instructorBio?.teachingPhilosophy,
+          specialization: instructorBio?.specialization,
+          achievements: instructorBio?.achievements,
+        },
+        requirements: data?.requirements?.map((item) => item?.value),
+        materials: data?.materials?.map((item) => item?.value),
+        status: "pending",
+        createdAt: new Date().toISOString(),
+      };
+
+      //* save class data in database
+      const res = await addClass(courseData);
+      res?.insertedId && toast.success("Course created successfully !");
+      navigate("/dashboard/my-class");
+    } catch (error) {
+      toast.error(error.message);
     }
-    console.log(courseData);
-
-    //* save class data in database
-    // addClass(classData)
   };
 
   return (

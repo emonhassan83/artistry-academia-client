@@ -4,23 +4,18 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useTheme } from "../../providers/ThemeProvider";
 import { addInstructorBio } from "../../api/instructorBio";
 import toast from "react-hot-toast";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import ReusableForm from "../../components/Form/ReusableForm";
 import ReusableInput from "../../components/Form/ReusableInput";
 import ReusableTextArea from "../../components/Form/ReusableTextArea";
 import { useNavigate } from "react-router-dom";
+import { useGetAllUsers } from "../../hooks/useUser";
 
 const BecomeInstructor = () => {
   const { user } = useContext(AuthContext);
-  const [axiosSecure] = useAxiosSecure();
   const { theme } = useTheme();
   const navigate = useNavigate();
 
-  const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await axiosSecure.get("/users");
-    return res.data;
-  });
+  const [users, refetch ] = useGetAllUsers();
 
   const currentUser = users.find((userData) => userData?.email === user?.email);
 
@@ -59,7 +54,7 @@ const BecomeInstructor = () => {
       <h2 className="text-2xl font-bold mb-8 text-center">
         Add Profession Info
       </h2>
-      <ReusableForm onSubmit={onSubmit} /* defaultValues={defaultValues} */>
+      <ReusableForm onSubmit={onSubmit}>
         <div className="sm:block md:flex items-center justify-between gap-4">
           <div className="w-full">
             <ReusableInput

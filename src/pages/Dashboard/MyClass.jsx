@@ -9,6 +9,7 @@ import { useTheme } from "../../providers/ThemeProvider";
 
 const MyClass = () => {
   const [classes] = useClassByEmail();
+  console.log(classes);
   const [isOpen, setIsOpen] = useState(false);
   const { theme } = useTheme(); // for using light and dark themes
 
@@ -27,6 +28,12 @@ const MyClass = () => {
     console.log(classId);
     toast.success("Update Class Successfully");
   };
+
+  if (classes && classes?.data?.length < 1) {
+    return <div className="h-[94vh] w-[100%] flex items-center justify-center">
+      <p className="text-sm text-red-500 font-medium">Instructor class not found !</p>
+    </div>
+  }
 
   return (
     <div>
@@ -51,7 +58,7 @@ const MyClass = () => {
           </thead>
           <tbody>
             {classes &&
-              classes.map((classData, index) => (
+              classes?.data?.map((classData, index) => (
                 <tr key={classData._id}>
                   <td>{index + 1}</td>
                   <td>

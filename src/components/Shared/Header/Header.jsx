@@ -74,7 +74,7 @@ const Header = () => {
             <>
               <li>
                 <NavLink
-                  to="/dashboard"
+                  to={role === "admin" ? "/dashboard/manage-users" : (role === "instructor" ? "/dashboard/add-class" : "/dashboard/selected-class")}
                   aria-label="DashBoard"
                   title="DashBoard"
                   className={({ isActive }) =>
@@ -202,7 +202,7 @@ const Header = () => {
                     {user && (
                       <li>
                         <Link
-                          to="/dashboard"
+                          to={role === "admin" ? "/dashboard/manage-users" : (role === "instructor" ? "/dashboard/add-class" : "/dashboard/selected-class")}
                           aria-label="DashBoard"
                           title="DashBoard"
                           className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"

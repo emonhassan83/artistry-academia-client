@@ -37,7 +37,7 @@ const AddClass = () => {
     try {
       const courseData = {
         ...data,
-        course_free: Number(data?.course_free),
+        courseFree: Number(data?.courseFree),
         seats: Number(data?.seats),
         instructor: {
           email: currentUser?.email,
@@ -55,6 +55,8 @@ const AddClass = () => {
         requirements: data?.requirements?.map((item) => item?.value),
         materials: data?.materials?.map((item) => item?.value),
         status: "pending",
+        enrolledCourse: 0,
+        availedCourseSeat: true,
         createdAt: new Date().toISOString(),
       };
 
@@ -86,13 +88,13 @@ const AddClass = () => {
           <div className="w-full">
             <ReusableInput
               type="text"
-              name="class_name"
+              name="className"
               label="Class Name"
               placeholder="Enter class name ..."
             />
             <ReusableInput
               type="text"
-              name="class_image"
+              name="classImage"
               label="Class Image"
               placeholder="Enter class image..."
             />
@@ -100,7 +102,7 @@ const AddClass = () => {
           <div className="w-full">
             <ReusableTextArea
               type="text"
-              name="course_details"
+              name="courseDetails"
               label="Course Details"
               placeholder="Provide course details..."
             />
@@ -111,7 +113,7 @@ const AddClass = () => {
           <div className="w-full">
             <ReusableInput
               type="text"
-              name="course_free"
+              name="courseFree"
               label="Course Free"
               placeholder="Course Free.."
             />

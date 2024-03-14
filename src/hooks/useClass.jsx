@@ -7,7 +7,7 @@ export const useClassByEmail = () => {
   const { user } = useContext(AuthContext);
 
   const { data: classes = [], refetch, isLoading } = useQuery({
-    queryKey: ["classes", user?.email],
+    queryKey: ["classes"],
     queryFn: async () => {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/my-class?email=${user?.email}`
@@ -15,6 +15,7 @@ export const useClassByEmail = () => {
       return response.json();
     },
   });
+
   return [classes, isLoading, refetch];
 };
 

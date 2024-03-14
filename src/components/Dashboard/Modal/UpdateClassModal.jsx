@@ -32,9 +32,9 @@ const UpdateClassModal = ({ closeModal, isOpen, classData, id }) => {
               <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium text-center leading-6 text-gray-900 mt-5 mb-10"
+                  className="text-lg font-medium leading-6 text-gray-900 mt-3 mb-6"
                 >
-                  Update A Class!!!
+                  Update A Course Details !
                 </Dialog.Title>
 
                 <ClassModalData

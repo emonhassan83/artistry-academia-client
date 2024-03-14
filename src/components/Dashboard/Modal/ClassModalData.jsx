@@ -5,9 +5,9 @@ import ReusableSelect from "../../Form/ReusableSelect";
 import { courseDurationOptions, courseLevelOptions, courseMaterialsOptions, courseRequirementsOptions, courseTimeOptions } from "../../Form/FormSelectData";
 import ReusableMultiSelect from "../../Form/ReusableMultiSelect";
 import toast from "react-hot-toast";
+import { updateAClass } from "../../../api/classes";
 
 const ClassModalData = ({ classData, closeModal }) => {
-
   const defaultValues = {
     className: classData?.className,
     classImage: classData?.classImage,
@@ -22,15 +22,17 @@ const ClassModalData = ({ classData, closeModal }) => {
     materials: classData?.materials,
   }
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     try {
       const updatedData = {
         ...data,
         courseFree: Number(data?.courseFree),
         seats: Number(data?.seats)
       }
-      console.log(updatedData);
+    
       //* call update related functionality
+      const res = await updateAClass(updatedData, classData._id);
+      res.modifiedCount && toast.success("Course update successfully !")
       
       closeModal(true)
     } catch (error) {

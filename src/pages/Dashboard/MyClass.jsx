@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import UpdateClassModal from "../../components/Dashboard/Modal/UpdateClassModal";
 import { useState } from "react";
 import { useTheme } from "../../providers/ThemeProvider";
-//import { deleteAClass } from "../../api/classes";
+import { deleteAClass } from "../../api/classes";
 
 const MyClass = () => {
   const [classes] = useClassByEmail();
@@ -17,16 +17,18 @@ const MyClass = () => {
     setIsOpen(false);
   };
 
-  // TODO:
   const handleUpdateAClass = (classData) => {
     setSelectedClass(classData);
     setIsOpen(true);
   };
 
-  const handleDeleteAClass = (classId) => {
-    // deleteAClass(classId);
-    console.log(classId);
-    toast.success("Delete this class Successfully !");
+  const handleDeleteAClass = async (classId) => {
+    try {
+      const res = await deleteAClass(classId);
+      res.deletedCount && toast.success("Delete this class Successfully !");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   if (classes && classes?.data?.length < 1) {

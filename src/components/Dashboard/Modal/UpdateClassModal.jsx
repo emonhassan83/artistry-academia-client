@@ -1,8 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import ClassModalData from "./ClassModalData";
+
 const UpdateClassModal = ({ closeModal, isOpen, classData, id }) => {
-  
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -36,8 +36,12 @@ const UpdateClassModal = ({ closeModal, isOpen, classData, id }) => {
                 >
                   Update A Class!!!
                 </Dialog.Title>
-                
-                <ClassModalData classData={classData} closeModal={closeModal} id={id}/>
+
+                <ClassModalData
+                  classData={classData}
+                  closeModal={closeModal}
+                  id={id}
+                />
                 {/* Checkout form */}
               </Dialog.Panel>
             </Transition.Child>

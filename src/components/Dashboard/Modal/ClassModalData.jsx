@@ -1,111 +1,133 @@
-import { useForm } from "react-hook-form";
-import { useContext } from "react";
-import { AuthContext } from "../../../providers/AuthProvider";
+import ReusableForm from "../../Form/ReusableForm";
+import ReusableInput from "../../Form/ReusableInput";
+import ReusableTextArea from "../../Form/ReusableTextArea";
+import ReusableSelect from "../../Form/ReusableSelect";
+import { courseDurationOptions, courseLevelOptions, courseMaterialsOptions, courseRequirementsOptions, courseTimeOptions } from "../../Form/FormSelectData";
+import ReusableMultiSelect from "../../Form/ReusableMultiSelect";
+import toast from "react-hot-toast";
 
+const ClassModalData = ({ classData, closeModal }) => {
 
-const ClassModalData = ({ classData }) => {
-  const { user } = useContext(AuthContext);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const defaultValues = {
+    className: classData?.className,
+    classImage: classData?.classImage,
+    courseDetails: classData?.courseDetails,
+    courseFree: classData?.courseFree,
+    seats: classData?.seats,
+    certifications: classData?.certifications,
+    level: classData?.level,
+    duration: classData?.duration,
+    time: classData?.time,
+    requirements: classData?.requirements,
+    materials: classData?.materials,
+  }
 
   const onSubmit = (data) => {
-    console.log(data);
+    try {
+      const updatedData = {
+        ...data,
+        courseFree: Number(data?.courseFree),
+        seats: Number(data?.seats)
+      }
+      console.log(updatedData);
+      //* call update related functionality
+      
+      closeModal(true)
+    } catch (error) {
+      toast.error(error.message);
+      closeModal(true)
+    }
   };
+
   return (
     <div className="my-3 add-class mx-auto">
-      <form className="mx-auto" onSubmit={handleSubmit(onSubmit)}>
-        <label>Class Name</label>
-        <input
-          type="text"
-          defaultValue={classData?.className}
-          placeholder="Enter your class"
-          {...register("className", { required: true })}
-          required
-        />
-        {errors.className && (
-          <p className="text-sky-500 text-xs -mt-5">
-            <small>Class Name field is required</small>
-          </p>
-        )}
-
-        <label>Class Image</label>
-        <input
-          type="file"
-          className="file-input file-input-ghost w-full"
-          {...register("classImg", { required: true })}
-          required
-        />
-        {errors.classImg && (
-          <p className="text-sky-500 text-xs -mt-5">
-            <small>Class Name field is required</small>
-          </p>
-        )}
-
-        <label>Instructor Name</label>
-        <input
-          value={user?.displayName}
-          {...register("instructorName", { required: true })}
-          required
-        />
-        {errors.instructorName && (
-          <p className="text-sky-500 text-xs -mt-5">
-            <small>Class Name field is required</small>
-          </p>
-        )}
-
-        <label>Instructor Email</label>
-        <input
-          value={user?.email}
-          {...register("email", { required: true })}
-          required
-        />
-        {errors.email && (
-          <p className="text-sky-500 text-xs -mt-5">
-            <small>Class Name field is required</small>
-          </p>
-        )}
-
-        <div className="flex items-center justify-between">
-          <div>
-            <label>Available seats</label>
-            <input
-              defaultValue={classData.seats}
-              {...register("seats", { required: true })}
-              required
-            />
-            {errors.seats && (
-              <p className="text-sky-500 text-xs -mt-5">
-                <small>Available seats field is required</small>
-              </p>
-            )}
-          </div>
-          <div>
-            <label>Course Free</label>
-            <input
+       <ReusableForm onSubmit={onSubmit} defaultValues={defaultValues} >
+        <div className="sm:block md:flex items-center justify-between gap-4">
+          <div className="w-full">
+            <ReusableInput
               type="text"
-              defaultValue={classData?.price}
-              placeholder="Course free"
-              {...register("price", { required: true })}
-              required
+              name="className"
+              label="Class Name"
+              placeholder="Enter class name ..."
             />
-            {errors.price && (
-              <p className="text-sky-500 text-xs -mt-5">
-                <small>Course Free field is required</small>
-              </p>
-            )}
+            <ReusableInput
+              type="text"
+              name="classImage"
+              label="Class Image"
+              placeholder="Enter class image..."
+            />
+          </div>
+          <div className="w-full">
+            <ReusableTextArea
+              type="text"
+              name="courseDetails"
+              label="Course Details"
+              placeholder="Provide course details..."
+            />
           </div>
         </div>
 
+        <div className="sm:block md:flex flex-row-reverse items-center justify-between gap-4">
+          <div className="w-full">
+            <ReusableInput
+              type="text"
+              name="courseFree"
+              label="Course Free"
+              placeholder="Course Free.."
+            />
+            <ReusableInput
+              type="text"
+              name="seats"
+              label="Available seats"
+              placeholder="Available seats..."
+            />
+          </div>
+          <div className="w-full">
+            <ReusableTextArea
+              type="text"
+              name="certifications"
+              label="Certifications"
+              placeholder="Enter course certifications..."
+            />
+          </div>
+        </div>
+        <div className="sm:block md:flex items-center justify-center gap-2">
+          <div className="w-full">
+            <ReusableSelect
+              name="level"
+              label="Course level"
+              options={courseLevelOptions}
+            />
+          </div>
+          <div className="w-full">
+            <ReusableSelect
+              name="duration"
+              label="Course duration"
+              options={courseDurationOptions}
+            />
+          </div>
+        </div>
+        <ReusableSelect
+          name="time"
+          label="Course time"
+          options={courseTimeOptions}
+        />
+        <ReusableMultiSelect
+          name="requirements"
+          label="Requirements"
+          options={courseRequirementsOptions}
+        />
+        <ReusableMultiSelect
+          name="materials"
+          label="Course materials"
+          options={courseMaterialsOptions}
+        />
         <input
           type="submit"
-          value="Add A Class"
-          className="btn btn-color btn-block rounded-3xl"
+          value="Add Course"
+          className="btn btn-color btn-md text-xs w-[120px] border-none rounded-lg"
         />
-      </form>
+      </ReusableForm>
     </div>
   );
 };

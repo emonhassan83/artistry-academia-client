@@ -150,7 +150,7 @@ const AddClass = () => {
           </div>
         </div>
         <ReusableSelect
-          name="tile"
+          name="time"
           label="Course time"
           options={courseTimeOptions}
         />

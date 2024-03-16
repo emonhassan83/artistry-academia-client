@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { deleteAUser } from "../../api/users";
+import { deleteAUser } from "../../api/users/users";
 import toast, { Toaster } from "react-hot-toast";
 import { useTheme } from "../../providers/ThemeProvider";
 import { useGetAllUsers } from "../../hooks/useUser";
@@ -77,7 +77,7 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users?.map((user, index) => (
+            {users?.data?.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>

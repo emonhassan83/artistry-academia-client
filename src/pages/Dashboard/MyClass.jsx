@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import UpdateClassModal from "../../components/Dashboard/Modal/UpdateClassModal";
 import { useState } from "react";
 import { useTheme } from "../../providers/ThemeProvider";
-import { deleteAClass } from "../../api/classes";
+import { deleteAClass } from "../../api/classes/classes";
 
 const MyClass = () => {
   const [classes] = useClassByEmail();

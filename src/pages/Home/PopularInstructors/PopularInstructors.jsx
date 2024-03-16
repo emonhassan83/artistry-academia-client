@@ -33,7 +33,7 @@ const PopularInstructors = () => {
           ))}
         {!loading &&
           popularInstructors &&
-          popularInstructors
+          popularInstructors?.data
             .slice(0, 8)
             .map((instructor) => (
               <PopularInstructorCard

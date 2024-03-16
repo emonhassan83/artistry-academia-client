@@ -10,7 +10,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { getRole } from "../api/users";
+import { getRole } from "../api/users/users";
 import axios from "axios";
 
 export const AuthContext = createContext();
@@ -21,10 +21,10 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [role, setRole] = useState(null);
   const googleProvider = new GoogleAuthProvider();
-
+ 
   useEffect(() => {
     if (user) {
-      getRole(user.email).then((data) => setRole(data));
+      getRole(user?.email).then((data) => setRole(data));
     }
   }, [user]);
 

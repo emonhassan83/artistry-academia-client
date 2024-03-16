@@ -7,7 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
-import { updateUser } from "../../api/users";
+import { updateUser } from "../../api/users/users";
 
 const UserProfile = () => {
   const { user, role } = useContext(AuthContext);

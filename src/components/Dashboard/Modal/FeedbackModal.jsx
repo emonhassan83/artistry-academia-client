@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { feedbackAClass } from "../../../api/classes";
+import { feedbackAClass } from "../../../api/classes/classes";
 import { toast } from "react-hot-toast";
 const FeedbackModal = ({ closeModal, isOpen, classData, refetch, id }) => {
   

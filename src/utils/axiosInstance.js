@@ -7,7 +7,8 @@ const headers = {
   Accept: "application/json",
 };
 
-const token = localStorage.getItem("token");
+const token = localStorage.getItem("access-token");
+console.log(token);
 
 if (token) {
     headers.Authorization = `Bearer ${token}`;

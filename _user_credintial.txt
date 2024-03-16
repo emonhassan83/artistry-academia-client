@@ -67,6 +67,27 @@
 }
 
 // Student info
+1. { name: "Jack Johnson", email: "jackjohnson@example.com" }
+2. { name: "Olivia Brown", email: "oliviabrown@example.com" }
+3. { name: "William Taylor", email: "williamtaylor@example.com" }
+4. { name: "Emma Davis", email: "emmadavis@example.com" }
+
+5. { name: "James Wilson", email: "jameswilson@example.com" }
+6. { name: "Ava Jones", email: "avajones@example.com" }
+7. { name: "Ella Evans", email: "ellaevans@example.com" }
+8. { name: "Sophia Anderson", email: "sophiaanderson@example.com" }
+9. { name: "Michael Thomas", email: "michaelthomas@example.com" }
+10. { name: "Isabella White", email: "isabellawhite@example.com" }
+11. { name: "Daniel Clark", email: "danielclark@example.com" }
+12. { name: "Noah Carter", email: "noahcarter@example.com" }
+13. { name: "Matthew Walker", email: "matthewwalker@example.com" }
+14. { name: "Amelia Lewis", email: "amelialewis@example.com" }
+15. { name: "Benjamin King", email: "benjaminking@example.com" }
+16. { name: "Mia Hill", email: "miahill@example.com" }
+17. { name: "Ethan Moore", email: "ethanmoore@example.com" }
+18. { name: "Lily Russell", email: "lilyrussell@example.com" }
+19. { name: "Liam Baker", email: "liambaker@example.com" }
+20. { name: "Olivia Martinez", email: "oliviamartinez@example.com" }
 
 
 // course images

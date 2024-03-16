@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { addClass } from "../../api/classes";
+import { addClass } from "../../api/classes/classes";
 import { Helmet } from "react-helmet-async";
 import { useTheme } from "../../providers/ThemeProvider";
 import ReusableForm from "../../components/Form/ReusableForm";

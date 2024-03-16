@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useTheme } from "../../providers/ThemeProvider";
-import { addInstructorBio } from "../../api/instructorBio";
+import { addInstructorBio } from "../../api/instructorsBio/instructorBio";
 import toast from "react-hot-toast";
 import ReusableForm from "../../components/Form/ReusableForm";
 import ReusableInput from "../../components/Form/ReusableInput";

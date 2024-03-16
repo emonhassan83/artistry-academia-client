@@ -6,7 +6,7 @@ import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { saveUser } from "../../api/users";
+import { saveUser } from "../../api/users/users";
 import { Helmet } from "react-helmet-async";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -29,7 +29,13 @@ const SignUp = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      name: "Emily Smith",
+      email: "emilysmith@example.com",
+      password: "!Aa123",
+    }
+  });
 
   const url = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMGBB_KEY
@@ -37,7 +43,7 @@ const SignUp = () => {
 
   const onSubmit = (data) => {
 
-      //Image upload
+      //* Image upload to Imgbb
       const formData = new FormData();
       formData.append("image", data.photoUrl[0]);
 
@@ -55,6 +61,8 @@ const SignUp = () => {
                 name: data?.name,
                 email: loggedUser?.email,
                 image: imageUrl,
+                role: "student",
+                createdAt: new Date().toISOString(),
               };
               updateUserProfile(data.name, imageUrl)
                 .then(() => {

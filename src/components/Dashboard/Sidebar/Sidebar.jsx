@@ -11,6 +11,7 @@ import { useTheme } from "../../../providers/ThemeProvider";
 const Sidebar = () => {
   const { user, role } = useContext(AuthContext);
   const { theme } = useTheme(); // for using light and dark themes
+  console.log(role);
 
   const [isActive, setActive] = useState("false");
   const handleToggle = () => {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FeedbackModal from "./Modal/FeedbackModal";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { deleteAClass } from "../../api/classes";
+import { deleteAClass } from "../../api/classes/classes";
 import toast, { Toaster } from "react-hot-toast";
 
 const ManageClassRow = ({

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { selectClass } from "../../api/classes";
+import { selectClass } from "../../api/classes/classes";
 import Swal from "sweetalert2";
 import { useTheme } from "../../providers/ThemeProvider";
 

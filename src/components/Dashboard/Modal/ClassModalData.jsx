@@ -5,7 +5,7 @@ import ReusableSelect from "../../Form/ReusableSelect";
 import { courseDurationOptions, courseLevelOptions, courseMaterialsOptions, courseRequirementsOptions, courseTimeOptions } from "../../Form/FormSelectData";
 import ReusableMultiSelect from "../../Form/ReusableMultiSelect";
 import toast from "react-hot-toast";
-import { updateAClass } from "../../../api/classes/classes";
+import { updateAClass } from "../../../api/classes/instructors.api";
 
 const ClassModalData = ({ classData, closeModal }) => {
   const defaultValues = {

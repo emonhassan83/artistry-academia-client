@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { addClass } from "../../api/classes/classes";
 import { Helmet } from "react-helmet-async";
 import { useTheme } from "../../providers/ThemeProvider";
 import ReusableForm from "../../components/Form/ReusableForm";
@@ -19,6 +18,7 @@ import { useGetAllUsers } from "../../hooks/useUser";
 import { useInstructorById } from "../../hooks/useInstructorBio";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { addClass } from "../../api/classes/instructors.api";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
@@ -52,11 +52,15 @@ const AddClass = () => {
           specialization: instructorBio?.specialization,
           achievements: instructorBio?.achievements,
         },
+        level: data?.level || "Intermediate",
+        duration: data?.duration || "6 weeks",
+        time: data?.time || "Tuesday and Thursday, 4:00 PM - 6:00 PM",
         requirements: data?.requirements?.map((item) => item?.value),
         materials: data?.materials?.map((item) => item?.value),
         status: "pending",
         enrolledCourse: 0,
         availedCourseSeat: true,
+        isDeleted: false,
         createdAt: new Date().toISOString(),
       };
 

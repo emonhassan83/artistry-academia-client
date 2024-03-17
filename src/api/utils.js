@@ -1,4 +1,6 @@
-//upload image in Imgbb
+import { axiosInstance } from "./axiosInstance"
+
+//* upload image in Imgbb
 export const imageUpload = async image => {
     const formData = new FormData()
     formData.append('image', image)
@@ -12,3 +14,10 @@ export const imageUpload = async image => {
     const data = await response.json()
     return data
   }
+
+//* Get a user role from the database
+export const getRole = async (email) => {
+  const res = await axiosInstance.get(`/users/${email}`);
+  const user = await res?.data?.data;
+  return user?.role;
+};

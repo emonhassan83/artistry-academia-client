@@ -74,7 +74,7 @@ const ManageClass = () => {
           </thead>
           <tbody>
             {classes &&
-              classes.map((classData, index) => (
+              classes?.data?.map((classData, index) => (
                 <ManageClassRow
                   key={classData._id}
                   classData={classData}

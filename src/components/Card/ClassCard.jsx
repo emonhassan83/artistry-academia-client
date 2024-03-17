@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { selectClass } from "../../api/classes/classes";
 import Swal from "sweetalert2";
 import { useTheme } from "../../providers/ThemeProvider";
+import { selectClass } from "../../api/classes/student.api";
 
 const ClassCard = ({ classData }) => {
   const { user, role } = useContext(AuthContext);

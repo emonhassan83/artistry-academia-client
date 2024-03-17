@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import useAxiosSecure from "./useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { axiosInstance } from "../utils/axiosInstance";
+import { axiosInstance } from "../api/axiosInstance";
 
 export const fetchInstructorClass = (email) => {
   const [instructorClass, setInstructorClass] = useState([]);

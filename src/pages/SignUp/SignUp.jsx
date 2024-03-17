@@ -6,9 +6,9 @@ import SocialLogin from "../../components/Shared/SocialLogin/SocialLogin";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { saveUser } from "../../api/users/users";
 import { Helmet } from "react-helmet-async";
 import toast, { Toaster } from "react-hot-toast";
+import { saveUser } from "../../api/users/users.api";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -66,7 +66,7 @@ const SignUp = () => {
               };
               updateUserProfile(data.name, imageUrl)
                 .then(() => {
-                  //save user to db
+                  //* save user to db
                   saveUser(userData);
                   toast.success("User signed in successfully");
                   navigate(from, { replace: true });

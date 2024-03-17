@@ -1,22 +1,23 @@
-/* eslint-disable no-useless-catch */
-import axios from 'axios';
-
-const API_BASE_URL = `${import.meta.env.VITE_API_URL}`;
-
-const api = axios.create({
-  baseURL: API_BASE_URL,
-});
+import { axiosInstance } from "../axiosInstance";
 
 //* Add instructor bio
 export const addInstructorBio = async (bioData) => {
-    try {
-      const response = await api.post('/save-instructor-bio', bioData, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
-  };
+  try {
+    const res = await axiosInstance.post("/save-instructor-bio", bioData);
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching students:", error);
+    throw error;
+  }
+};
+
+//* Get instructor's bio by userId
+export const getInstructorBio = async (userId) => {
+  try {
+    const res = await axiosInstance.get(`/get-instructor-bio/${userId}`);
+    return res.data;
+  } catch (error) {
+    console.error("Error getting instructor bio:", error);
+    throw error;
+  }
+};

@@ -2,8 +2,8 @@ import { useContext } from "react";
 import googleLogo from "../../../assets/logo/google.png";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { Toaster, toast } from "react-hot-toast";
-import { saveUserBySocial } from "../../../api/users/users";
 import { useLocation, useNavigate } from "react-router-dom";
+import { saveUserBySocial } from "../../../api/users/users.api";
 
 const SocialLogin = () => {
   const { googleSignIn } = useContext(AuthContext);
@@ -18,9 +18,9 @@ const SocialLogin = () => {
       .then((result) => {
         const logUser = result.user;
         console.log(logUser);
+
         //* save user in db
         saveUserBySocial(logUser);
-
         toast.success("user logged in successfully");
         navigate(from, { replace: true });
       })

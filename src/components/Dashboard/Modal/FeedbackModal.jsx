@@ -1,13 +1,15 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { feedbackAClass } from "../../../api/classes/classes";
 import { toast } from "react-hot-toast";
+import { feedbackAClass } from "../../../api/classes/admin.api";
+
 const FeedbackModal = ({ closeModal, isOpen, classData, refetch, id }) => {
-  
   const handleSubmit = event => {
     event.preventDefault()
     const feedback = event.target.feedback.value;
     const updateData = {feedback: feedback}
+
+    //* feedback class from db
     feedbackAClass(updateData, id)
     .then(data => {
       console.log(data)

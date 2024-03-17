@@ -10,8 +10,8 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { getRole } from "../api/users/users";
-import axios from "axios";
+import { getRole } from "../api/utils";
+import { api } from "../api/baseApi";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [role, setRole] = useState(null);
   const googleProvider = new GoogleAuthProvider();
- 
+
   useEffect(() => {
     if (user) {
       getRole(user?.email).then((data) => setRole(data));
@@ -41,15 +41,16 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      //Jwt implement
+      //* Jwt implement
       if (currentUser?.email) {
-        axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
-          email: currentUser?.email,
-        })
-        .then(data => {
-            localStorage.setItem('access-token', data.data.token);
-            setLoading(false);
+        api
+          .post("/jwt", {
+            email: currentUser?.email,
           })
+          .then((data) => {
+            localStorage.setItem("access-token", data.data.token);
+            setLoading(false);
+          });
       } else {
         localStorage.removeItem("access-token");
         setLoading(false);

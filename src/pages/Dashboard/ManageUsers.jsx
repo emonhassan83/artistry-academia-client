@@ -3,8 +3,8 @@ import { Helmet } from "react-helmet-async";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import toast, { Toaster } from "react-hot-toast";
 import { useTheme } from "../../providers/ThemeProvider";
-import { useGetAllUsers } from "../../hooks/useUser";
 import { deleteAUser } from "../../api/users/admin.api";
+import { useGetAllUsers } from "../../hooks/useFetchUsers";
 
 const ManageUsers = () => {
   const { theme } = useTheme(); // for using light and dark themes

@@ -14,11 +14,11 @@ import {
   courseRequirementsOptions,
   courseTimeOptions,
 } from "../../components/Form/FormSelectData";
-import { useGetAllUsers } from "../../hooks/useUser";
-import { useInstructorById } from "../../hooks/useInstructorBio";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { addClass } from "../../api/classes/instructors.api";
+import { useInstructorById } from "../../hooks/useInstructor";
+import { useGetAllUsers } from "../../hooks/useFetchUsers";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
@@ -27,7 +27,7 @@ const AddClass = () => {
 
   const [users] = useGetAllUsers();
 
-  const currentUser = users.find((userData) => userData?.email === user?.email);
+  const currentUser = users?.data?.find((userData) => userData?.email === user?.email);
   const userId = currentUser?._id;
   const [instructorBio] = useInstructorById({
     id: userId,

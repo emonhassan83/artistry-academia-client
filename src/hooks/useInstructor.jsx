@@ -1,51 +1,44 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import useAxiosSecure from "./useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../api/axiosInstance";
 
-export const fetchInstructorClass = (email) => {
-  const [instructorClass, setInstructorClass] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    const url = `/myClass/${email}`;
-    const fetchInstructorClass = async () => {
-      setLoading(true);
-      try {
-        const { status, data } = await axiosInstance.get(url);
-        if (status === 200) {
-          setInstructorClass(data);
-          setLoading(false);
-          setError("");
-        }
-      } catch (error) {
-        setLoading(false);
-        setError(error.response.data.message);
-      }
-    };
-    fetchInstructorClass();
-  }, [email]);
-  return {
-    instructorClass,
-    loading,
-    error,
-  };
-};
-
 export const useInstructor = () => {
   const { user } = useContext(AuthContext);
-  const [axiosSecure] = useAxiosSecure();
 
   const { data: isInstructor, isLoading: isInstructorLoading } = useQuery({
     queryKey: ["instructor", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users/instructor/${user?.email}`);
+      const res = await axiosInstance.get(`/users/instructor/${user?.email}`);
       return res.data.instructor;
     },
   });
 
   return [isInstructor, isInstructorLoading];
+};
+
+//* get all instructors from database
+export const usePopularInstructors = () => {
+  const { data: instructors, isLoading, refetch } = useQuery({
+    queryKey: ["instructor"],
+    queryFn: async () => {
+      const res = await axiosInstance.get('instructors');
+      return res.data;
+    },
+  });
+
+  return [instructors, isLoading, refetch];
+};
+
+//* get instructor bio by instructorId
+export const useInstructorById = ({id}) => {
+  const { data: instructorBio, isLoading: isInstructorBioLoading } = useQuery({
+    queryKey: ["instructorBio"],
+    queryFn: async () => {
+      const res = await axiosInstance.get(`/get-instructor-bio/${id}`);
+      return res.data;
+    },
+  });
+
+  return [instructorBio, isInstructorBioLoading];
 };

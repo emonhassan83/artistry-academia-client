@@ -2,11 +2,12 @@
 import InstructorCard from "../../components/Card/InstructorCard";
 import Container from "../../components/Container/Container";
 import { Helmet } from "react-helmet-async";
-import usePopularInstructors from "../../hooks/usePopularInstructors";
 import CardSkeleton from "../../components/Card/CardSkeleton";
+import { usePopularInstructors } from "../../hooks/useInstructor";
 
 const Instructor = () => {
-  const { popularInstructors, loading, error } = usePopularInstructors([]);
+  const [instructors, isLoading] = usePopularInstructors();
+  
   return (
     <Container>
       <Helmet>
@@ -14,12 +15,12 @@ const Instructor = () => {
       </Helmet>
       <div className="mt-16 mb-10">
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      {loading &&
+      {isLoading &&
           Array.from(new Array(8)).map((item, index) => (
             <CardSkeleton key={index} height={300} />
           ))}
-        {!loading && popularInstructors &&
-          popularInstructors.map((instructor) => (
+        {!isLoading && instructors &&
+          instructors?.data?.map((instructor) => (
             <InstructorCard key={instructor._id} instructor={instructor} />
           ))}
       </div>

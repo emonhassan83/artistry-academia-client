@@ -13,7 +13,7 @@ if (token) {
     headers.Authorization = `Bearer ${token}`;
 }
 
-//Creating an axios instance with some basic configuration
+//* Creating an axios instance with some basic configuration
 export const axiosInstance = axios.create({
   baseURL,
   headers,

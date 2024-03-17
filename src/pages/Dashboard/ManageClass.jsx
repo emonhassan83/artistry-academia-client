@@ -1,54 +1,34 @@
-import { useQuery } from "@tanstack/react-query";
-import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import ManageClassRow from "../../components/Dashboard/ManageClassRow";
 import { useTheme } from "../../providers/ThemeProvider";
+import { useGetAllClasses } from "../../hooks/useClass";
+import toast from "react-hot-toast";
+import { approveClassByAdmin, denyClassByAdmin } from "../../api/classes/admin.api";
 
 const ManageClass = () => {
-  const { data: classes = [], refetch } = useQuery(["classes"], async () => {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/classes`);
-    return res.json();
-  });
-  const { theme } = useTheme(); // for using light and dark themes
+ const { classes, refetch } = useGetAllClasses();
+  const { theme } = useTheme(); //* for using light and dark themes
 
-  const handleMakeApprove = (classes) => {
-    fetch(`${import.meta.env.VITE_API_URL}/classes/approved/${classes?._id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount > 0) {
-          refetch();
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `Class Approve Successfully`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+  const handleMakeApprove = async(classId) => {
+    try {
+      const res = await approveClassByAdmin(classId);
+    
+      res.data.modifiedCount > 0 && toast.success("Class approve successfully!");
+      refetch();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
-  const handleMakeDeny = (classes) => {
-    fetch(`${import.meta.env.VITE_API_URL}/classes/deny/${classes?._id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount > 0) {
-          refetch();
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: `Class Deny Successfully`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+  const handleMakeDeny = async(classId) => {
+    try {
+      const res = await denyClassByAdmin(classId);
+    
+      res.data.modifiedCount > 0 && toast.success("Class deny successfully!");
+      refetch();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (

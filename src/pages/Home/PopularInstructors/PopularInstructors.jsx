@@ -1,15 +1,13 @@
-/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
 import CardSkeleton from "../../../components/Card/CardSkeleton";
 import PopularInstructorCard from "../../../components/Card/PopularInstructorCard";
 import Container from "../../../components/Container/Container";
-import usePopularInstructors from "../../../hooks/usePopularInstructors";
-import { AiOutlineArrowRight } from "react-icons/ai";
 import CustomArrowButton from "../../../utils/CustomArrowButton";
+import { usePopularInstructors } from "../../../hooks/useInstructor";
 
 const PopularInstructors = () => {
-  const { popularInstructors, loading, error } = usePopularInstructors([]);
-  // console.log(popularInstructors);
+  const [instructors, isLoading] = usePopularInstructors();
+  // console.log(instructors);
 
   return (
     <Container>
@@ -27,13 +25,13 @@ const PopularInstructors = () => {
         </div>
       </Link>
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {loading &&
+        {isLoading &&
           Array.from(new Array(8)).map((item, index) => (
             <CardSkeleton key={index} height={300} />
           ))}
-        {!loading &&
-          popularInstructors &&
-          popularInstructors?.data
+        {!isLoading &&
+          instructors &&
+          instructors?.data
             .slice(0, 8)
             .map((instructor) => (
               <PopularInstructorCard

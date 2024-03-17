@@ -2,11 +2,11 @@
 import ClassCard from "../../components/Card/ClassCard";
 import Container from "../../components/Container/Container";
 import { Helmet } from "react-helmet-async";
-import useApproveClass from "../../hooks/usePopularClass";
 import CardSkeleton from "../../components/Card/CardSkeleton";
+import { useApproveClass } from "../../hooks/useClass";
 
 const AllClass = () => {
-  const { approveClass, loading, error } = useApproveClass([]);
+  const [classes, isLoading] = useApproveClass();
 
   return (
     <Container>
@@ -15,13 +15,13 @@ const AllClass = () => {
       </Helmet>
       <div className="mt-16 mb-10">
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {loading &&
+          {isLoading &&
             Array.from(new Array(8)).map((item, index) => (
               <CardSkeleton key={index} height={300} />
             ))}
-          {!loading &&
-            approveClass.length > 0 &&
-            approveClass.map((classData) => (
+          {!isLoading &&
+            classes.length > 0 &&
+            classes.map((classData) => (
               <ClassCard key={classData._id} classData={classData} />
             ))}
         </div>

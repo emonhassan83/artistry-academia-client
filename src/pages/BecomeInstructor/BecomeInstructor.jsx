@@ -8,7 +8,7 @@ import ReusableForm from "../../components/Form/ReusableForm";
 import ReusableInput from "../../components/Form/ReusableInput";
 import ReusableTextArea from "../../components/Form/ReusableTextArea";
 import { useNavigate } from "react-router-dom";
-import { useGetAllUsers } from "../../hooks/useUser";
+import { useGetAllUsers } from "../../hooks/useFetchUsers";
 
 const BecomeInstructor = () => {
   const { user } = useContext(AuthContext);

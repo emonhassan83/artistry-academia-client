@@ -1,8 +1,8 @@
 import Swal from "sweetalert2";
-import { useSelectClass } from "../../hooks/useSelectClass";
 import SelectedClassRow from "../../components/Dashboard/SelectedClassRow";
 import { Helmet } from "react-helmet-async";
 import { useTheme } from "../../providers/ThemeProvider";
+import { useSelectClass } from "../../hooks/useClass";
 
 const SelectedClass = () => {
   const [classes, refetch] = useSelectClass();

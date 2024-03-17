@@ -1,8 +1,8 @@
 import { useState } from "react";
 import FeedbackModal from "./Modal/FeedbackModal";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { deleteAClass } from "../../api/classes/classes";
 import toast, { Toaster } from "react-hot-toast";
+import { deleteAClass } from "../../api/classes/admin.api";
 
 const ManageClassRow = ({
   classData,
@@ -17,15 +17,20 @@ const ManageClassRow = ({
     setIsOpen(false);
   };
 
-  const handleDeleteAClass = (classId) => {
-    deleteAClass(classId);
-    toast.success("Class deleted successfully");
-    refetch();
+  const handleDeleteAClass = async (classId) => {
+    try {
+      const res = await deleteAClass(classId);
+
+      res.modifiedCount && toast.success("Class deleted successfully");
+      refetch();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
     <>
-    <Toaster/>
+      <Toaster />
       <tr key={classData._id}>
         <td>{index + 1}</td>
         <td>
@@ -33,7 +38,7 @@ const ManageClassRow = ({
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
                 <img
-                  src={classData?.image}
+                  src={classData?.classImage}
                   alt="Avatar Tailwind CSS Component"
                 />
               </div>
@@ -41,14 +46,14 @@ const ManageClassRow = ({
           </div>
         </td>
         <td>{classData?.className}</td>
-        <td>{classData?.instructorName}</td>
+        <td>{classData?.instructor?.name}</td>
         <td>{classData?.seats}</td>
-        <td>${classData?.price}</td>
+        <td>${classData?.courseFree}</td>
         <td>{classData?.status}</td>
         <td>
           <div className="flex items-center gap-1">
             <button
-              onClick={() => handleMakeApprove(classData)}
+              onClick={() => handleMakeApprove(classData._id)}
               className="btn btn-xs btn-color"
               disabled={
                 classData?.status === "approved" || classData?.status === "deny"
@@ -57,7 +62,7 @@ const ManageClassRow = ({
               Approve
             </button>
             <button
-              onClick={() => handleMakeDeny(classData)}
+              onClick={() => handleMakeDeny(classData._id)}
               className="btn btn-xs btn-color"
               disabled={
                 classData?.status === "deny" || classData?.status === "approved"
@@ -82,9 +87,8 @@ const ManageClassRow = ({
             id={classData._id}
           />
         </td>
-        {/* TODO DELETE FUNCTION ADD */}
         <td>
-          <button onClick={()=> handleDeleteAClass(classData._id)}>
+          <button onClick={() => handleDeleteAClass(classData._id)}>
             <RiDeleteBin6Line className=" w-6 h-5 mx-auto text-color" />
           </button>
         </td>

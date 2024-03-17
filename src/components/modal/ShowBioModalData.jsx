@@ -1,5 +1,5 @@
-import { useInstructorById } from "../../hooks/useInstructorBio";
-import { useGetAUser } from "../../hooks/useUser";
+import { useGetAUser } from "../../hooks/useFetchUsers";
+import { useInstructorById } from "../../hooks/useInstructor";
 import Loader from "../Loader/Loader";
 
 const ShowBioModalData = ({ instructorId }) => {
@@ -16,14 +16,14 @@ const ShowBioModalData = ({ instructorId }) => {
     <div>
       {!isInstructorBioLoading && user && instructorBio && (
         <>
-          <h4 className="text-xl font-semibold mb-4">{user?.name}</h4>
+          <h4 className="text-xl font-semibold mb-4">{user?.data?.name}</h4>
           <div className="space-y-1 text-sm">
-          <p className="text-sm">{instructorBio?.education}</p>
-          <p>{instructorBio?.specialization}</p>
-          <p>{instructorBio?.biography}</p>
-          <p>{instructorBio?.achievements}</p>
-          <p>{instructorBio?.experience}</p>
-          <p>{instructorBio?.teachingPhilosophy}</p>
+            <p className="text-sm">{instructorBio?.data?.education}</p>
+            <p>{instructorBio?.data?.specialization}</p>
+            <p>{instructorBio?.data?.biography}</p>
+            <p>{instructorBio?.data?.achievements}</p>
+            <p>{instructorBio?.data?.experience}</p>
+            <p>{instructorBio?.data?.teachingPhilosophy}</p>
           </div>
         </>
       )}

@@ -1,15 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
 import PopularClassCard from "../../../components/Card/PopularClassCard";
 import Container from "../../../components/Container/Container";
 import CardSkeleton from "../../../components/Card/CardSkeleton";
-import useApproveClass from "../../../hooks/usePopularClass";
-import { AiOutlineArrowRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import CustomArrowButton from "../../../utils/CustomArrowButton";
+import { useApproveClass } from "../../../hooks/useClass";
 
 const PopularClass = () => {
-  const { approveClass, loading, error } = useApproveClass([]);
+  const [classes, isLoading] = useApproveClass();
 
   return (
     <Container>
@@ -26,13 +24,12 @@ const PopularClass = () => {
         </div>
       </Link>
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {loading &&
+        {isLoading &&
           Array.from(new Array(8)).map((item, index) => (
             <CardSkeleton key={index} height={300} />
           ))}
-        {!loading &&
-          approveClass
-            .slice(0, 8)
+        {!isLoading &&
+          classes?.data?.slice(0, 8)
             .map((classData) => (
               <PopularClassCard key={classData._id} classData={classData} />
             ))}

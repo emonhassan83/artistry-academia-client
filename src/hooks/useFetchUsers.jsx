@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 
+//* get all users from the database
 export const useGetAllUsers = () => {
  const [axiosSecure] = useAxiosSecure();
 
@@ -12,6 +13,7 @@ export const useGetAllUsers = () => {
   return [ users, refetch ];
 };
 
+//* get a user from the database
 export const useGetAUser = ({id}) => {
  const [axiosSecure] = useAxiosSecure();
 

@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 import { Fade } from "react-awesome-reveal";
 import CustomArrowButton from "../../utils/CustomArrowButton";
+import { Link } from "react-router-dom";
 
 const PopularClassCard = ({ classData }) => {
   // console.log(classData);
-  const { className, classImage } = classData;
+  const { _id ,className, classImage } = classData;
   
   return (
     //  <Fade duration={2000}>
@@ -19,7 +20,9 @@ const PopularClassCard = ({ classData }) => {
       <div className="flex flex-col mt-2 sm:mt-3 lg:mt-4">
         <h2 className="text-sm sm:text-base font-semibold">{className}</h2>
         <div className="mt-1 sm:mt-2 flex justify-start mb-3 md:mb-4">
-          <CustomArrowButton props={"View Details"} />
+        <Link to={`/classes/class-details/${_id}`}>
+        <CustomArrowButton props={"View Details"} />
+        </Link>
         </div>
       </div>
     </div>

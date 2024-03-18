@@ -21,7 +21,7 @@ const ManageClassRow = ({
     try {
       const res = await deleteAClass(classId);
 
-      res.modifiedCount && toast.success("Class deleted successfully");
+      res?.data?.modifiedCount && toast.success("Class deleted successfully");
       refetch();
     } catch (error) {
       toast.error(error.message);

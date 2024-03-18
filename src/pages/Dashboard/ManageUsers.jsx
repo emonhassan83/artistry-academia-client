@@ -1,60 +1,52 @@
-import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import toast, { Toaster } from "react-hot-toast";
 import { useTheme } from "../../providers/ThemeProvider";
-import { deleteAUser } from "../../api/users/admin.api";
+import {
+  deleteAUser,
+  makeUserAdmin,
+  makeUserInstructor,
+} from "../../api/users/admin.api";
 import { useGetAllUsers } from "../../hooks/useFetchUsers";
 
 const ManageUsers = () => {
-  const { theme } = useTheme(); // for using light and dark themes
-  //* fetch all users
-  const [users, refetch ] = useGetAllUsers();
+  const { theme } = useTheme(); //* for using light and dark themes
+  const [users, refetch] = useGetAllUsers();
+  //* filter out delete users
+  const avabileUsers = users?.data?.filter((user) => !user.isDeleted);
 
-  const handleMakeAdmin = (user) => {
-    fetch(`${import.meta.env.VITE_API_URL}/users/admin/${user?._id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount > 0) {
-          refetch();
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `${user.name} Made Admin Successfully`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+  const handleMakeAdmin = async (user) => {
+    try {
+      const res = await makeUserAdmin(user._id);
+
+      res?.data?.modifiedCount && toast.success("Make admin successfully!");
+      refetch();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
-  const handleMakeInstructor = (user) => {
-    fetch(`${import.meta.env.VITE_API_URL}/users/instructor/${user?._id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount > 0) {
-          refetch();
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `${user.name} Made Instructor Successfully`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+  const handleMakeInstructor = async (user) => {
+    try {
+      const res = await makeUserInstructor(user._id);
+
+      res?.data?.modifiedCount &&
+        toast.success("Make instructor successfully!");
+      refetch();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
-  const handleDeleteAUser = (userId) => {
-    deleteAUser(userId);
-    toast.success("User deleted successfully");
-    refetch();
+  const handleDeleteAUser = async (userId) => {
+    try {
+      const res = await deleteAUser(userId);
+
+      res?.data?.modifiedCount && toast.success("User deleted successfully");
+      refetch();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -64,8 +56,16 @@ const ManageUsers = () => {
         <title>Artistry Academia | Manage Users</title>
       </Helmet>
       <div className="overflow-x-auto">
-        <table className={`table ${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-800'}`}>
-          <thead className={`${theme.mode=== 'dark'? 'text-gray-100' : 'text-gray-800'}`}>
+        <table
+          className={`table ${
+            theme.mode === "dark" ? "text-gray-100" : "text-gray-800"
+          }`}
+        >
+          <thead
+            className={`${
+              theme.mode === "dark" ? "text-gray-100" : "text-gray-800"
+            }`}
+          >
             <tr>
               <th>SL</th>
               <th>User Image</th>
@@ -77,61 +77,60 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users?.data?.map((user, index) => (
-              <tr key={user._id}>
-                <th>{index + 1}</th>
-                <td>
-                  <div className="flex items-center space-x-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={user?.image}
-                          alt="User Image"
-                        />
+            {users &&
+              avabileUsers &&
+              avabileUsers?.map((user, index) => (
+                <tr key={user._id}>
+                  <th>{index + 1}</th>
+                  <td>
+                    <div className="flex items-center space-x-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                          <img src={user?.image} alt="User Image" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
-                <td>{user?.name}</td>
-                <td>{user?.email}</td>
-                <td>
-                  {user.role === "admin"
-                    ? "Admin"
-                    : user.role === "instructor"
-                    ? "Instructor"
-                    : "Student"}
-                </td>
-                <td>
-                  <div className="flex items-center gap-1">
+                  </td>
+                  <td>{user?.name}</td>
+                  <td>{user?.email}</td>
+                  <td>
+                    {user.role === "admin"
+                      ? "Admin"
+                      : user.role === "instructor"
+                      ? "Instructor"
+                      : "Student"}
+                  </td>
+                  <td>
+                    <div className="flex items-center gap-1">
+                      <button
+                        onClick={() => handleMakeAdmin(user)}
+                        className="btn btn-xs btn-color"
+                        disabled={user.role === "admin"}
+                      >
+                        Admin
+                      </button>
+                      <button
+                        onClick={() => handleMakeInstructor(user)}
+                        className="btn btn-xs btn-color"
+                        disabled={user.role === "instructor"}
+                      >
+                        Instructor
+                      </button>
+                    </div>
+                  </td>
+                  <td>
                     <button
-                      onClick={() => handleMakeAdmin(user)}
-                      className="btn btn-xs btn-color"
+                      onClick={() => handleDeleteAUser(user._id)}
                       disabled={user.role === "admin"}
+                      className={`${
+                        user.role === "admin" ? "text-gray-300" : "text-color"
+                      }`}
                     >
-                      Admin
+                      <RiDeleteBin6Line className=" w-6 h-5 mx-auto" />
                     </button>
-                    <button
-                      onClick={() => handleMakeInstructor(user)}
-                      className="btn btn-xs btn-color"
-                      disabled={user.role === "instructor"}
-                    >
-                      Instructor
-                    </button>
-                  </div>
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleDeleteAUser(user._id)}
-                    disabled={user.role === "admin"}
-                    className={`${
-                      user.role === "admin" ? "text-gray-300" : "text-color"
-                    }`}
-                  >
-                    <RiDeleteBin6Line className=" w-6 h-5 mx-auto" />
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

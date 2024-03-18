@@ -8,6 +8,8 @@ import { approveClassByAdmin, denyClassByAdmin } from "../../api/classes/admin.a
 const ManageClass = () => {
  const { classes, refetch } = useGetAllClasses();
   const { theme } = useTheme(); //* for using light and dark themes
+  //* filter out delete classes
+  const avabileClasses = classes?.data?.filter(classData => !classData.isDeleted);
 
   const handleMakeApprove = async(classId) => {
     try {
@@ -53,8 +55,8 @@ const ManageClass = () => {
             </tr>
           </thead>
           <tbody>
-            {classes &&
-              classes?.data?.map((classData, index) => (
+            {classes && avabileClasses &&
+              avabileClasses?.map((classData, index) => (
                 <ManageClassRow
                   key={classData._id}
                   classData={classData}

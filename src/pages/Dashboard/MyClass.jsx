@@ -6,12 +6,16 @@ import UpdateClassModal from "../../components/Dashboard/Modal/UpdateClassModal"
 import { useState } from "react";
 import { useTheme } from "../../providers/ThemeProvider";
 import { deleteAClass } from "../../api/classes/admin.api";
+import useAuth from "../../hooks/useAuth";
 
 const MyClass = () => {
-  const [classes] = useClassByEmail();
+  const {user} = useAuth();
+  const [classes] = useClassByEmail(user.email);
   const [selectedClass, setSelectedClass] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const { theme } = useTheme(); //* for using light and dark themes
+  //* filter out delete classes
+  const avabileClasses = classes?.data?.filter(classData => !classData.isDeleted);
 
   const closeModal = () => {
     setIsOpen(false);
@@ -25,7 +29,7 @@ const MyClass = () => {
   const handleDeleteAClass = async (classId) => {
     try {
       const res = await deleteAClass(classId);
-      res.deletedCount && toast.success("Delete this class Successfully !");
+      res?.data?.modifiedCount && toast.success("Delete this class Successfully !");
     } catch (error) {
       toast.error(error.message);
     }
@@ -71,8 +75,8 @@ const MyClass = () => {
             </tr>
           </thead>
           <tbody>
-            {classes &&
-              classes?.data?.map((classData, index) => (
+            {classes && avabileClasses &&
+              avabileClasses?.map((classData, index) => (
                 <tr key={classData._id}>
                   <td>{index + 1}</td>
                   <td>

@@ -21,7 +21,7 @@ const PopularInstructors = () => {
       {/* For large devices */}
       <Link to="/instructors">
         <div className="hidden sm:flex justify-end mb-3 md:mb-4">
-          <CustomArrowButton props={"SSee all instructors"} />
+          <CustomArrowButton props={"See all instructors"} />
         </div>
       </Link>
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

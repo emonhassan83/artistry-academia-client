@@ -3,25 +3,28 @@ import { Fragment } from "react";
 import { toast } from "react-hot-toast";
 import { feedbackAClass } from "../../../api/classes/admin.api";
 
-const FeedbackModal = ({ closeModal, isOpen, classData, refetch, id }) => {
-  const handleSubmit = event => {
-    event.preventDefault()
-    const feedback = event.target.feedback.value;
-    const updateData = {feedback: feedback}
+const FeedbackModal = ({ closeModal, isOpen, refetch, id }) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const feedback = e.target.feedback.value;
+    try {
+      const feedbackData = {
+        id: id,
+        feedback: { feedback: feedback },
+      };
 
-    //* feedback class from db
-    feedbackAClass(updateData, id)
-    .then(data => {
-      console.log(data)
-      toast.success('Home info updated')
-      refetch()
-      closeModal()
-    })
-    .catch(err => {
-      console.log(err)
-    })
-    console.log(classData);
-  }
+      //* feedback class from db
+      const res = await feedbackAClass(feedbackData);
+
+      res?.data?.modifiedCount && toast.success("Send feedback a course successfully!");
+      refetch();
+      closeModal();
+    } catch (error) {
+      toast.error(error.message);
+      closeModal();
+    }
+  };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -56,26 +59,28 @@ const FeedbackModal = ({ closeModal, isOpen, classData, refetch, id }) => {
                   Send Feedback For Deny Class!!!
                 </Dialog.Title>
                 <hr className="my-6" />
-                <form onSubmit={handleSubmit} action="">
-                <div className="form-control my-2">
-                  <label className="label">
-                    <span className="label-text">Your Feedback</span>
-                  </label>
-                  <textarea
-                    name="feedback"
-                    className="textarea textarea-bordered h-24 w-full"
-                    placeholder="Enter your feedback"
-                  ></textarea>
-                </div>
-                <div className="text-end mt-4">
-                  
-                  <button type="submit" className="btn btn-sm w-40 rounded-3xl">
-                    send feedback
-                  </button>
-                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="form-control my-2">
+                    <label className="label">
+                      <span className="label-text">Your Feedback</span>
+                    </label>
+                    <textarea
+                      name="feedback"
+                      className="textarea textarea-bordered h-24 w-full"
+                      placeholder="Enter your feedback"
+                    ></textarea>
+                  </div>
+                  <div className="text-end mt-4">
+                    <button
+                      type="submit"
+                      className="btn btn-sm w-40 rounded-3xl"
+                    >
+                      send feedback
+                    </button>
+                  </div>
                 </form>
                 <div className="-mt-8">
-                <button
+                  <button
                     onClick={closeModal}
                     className="btn btn-sm w-40 rounded-3xl"
                   >

@@ -20,8 +20,8 @@ const AllClass = () => {
               <CardSkeleton key={index} height={300} />
             ))}
           {!isLoading &&
-            classes.length > 0 &&
-            classes.map((classData) => (
+            classes &&
+            classes?.data?.map((classData) => (
               <ClassCard key={classData._id} classData={classData} />
             ))}
         </div>

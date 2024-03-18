@@ -34,9 +34,12 @@ export const denyClassByAdmin = async (classId) => {
 };
 
 //* Give feedback a class by admin by feedback massage
-export const feedbackAClass = async (classData, id) => {
+export const feedbackAClass = async (feedbackData) => {
   try {
-    const res = await axiosInstance.patch(`/class/${id}`, classData);
+    const res = await axiosInstance.patch(
+      `/class/${feedbackData?.id}`,
+      feedbackData?.feedback
+    );
     return res.data;
   } catch (error) {
     console.error("Error giving feedback:", error);

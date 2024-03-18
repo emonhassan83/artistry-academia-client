@@ -13,7 +13,7 @@ export const useGetAllClasses = () => {
   } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
-      const res = await axiosInstance.get('classes');
+      const res = await axiosInstance.get("classes");
       return res.data;
     },
   });
@@ -70,6 +70,18 @@ export const useApproveClass = () => {
   });
 
   return [classes, isLoading, refetch];
+};
+
+//* Fetch a class from the database
+export const useAClasses = (id) => {
+  const { data: classes = [], refetch } = useQuery({
+    queryKey: ["classes"],
+    queryFn: async () => {
+      const res = await axiosInstance.get(`/classes/${id}`);
+      return res.data;
+    },
+  });
+  return [classes, refetch];
 };
 
 //* get all student select class by email

@@ -21,6 +21,7 @@ import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import InstructorClass from "../pages/InstructorClass/InstructorClass";
 import BecomeInstructor from "../pages/BecomeInstructor/BecomeInstructor";
+import ClassDetails from "../pages/ClassDetails/ClassDetails";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AllClass />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/classes/class-details/:id",
+        element: (
+          <PrivateRoute>
+            <ClassDetails />
           </PrivateRoute>
         ),
       },

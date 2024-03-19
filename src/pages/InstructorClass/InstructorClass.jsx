@@ -11,8 +11,8 @@ const InstructorClass = () => {
   return (
     <Container>
       <div className="my-10">
-        <h2 className="sm:text-xl md:text-3xl uppercase text-center mb-10">
-          Instructor Own Classes
+        <h2 className="text-xl uppercase font-semibold text-center mb-10">
+          {classes?.data[0]?.instructor?.name} All Classes
         </h2>
         {!isLoading && classes.length === 0 && (
           <h5 className="text-center text-lg font-semibold">

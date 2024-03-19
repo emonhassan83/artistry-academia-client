@@ -24,7 +24,7 @@ const StudentSidebar = () => {
                 >
                   <FaBookReader className='w-5 h-5' />
 
-                  <span className='mx-4 font-medium'>My Selected Classes</span>
+                  <span className='mx-4 font-medium'>Selected Classes</span>
                 </NavLink>
                 <NavLink
                   to='enrolled-class'
@@ -38,7 +38,7 @@ const StudentSidebar = () => {
                 >
                   <MdAccountBox className='w-5 h-5' />
 
-                  <span className='mx-4 font-medium'>My Enrolled Classes</span>
+                  <span className='mx-4 font-medium'>Enrolled Classes</span>
                 </NavLink>
                 <NavLink
                   to='payment-history'
@@ -52,7 +52,7 @@ const StudentSidebar = () => {
                 >
                   <MdPayment className='w-5 h-5' />
 
-                  <span className='mx-4 font-medium'>My Payment History</span>
+                  <span className='mx-4 font-medium'>Payment History</span>
                 </NavLink>
               </>
             </nav>

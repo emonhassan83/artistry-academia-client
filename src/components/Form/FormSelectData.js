@@ -82,3 +82,39 @@ export const courseMaterialsOptions = [
     value: "Note-taking tools (e.g., notebook, digital note-taking app)",
   },
 ];
+
+
+export const genderOptions = [
+  { key: 1, data: "Male" },
+  { key: 2, data: "Female" },
+  { key: 3, data: "Non-binary" },
+  { key: 4, data: "Prefer not to say" },
+];
+
+export const educationLevelOptions = [
+  { key: 1, data: "High School" },
+  { key: 2, data: "Associate's Degree" },
+  { key: 3, data: "Bachelor's Degree" },
+  { key: 4, data: "Master's Degree" },
+  { key: 5, data: "Doctorate Degree" },
+  { key: 6, data: "Vocational/Technical Training" },
+  { key: 7, data: "Some College, No Degree" },
+];
+
+export const occupationOptions = [
+  { key: 1, data: "Student" },
+  { key: 2, data: "Educator/Teacher" },
+  { key: 3, data: "Employed" },
+  { key: 4, data: "Master's Degree" },
+  { key: 5, data: "Entrepreneur" },
+  { key: 6, data: "Artist/Creative Professional" },
+  { key: 7, data: "Other (Please specify)" },
+];
+
+export const availabilityOptions = [
+  { key: 1, data: "Attend Online" },
+  { key: 2, data: "Attend physically class" },
+  { key: 3, data: "Weekends" },
+  { key: 4, data: "Flexible (Can attend anytime)" }
+];
+

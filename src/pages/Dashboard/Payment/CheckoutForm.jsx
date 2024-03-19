@@ -1,9 +1,10 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../providers/AuthProvider";
+import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-//import { toast } from "react-hot-toast";
-import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
+import { savePaymentClassData } from "../../../api/classes/student.api";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ closeModal, classData, refetch }) => {
   const stripe = useStripe();
@@ -12,13 +13,17 @@ const CheckoutForm = ({ closeModal, classData, refetch }) => {
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  console.log(classData);
 
   useEffect(() => {
-    //generate client secret and save in state
-    if (classData?.price) {
+    //* generate client secret and save in state
+    if (classData?.classInfo?.courseFree) {
       axiosSecure
-        .post("/create-payment-intent", { price: classData?.price })
+        .post("/create-payment-intent", {
+          price: classData?.classInfo?.courseFree,
+        })
         .then((res) => {
           setClientSecret(res.data.clientSecret);
         });
@@ -33,7 +38,6 @@ const CheckoutForm = ({ closeModal, classData, refetch }) => {
     }
 
     const card = elements.getElement(CardElement);
-
     if (card == null) {
       return;
     }
@@ -51,7 +55,8 @@ const CheckoutForm = ({ closeModal, classData, refetch }) => {
       console.log("[PaymentMethod]", paymentMethod);
     }
     setProcessing(true);
-    //confirm payment
+
+    //* confirm payment
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -62,38 +67,38 @@ const CheckoutForm = ({ closeModal, classData, refetch }) => {
           },
         },
       });
-      if (confirmError) {
-        console.log("[error]", confirmError);
-        setCardError(confirmError.message);
-      }else {
-        console.log("[paymentIntent]", paymentIntent);
-        setProcessing(false);
-        if (paymentIntent.status === "succeeded") {
-          //save payment info in DB
+
+    if (confirmError) {
+      console.log("[error]", confirmError);
+      setCardError(confirmError.message);
+    } else {
+      console.log("[paymentIntent]", paymentIntent);
+      setProcessing(false);
+
+      if (paymentIntent.status === "succeeded") {
+        try {
           const paymentInfo = {
             ...classData,
             transactionId: paymentIntent.id,
-            date: new Date(),
+            isPayed: true,
+            payment_date: new Date().toISOString(),
           };
-          //post payment class to DB
-          axiosSecure.post('/paymentClass', paymentInfo)
-          .then(res=>{
-            console.log(res.data);
-            if (res.data.result.insertedId) { 
-              Swal.fire({
-                icon: 'success',
-                title: 'Yep...',
-                text: 'payment successfully',
-              })
-                refetch()
-                closeModal();
-            }
-          })
-          .catch((err) => {
-            console.log(err)
-        })
+
+          //* save payment info in DB
+          const res = await savePaymentClassData(paymentInfo);
+          console.log(res);
+
+          res?.data?.insertedId && toast.success("Payment class successfully!");
+
+          navigate("/dashboard/enrolled-class");
+          refetch();
+          closeModal();
+        } catch (error) {
+          toast.error(error.message);
+          closeModal();
         }
       }
+    }
   };
 
   return (
@@ -125,7 +130,7 @@ const CheckoutForm = ({ closeModal, classData, refetch }) => {
             type="submit"
             disabled={!stripe || !clientSecret || processing}
           >
-            Pay {classData.price}$
+            Pay {classData?.classInfo?.courseFree}$
           </button>
         </div>
       </form>

@@ -5,7 +5,17 @@ import { useTheme } from "../../../providers/ThemeProvider";
 
 const PaymentHistory = () => {
   const [classes] = useEnrollClass();
-  const { theme } = useTheme(); // for using light and dark themes
+  const { theme } = useTheme(); //* for using light and dark themes
+
+  if (classes && classes?.data?.length < 1) {
+    return (
+      <div className="h-[94vh] w-[100%] flex items-center justify-center">
+        <p className="text-sm text-red-500 font-medium">
+          Student has no payment history!
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -27,8 +37,8 @@ const PaymentHistory = () => {
             </tr>
           </thead>
           <tbody>
-            {classes &&
-              classes.map((classData, index) => (
+            {classes?.data &&
+              classes?.data?.map((classData, index) => (
                 <PaymentHistoryRow
                   key={classData._id}
                   classData={classData}

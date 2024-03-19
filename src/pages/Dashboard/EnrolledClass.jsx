@@ -1,10 +1,21 @@
 import { Helmet } from "react-helmet-async";
 import { useEnrollClass } from "../../hooks/useClass";
 import { useTheme } from "../../providers/ThemeProvider";
+import moment from "moment";
 
 const EnrolledClass = () => {
   const [classes] = useEnrollClass();
-  const { theme } = useTheme(); // for using light and dark themes
+  const { theme } = useTheme(); //* for using light and dark themes
+
+  if (classes && classes?.data?.length < 1) {
+    return (
+      <div className="h-[94vh] w-[100%] flex items-center justify-center">
+        <p className="text-sm text-red-500 font-medium">
+          Student has not enrolled class!
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -18,15 +29,17 @@ const EnrolledClass = () => {
             <tr>
               <th>SL</th>
               <th>Class Image</th>
-              <th>Student Name</th>
               <th>ClassName</th>
               <th>Instructor Name</th>
+              <th>Course Level</th>
+              <th>Course Duration</th>
+              <th>Enrolled Date</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {classes &&
-              classes.map((classData, index) => (
+            {classes?.data &&
+              classes?.data?.map((classData, index) => (
                 <tr key={classData._id}>
                   <td>{index + 1}</td>
                   
@@ -35,18 +48,19 @@ const EnrolledClass = () => {
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
                           <img
-                            src={classData?.image}
+                            src={classData?.classInfo?.classImage}
                             alt="Avatar Tailwind CSS Component"
                           />
                         </div>
                       </div>
                     </div>
                   </td>
-                  <td>{classData?.name}</td>
-                  <td>{classData?.className}</td>
-                  <td>{classData?.instructorName}</td>
-                  
-                  <td className="font-bold">
+                  <td>{classData?.classInfo?.className}</td>
+                  <td>{classData?.classInfo?.instructor.name}</td>
+                  <td>{classData?.classInfo?.level}</td>
+                  <td>{classData?.classInfo?.duration}</td>
+                  <td>{moment(classData?.date).format("LLL")}</td>
+                  <td className="font-medium text-red-600 text-[13px]">
                     Enrolled
                   </td>
                 </tr>

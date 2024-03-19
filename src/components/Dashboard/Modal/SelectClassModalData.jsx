@@ -11,9 +11,12 @@ import {
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import { fetchUserByEmail } from "../../../api/users/users.api";
+import { selectAClass } from "../../../api/classes/student.api";
+import { useNavigate } from "react-router-dom";
 
 const SelectClassModalData = ({ classData, closeModal }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const defaultValues = {
     name: user?.displayName,
@@ -26,17 +29,23 @@ const SelectClassModalData = ({ classData, closeModal }) => {
     try {
       const enrolledClassData = {
         user: userData?.data?._id,
+        course: classData._id,
         studentInfo: data,
-        classInfo: classData,
+        classInfo: {
+            ...classData,
+            seats: classData?.seats - 1,
+            enrolledCourse: classData?.enrolledCourse + 1,
+        },
         isPayed: false,
         createdAt: new Date().toISOString(),
       }
-      console.log(enrolledClassData);
-      //* call update related functionality
-      //   const res = await updateAClass(updatedData, classData._id);
-      //   res.modifiedCount && toast.success("Course update successfully !")
 
-      closeModal(true);
+      //* Call select course related functionality
+        const res = await selectAClass(enrolledClassData);
+        res?.data?.insertedId && toast.success("Course selected successfully !")
+
+        navigate("/dashboard/selected-class")
+        closeModal(true);
     } catch (error) {
       toast.error(error.message);
       closeModal(true);

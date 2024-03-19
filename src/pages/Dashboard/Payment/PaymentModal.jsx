@@ -6,9 +6,10 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
-const PaymentModal = ({classData, isOpen, closeModal, refetch}) => {
-    return (
-        <Transition appear show={isOpen} as={Fragment}>
+const PaymentModal = ({ classData, isOpen, closeModal, refetch }) => {
+  
+  return (
+    <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
         <Transition.Child
           as={Fragment}
@@ -43,15 +44,15 @@ const PaymentModal = ({classData, isOpen, closeModal, refetch}) => {
                 <hr className="my-6" />
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
-                    Your course: {classData.className}
+                    Your course: {classData?.classInfo?.className}
                   </p>
                 </div>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
-                    Course Free: ${classData.price}
+                    Course Free: ${classData?.classInfo?.courseFree}
                   </p>
                 </div>
-                
+
                 {/* Checkout form */}
                 <Elements stripe={stripePromise}>
                   <CheckoutForm
@@ -67,7 +68,7 @@ const PaymentModal = ({classData, isOpen, closeModal, refetch}) => {
         </div>
       </Dialog>
     </Transition>
-    );
+  );
 };
 
 export default PaymentModal;

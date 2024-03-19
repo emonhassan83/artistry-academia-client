@@ -2,12 +2,12 @@ import { useState } from "react";
 import PaymentModal from "../../pages/Dashboard/Payment/PaymentModal";
 
 const SelectedClassRow = ({ classData, index, handleDelete, refetch }) => {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-    const closeModal = () => {
-        setIsOpen(false);
-      };
-  
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <tr>
@@ -17,16 +17,16 @@ const SelectedClassRow = ({ classData, index, handleDelete, refetch }) => {
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
                 <img
-                  src={classData?.image}
-                  alt="Avatar Tailwind CSS Component"
+                  src={classData?.classInfo?.classImage}
+                  alt="Class Image"
                 />
               </div>
             </div>
           </div>
         </td>
-        <td>{classData?.className}</td>
-        <td>{classData?.instructorName}</td>
-        <td>{classData?.seats}</td>
+        <td>{classData?.classInfo?.className}</td>
+        <td>{classData?.classInfo?.instructor?.name}</td>
+        <td>{classData?.classInfo?.seats}</td>
         <td>
           <button
             onClick={() => handleDelete(classData._id)}
@@ -36,15 +36,19 @@ const SelectedClassRow = ({ classData, index, handleDelete, refetch }) => {
           </button>
         </td>
         <td>
-         
-            <button
-              onClick={() => setIsOpen(true)}
-              className="btn btn-xs btn-color"
-            >
-              ${classData?.price} tk.
-            </button>
-        
-          <PaymentModal classData={classData} isOpen={isOpen} closeModal={closeModal} refetch={refetch}/>
+          <button
+            onClick={() => setIsOpen(true)}
+            className="btn btn-xs btn-color"
+          >
+            ${classData?.classInfo?.courseFree} tk.
+          </button>
+
+          <PaymentModal
+            classData={classData}
+            isOpen={isOpen}
+            closeModal={closeModal}
+            refetch={refetch}
+          />
         </td>
       </tr>
     </>

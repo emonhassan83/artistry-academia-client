@@ -66,7 +66,7 @@ const AddClass = () => {
 
       //* save class data in database
       const res = await addClass(courseData);
-      res?.insertedId && toast.success("Course created successfully !");
+      res?.data?.insertedId && toast.success("Course created successfully !");
       navigate("/dashboard/my-class");
     } catch (error) {
       toast.error(error.message);

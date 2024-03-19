@@ -47,7 +47,7 @@ export const useEnrollClass = () => {
   const { data: classes = [] } = useQuery({
     queryKey: ["classes", user?.email],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/enrollClass?email=${user?.email}`);
+      const res = await axiosInstance.get(`/enroll-class?email=${user?.email}`);
       return res.data;
     },
   });
@@ -93,7 +93,7 @@ export const useSelectClass = () => {
     queryFn: async () => {
       if (user) {
         const res = await axiosInstance.get(
-          `/selectedClass?email=${user?.email}`
+          `/selected-class?email=${user?.email}`
         );
         return res.data;
       }

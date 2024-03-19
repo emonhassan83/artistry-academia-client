@@ -5,6 +5,7 @@ import Container from "../../components/Container/Container";
 import { useState } from "react";
 import SelectClassModal from "../../components/Dashboard/Modal/SelectClassModel";
 import useAuth from "../../hooks/useAuth";
+import moment from "moment";
 
 const ClassDetails = () => {
   const { role } = useAuth();
@@ -13,7 +14,8 @@ const ClassDetails = () => {
   const { id } = useParams();
 
   const [classes] = useAClasses(id);
-  const classData = classes.data;
+  const classData = classes?.data;
+  const seats = classes?.data?.seats;
 
   const closeModal = () => {
     setIsOpen(false);
@@ -40,7 +42,7 @@ const ClassDetails = () => {
             <button
               onClick={() => setIsOpen(true)}
               className="mb-2 btn-color btn btn-sm"
-              disabled={role === "admin" || role === "instructor" || disabled}
+              disabled={role === "admin" || role === "instructor" || seats < 1 ||disabled}
             >
               Select Class
             </button>
@@ -109,7 +111,7 @@ const ClassDetails = () => {
                 </p>
                 <p>
                   <span className="font-medium">Published Date:</span>{" "}
-                  {classData?.createdAt}
+                  {moment(classData?.createdAt).format("LLL")}
                 </p>
               </div>
             </div>

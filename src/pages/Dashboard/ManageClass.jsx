@@ -15,7 +15,7 @@ const ManageClass = () => {
     try {
       const res = await approveClassByAdmin(classId);
     
-      res.data.modifiedCount > 0 && toast.success("Class approve successfully!");
+      res?.data?.modifiedCount > 0 && toast.success("Class approve successfully!");
       refetch();
     } catch (error) {
       toast.error(error.message);
@@ -26,7 +26,7 @@ const ManageClass = () => {
     try {
       const res = await denyClassByAdmin(classId);
     
-      res.data.modifiedCount > 0 && toast.success("Class deny successfully!");
+      res?.data?.modifiedCount > 0 && toast.success("Class deny successfully!");
       refetch();
     } catch (error) {
       toast.error(error.message);
@@ -55,10 +55,10 @@ const ManageClass = () => {
             </tr>
           </thead>
           <tbody>
-            {classes && avabileClasses &&
+            {classes?.data && avabileClasses &&
               avabileClasses?.map((classData, index) => (
                 <ManageClassRow
-                  key={classData._id}
+                  key={classData?._id}
                   classData={classData}
                   index={index}
                   handleMakeApprove={handleMakeApprove}

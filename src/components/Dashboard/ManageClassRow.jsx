@@ -53,7 +53,7 @@ const ManageClassRow = ({
         <td>
           <div className="flex items-center gap-1">
             <button
-              onClick={() => handleMakeApprove(classData._id)}
+              onClick={() => handleMakeApprove(classData?._id)}
               className="btn btn-xs btn-color"
               disabled={
                 classData?.status === "approved" || classData?.status === "deny"
@@ -88,7 +88,7 @@ const ManageClassRow = ({
           />
         </td>
         <td>
-          <button onClick={() => handleDeleteAClass(classData._id)}>
+          <button onClick={() => handleDeleteAClass(classData?._id)}>
             <RiDeleteBin6Line className=" w-6 h-5 mx-auto text-color" />
           </button>
         </td>

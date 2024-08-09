@@ -2,24 +2,24 @@
 const ShowCredentialsModalData = ({ setOpen }) => {
   const demoCredentials = [
     {
-      role: "Super Admin",
-      email: "john@example.com",
-      password: "!Aa123",
-    },
-    {
       role: "Admin",
-      email: "alice@example.com",
+      email: "emilysmith@example.com",
       password: "!Aa123",
     },
     {
-      role: "User",
-      email: "emily@example.com",
+      role: "Instructor",
+      email: "michaeljohnson@example.com",
+      password: "!Aa123",
+    },
+    {
+      role: "Student",
+      email: "jackjohnson@example.com",
       password: "!Aa123",
     },
   ];
 
   return (
-    <div>
+    <>
       {demoCredentials && (
         <>
           <p className="text-sm mb-3 text-yellow-600">
@@ -27,11 +27,14 @@ const ShowCredentialsModalData = ({ setOpen }) => {
             demonstration purposes only. Please do not use them for actual
             authentication.
           </p>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {demoCredentials.map((credential, index) => (
-              <div key={index} className="p-4 border rounded-lg shadow-md">
+              <div
+                key={index}
+                className="p-4 border rounded-lg shadow-md bg-white transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+              >
                 <h5 className="text-lg font-semibold">{credential.role}</h5>
-                <p className="text-sm">
+                <p className="text-sm mt-2">
                   <strong>Email:</strong> {credential.email}
                 </p>
                 <p className="text-sm">
@@ -42,7 +45,7 @@ const ShowCredentialsModalData = ({ setOpen }) => {
           </div>
         </>
       )}
-    </div>
+    </>
   );
 };
 

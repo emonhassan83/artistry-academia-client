@@ -2,34 +2,37 @@ import { Helmet } from "react-helmet-async";
 import { useClassByEmail } from "../../hooks/useClass";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import toast, { Toaster } from "react-hot-toast";
-import UpdateClassModal from "../../components/Dashboard/Modal/UpdateClassModal";
 import { useState } from "react";
 import { useTheme } from "../../providers/ThemeProvider";
 import { deleteAClass } from "../../api/classes/admin.api";
 import useAuth from "../../hooks/useAuth";
+import AcademiaReusableModal from "../../components/UI/Modal/AcademiaModal";
+import ClassModalData from "../../components/UI/ModalData/ClassModalData";
 
 const MyClass = () => {
-  const {user} = useAuth();
+  const { user } = useAuth();
   const [classes] = useClassByEmail(user.email);
   const [selectedClass, setSelectedClass] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
   const { theme } = useTheme(); //* for using light and dark themes
-  //* filter out delete classes
-  const avabileClasses = classes?.data?.filter(classData => !classData.isDeleted);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  //* filter out delete classes
+  const avabileClasses = classes?.data?.filter(
+    (classData) => !classData.isDeleted
+  );
 
   const handleUpdateAClass = (classData) => {
     setSelectedClass(classData);
-    setIsOpen(true);
+    handleOpenModal();
   };
 
   const handleDeleteAClass = async (classId) => {
     try {
       const res = await deleteAClass(classId);
-      res?.data?.modifiedCount && toast.success("Delete this class Successfully !");
+      res?.data?.modifiedCount &&
+        toast.success("Delete this class Successfully !");
     } catch (error) {
       toast.error(error.message);
     }
@@ -75,7 +78,8 @@ const MyClass = () => {
             </tr>
           </thead>
           <tbody>
-            {classes && avabileClasses &&
+            {classes &&
+              avabileClasses &&
               avabileClasses?.map((classData, index) => (
                 <tr key={classData._id}>
                   <td>{index + 1}</td>
@@ -113,13 +117,18 @@ const MyClass = () => {
           </tbody>
         </table>
       </div>
-      {isOpen && (
-        <UpdateClassModal
-          isOpen={isOpen}
-          closeModal={closeModal}
-          classData={selectedClass}
-          id={selectedClass?._id}
-        />
+      {setIsModalOpen && (
+        <AcademiaReusableModal
+          isOpen={isModalOpen}
+          closeModal={handleCloseModal}
+          title="Demo Credentials"
+          maxWidth="max-w-xl"
+        >
+          <ClassModalData
+            classData={selectedClass}
+            closeModal={handleCloseModal}
+          />
+        </AcademiaReusableModal>
       )}
     </div>
   );

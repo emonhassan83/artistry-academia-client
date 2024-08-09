@@ -1,6 +1,6 @@
-import { useGetAUser } from "../../hooks/useFetchUsers";
-import { useInstructorById } from "../../hooks/useInstructor";
-import Loader from "../Loader/Loader";
+import { useGetAUser } from "../../../hooks/useFetchUsers";
+import { useInstructorById } from "../../../hooks/useInstructor";
+import Loader from "../../Loader/Loader";
 
 const ShowBioModalData = ({ instructorId }) => {
   const [instructorBio, isInstructorBioLoading] = useInstructorById({

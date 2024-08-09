@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FeedbackModal from "./Modal/FeedbackModal";
+import FeedbackModal from "../UI/ModalData/FeedbackModal";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import toast, { Toaster } from "react-hot-toast";
 import { deleteAClass } from "../../api/classes/admin.api";

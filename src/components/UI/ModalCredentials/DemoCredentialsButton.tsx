@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import AcademiaReusableModal from "../../Dashboard/Modal/AcademiaModal";
-import ShowCredentialsModalData from "../../Dashboard/Modal/ShowCredentialsModal";
+import AcademiaReusableModal from "../Modal/AcademiaModal";
+import ShowCredentialsModalData from "../ModalData/ShowCredentialsModal";
 
 const DemoCredentialsButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

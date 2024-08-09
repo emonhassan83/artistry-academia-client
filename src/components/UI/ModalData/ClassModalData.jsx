@@ -21,6 +21,7 @@ const ClassModalData = ({ classData, closeModal }) => {
     requirements: classData?.requirements,
     materials: classData?.materials,
   }
+  // console.log(classData);
 
   const onSubmit = async(data) => {
     try {

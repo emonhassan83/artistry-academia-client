@@ -1,16 +1,16 @@
 .login-card {
   width: 470px;
-  height: 560px;
+  height: 620px;
   border: 2px solid #cb746439;
   border-radius: 5px;
-  padding: 40px 45px;
+  padding: 30px 45px;
 }
 
 .social-login {
   width: 377px;
   height: 42px;
   border: 1px solid #cb746439;
-  border-radius: 57px;
+  border-radius: 5px;
 }
 
 @media only screen and (max-width: 576px) {

@@ -167,7 +167,7 @@ const SignUp = () => {
           <input
             type="submit"
             value="sign up"
-            className="btn btn-color btn-block rounded-3xl"
+            className="btn btn-color btn-block"
           />
         </form>
         <p className="px-3 text-sm text-gray-600 text-center">
@@ -177,9 +177,9 @@ const SignUp = () => {
           <SocialLogin />
         </div>
         <p className="text-center text-gray-600">
-          <small className="text-xs sm:text-sm">
+          <small>
             Already have an Account Please{" "}
-            <Link to="/login" className="text-color font-bold">
+            <Link to="/login" className="text-color font-bold underline">
               Login
             </Link>
           </small>

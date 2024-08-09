@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import toast, { Toaster } from "react-hot-toast";
+import DemoCredentialsButton from "../../components/UI/ModalCredentials/DemoCredentialsButton";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -26,13 +27,17 @@ const Login = () => {
     },
   };
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       email: "emilysmith@example.com",
       password: "!Aa123",
-    }
+    },
   });
-  
+
   const onSubmit = (data) => {
     const email = data.email;
     const password = data.password;
@@ -51,15 +56,17 @@ const Login = () => {
 
   return (
     <div className="md:flex justify-center items-center md:h-[100vh] bg-[#caf0f8]">
-        <Helmet>
-          <title>Artistry Academia | Login</title>
-        </Helmet>
-        <Toaster/>
+      <Helmet>
+        <title>Artistry Academia | Login</title>
+      </Helmet>
+      <Toaster />
       <div className="mt-6 bg-gray-100 login-card mx-auto">
-        <h2 className="text-xl sm:text-2xl font-bold text-center mb-2">Login Please</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-center mb-2">
+          Login Please
+        </h2>
         <p className="text-sm text-gray-400 text-center mb-6">
-            Sign in to access your account
-          </p>
+          Sign in to access your account
+        </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <label className="text-xs sm:text-sm">Email address</label>
           <input
@@ -113,21 +120,23 @@ const Login = () => {
           <input
             type="submit"
             value="Login"
-            className="btn btn-color border-none btn-block rounded-3xl mt-4"
+            className="btn btn-color border-none btn-block mt-4"
           />
-          <p className="px-3 text-sm dark:text-gray-400 text-center mt-3">
+          <p className="px-3 text-sm dark:text-gray-400 text-center mt-2">
             Login with social accounts
           </p>
-        <SocialLogin />
-          <p className="text-center">
-            <small>
-              New to Artistry Academia Please{" "}
-              <Link to="/signUp" className="text-color font-bold">
-                Sign Up
-              </Link>
-            </small>
-          </p>
+          <SocialLogin />
         </form>
+        <div className="divider divider-neutral">OR</div>
+        <DemoCredentialsButton />
+        <p className="text-center mt-3">
+          <small>
+            New to Artistry Academia Please{" "}
+            <Link to="/signUp" className="text-color font-bold underline">
+              SignUp
+            </Link>
+          </small>
+        </p>
       </div>
 
       <div className="md:w-1/2">

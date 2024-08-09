@@ -1,16 +1,16 @@
 .signUp-card {
   width: 470px;
-  height: 700px;
+  height: 680px;
   border: 2px solid #cb746439;
   border-radius: 4px;
-  padding: 35px 45px;
+  padding: 30px 45px;
 }
 
 .social-signUp {
   width: 370px;
   height: 45px;
   border: 1px solid #cb746439;
-  border-radius: 57px;
+  border-radius: 5px;
 }
 
 @media only screen and (max-width: 576px) {

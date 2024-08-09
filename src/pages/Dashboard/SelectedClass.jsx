@@ -22,7 +22,7 @@ const SelectedClass = () => {
     }
   };
 
-  if (classes && classes?.data?.length < 1) {
+  if (classes && classes?.data?.length === 0) {
     return (
       <div className="h-[94vh] w-[100%] flex items-center justify-center">
         <p className="text-sm text-red-500 font-medium">
@@ -33,35 +33,35 @@ const SelectedClass = () => {
   }
 
   return (
-    <div>
+    <>
       <Helmet>
         <title>Artistry Academia | Selected Class</title>
       </Helmet>
-      <div className="overflow-x-auto">
-        <table
-          className={`table ${
-            theme.mode === "dark" ? "text-gray-100" : "text-gray-800"
-          }`}
-        >
-          {/* head */}
-          <thead
-            className={`${
+      {classes?.data?.length > 0 && (
+        <div className="overflow-x-auto">
+          <table
+            className={`table ${
               theme.mode === "dark" ? "text-gray-100" : "text-gray-800"
             }`}
           >
-            <tr>
-              <th>SL</th>
-              <th>Class Image</th>
-              <th>ClassName</th>
-              <th>Instructors name</th>
-              <th>Available seats</th>
-              <th>Action</th>
-              <th>Pay</th>
-            </tr>
-          </thead>
-          <tbody>
-            {classes?.data?.length > 0 &&
-              classes?.data?.map((classData, index) => (
+            {/* head */}
+            <thead
+              className={`${
+                theme.mode === "dark" ? "text-gray-100" : "text-gray-800"
+              }`}
+            >
+              <tr>
+                <th>SL</th>
+                <th>Class Image</th>
+                <th>ClassName</th>
+                <th>Instructors name</th>
+                <th>Available seats</th>
+                <th>Action</th>
+                <th>Pay</th>
+              </tr>
+            </thead>
+            <tbody>
+              {classes?.data?.map((classData, index) => (
                 <SelectedClassRow
                   key={classData._id}
                   classData={classData}
@@ -70,10 +70,11 @@ const SelectedClass = () => {
                   refetch={refetch}
                 />
               ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+            </tbody>
+          </table>
+        </div>
+      )}
+    </>
   );
 };
 

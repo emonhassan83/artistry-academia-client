@@ -31,9 +31,9 @@ const SignUp = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: "Emily Smith",
-      email: "emilysmith@example.com",
-      password: "!Aa123",
+      name: "",
+      email: "",
+      password: "",
     }
   });
 

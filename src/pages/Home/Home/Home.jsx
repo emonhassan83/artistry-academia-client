@@ -5,6 +5,7 @@ import PopularClass from "../PopularClass/PopularClass";
 import PopularInstructors from "../PopularInstructors/PopularInstructors";
 import AboutUs from "../AboutUs/AboutUs";
 import { useTheme } from "../../../providers/ThemeProvider";
+import WhatsNew from "../WhatsNew/WhatsNew";
 
 const Home = () => {
   const { theme } = useTheme(); // for using light and dark themes
@@ -16,6 +17,7 @@ const Home = () => {
       </Helmet>
       <Banner />
       <PopularClass />
+      <WhatsNew />
       <PopularInstructors />
       <BlogSection />
       <AboutUs/>
